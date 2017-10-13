@@ -1,7 +1,11 @@
 {% extends "findafriend/base.html" %}
 
 {% block content %}
-	<h1>Welcome to Find a Friend</h1>
-	<p></p>
-
+	<h1>Find a Friend</h1>
+	{%if user.username %}
+	<p>Hello {{user.username}}!</p>
+	<a href="registration/logout">logout</a>
+	{% else %}
+	<p>Please <a href="registration/login">login</a></p>
+	{% endif %}
 {% endblock %}

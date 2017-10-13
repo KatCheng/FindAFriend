@@ -22,4 +22,5 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 def home(request):
-    return HttpResponse(get_template('home.html').render())
+    users = {'user':request.user}
+    return HttpResponse(get_template('home.html').render(users))
