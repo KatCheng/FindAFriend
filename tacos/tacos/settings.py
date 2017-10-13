@@ -37,11 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-  # 'django.contrib.sites'
-=======
-#    'django.contrib.sites'
->>>>>>> Home Page
+# 'django.contrib.sites'
     'findafriend',
     
 ]
