@@ -1,0 +1,15 @@
+{% extends "findafriend/base.html" %}
+
+{% block content %}
+    <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+        <input type="submit" value="logout" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+{% endblock %}
+~                                                                                                       
+~                                                                                                       
+~                    
+~                                                                                                       
+~                                                                                                       
+~                            
