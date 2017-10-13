@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'tacos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'database',
-        'USER': 'username',
-        'PASSWORD': 'password',
-        'HOST':'',
+        'NAME': 'tacosdb',
+        'USER': 'djangotest',
+        'PASSWORD': 'tacos',
+        'HOST':'localhost',
         'PORT':'',
     }
 }
