@@ -6,7 +6,6 @@
 	<p>Hello {{user.username}}!</p>
 	<a href="accounts/logout">logout</a>
 	{% else %}
-	<p><a href="accounts/login">Click here to login</a></p>
-	<p><a href="accounts/signup">Click here to sign up</a></p>
+	<p>Please <a href="accounts/login">login</a></p>
 	{% endif %}
 {% endblock %}
