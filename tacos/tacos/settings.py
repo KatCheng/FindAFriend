@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'findafriend'
+    'findafriend',
+    'django_mysql',
 ]
 
 MIDDLEWARE = [
@@ -76,17 +77,21 @@ WSGI_APPLICATION = 'tacos.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-=======
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tacosdb',
         'USER': 'djangotest',
         'PASSWORD': 'tacos',
         'HOST':'localhost',
         'PORT':'',
->>>>>>> dae26be0bf1795c4341f48c3586b052dfab9d7ae
+        'OPTIONS':{
+            'init_command': "SET GLOBAL sql_mode='STRICT_TRANS_TABLES, innodb_strict_mode=1'",
+            'charset': 'utf8mb4',
+        },
+        'TEST': {
+            'CHARSET': 'utf8mb4',
+            'COLLATION': 'utf8mb4_unicode_ci',
+        }
+
     }
 }
 
