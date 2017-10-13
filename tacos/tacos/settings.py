@@ -76,8 +76,17 @@ WSGI_APPLICATION = 'tacos.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+=======
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tacosdb',
+        'USER': 'djangotest',
+        'PASSWORD': 'tacos',
+        'HOST':'localhost',
+        'PORT':'',
+>>>>>>> dae26be0bf1795c4341f48c3586b052dfab9d7ae
     }
 }
 
