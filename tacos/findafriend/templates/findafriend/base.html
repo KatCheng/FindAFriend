@@ -6,17 +6,17 @@
 
     </head>
     <body>
-         <div class="page-header">
-            <h1><a href="/">Find A Friend!</a></h1>
+         <div  align="center" class="page-header">
+            <h1><a href="/" style="text-decoration:none;font-size: 40px;font-family:Comic Sans MS">Find A Friend!</a></h1>
         </div>
         <div class="nav">
             {% if user.is_authenticated %}
-                <div class="top-menu"><a href="{% url 'logout' %}">Log out</a></div>
+                <!-- <div align="center" class="top-menu"><a href="{% url 'logout' %}">Log out</a></div> -->
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
         </div>
-        <div class="content container">
+        <div align="center" class="content container">
             <div class="row">
                 <div class="col-md-8">
                 {% block content %}
