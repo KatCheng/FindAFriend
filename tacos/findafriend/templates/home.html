@@ -1,12 +1,19 @@
 {% extends "findafriend/base.html" %}
 
 {% block content %}
-	<h1>Welcome to Find a Friend</h1>
+
+	<style>
+	body{
+	background-color: lightblue;
+	}
+	</style>
+
+	<h1 align="center" style="font-size: 55px;font-family:Impact">Welcome to Find a Friend</h1>
 	{%if user.username %}
-	<p>Hello {{user.username}}!</p>
-	<a href="accounts/logout">logout</a>
+	<p align="center" style="font-size: 20px;font-family:Comic Sans MS">Hello {{user.username}}!</p>
+	<a align="center" href="accounts/logout" style="text-decoration:none">Log Out</a>
 	{% else %}
-	<p><a href="accounts/login">Click here to login</a></p>
-	<p><a href="accounts/signup">Click here to sign up</a></p>
+	<p align="center"><a href="accounts/login" style="text-decoration:none">Click here to login</a></p>
+	<p align="center"><a href="accounts/signup" style="text-decoration:none">Click here to sign up</a></p>
 	{% endif %}
 {% endblock %}
