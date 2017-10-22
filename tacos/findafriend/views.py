@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
 from django.http import HttpResponse
 from django.template.loader import get_template
-from .forms import NewGroupForm
-from .models import Group
+from django.utils import timezone
+from .forms import NewPageForm
+from .models import Page
 
 
 def signup(request):
@@ -28,15 +31,17 @@ def home(request):
     users = {'user':request.user}
     return HttpResponse(get_template('findafriend/home.html').render(users))
 
+
+@login_required
 def newGroup(request):
     if request.method == "POST":
-        form = NewGroupForm(request.POST)
+        form = NewPageForm(request.POST)
         if form.is_valid():
-            post = form.save()
-            post.creator = {'user':request.user}
+            post = form.save(commit=False)
+            post.creator = request.user
             post.timeCreated = timezone.now()
             post.save()
             return redirect('home')
     else:
-        form = NewGroupForm()
+        form = NewPageForm()
     return render(request, 'findafriend/create_group.html', {'form': form})
