@@ -4,11 +4,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
-<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-=======
-from django.shortcuts import render, redirect, get_object_or_404
->>>>>>> 2ae3db6390a6f14e9b221fcbc7226c9fd33652c4
 
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -16,15 +12,11 @@ from django.utils import timezone
 from .forms import NewPageForm
 from .models import Page
 
-<<<<<<< HEAD
 from django.contrib.auth.models import User 
 from .models import UserProfile
 from .forms import UserProfileForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
-
-=======
->>>>>>> 2ae3db6390a6f14e9b221fcbc7226c9fd33652c4
 
 def signup(request):
     if request.method == 'POST':
@@ -57,7 +49,6 @@ def newGroup(request):
             return redirect('home')
     else:
         form = NewPageForm()
-<<<<<<< HEAD
     return render(request, 'findafriend/create_group.html', {'form': form})
 
 @login_required
@@ -91,6 +82,4 @@ def editProfile(request):
         })
     else:
         raise PermissionDenied
-=======
     return render(request, 'findafriend/create_group.html', {'form': form})
->>>>>>> 2ae3db6390a6f14e9b221fcbc7226c9fd33652c4
