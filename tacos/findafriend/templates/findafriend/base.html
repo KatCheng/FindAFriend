@@ -11,7 +11,7 @@
         </div>
         <div class="nav">
             {% if user.is_authenticated %}
-                <div class="top-menu"><a href="{% url 'logout' %}">Log out</a></div>
+                <!--<div class="top-menu"><a href="{% url 'logout' %}">Log out</a></div>-->
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}

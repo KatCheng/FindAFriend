@@ -1,0 +1,11 @@
+{% extends "findafriend/base.html" %}
+
+{% block content %}
+    <h1>Update your Profile</h1>
+    <form action="." method="POST" class="padding">
+    	{% csrf_token %} {{ noodle_form.as_p }}
+    	{{ formset.management_form }}
+                {{ formset.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
