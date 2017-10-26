@@ -1,8 +1,15 @@
 {% extends "findafriend/base.html" %}
 
 {% block content %}
-    <h1>New Group</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+
+	<style>
+	body{
+	background-color: lightblue;
+	}
+	</style>
+	
+    <h1 align="center" style="font-size: 40px;font-family:Impact">New Group</h1>
+    <form align="center" method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>

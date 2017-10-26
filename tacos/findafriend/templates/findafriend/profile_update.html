@@ -1,8 +1,14 @@
 {% extends "findafriend/base.html" %}
 
 {% block content %}
-    <h1>Update your Profile</h1>
-    <form action="." method="POST" class="padding">
+	<style>
+	body{
+	background-color: lightblue;
+	}
+	</style>
+
+    <h1 align="center" style="font-size: 40px;font-family:Impact">Update your Profile</h1>
+    <form align="center" action="." method="POST" class="padding">
     	{% csrf_token %} {{ noodle_form.as_p }}
     	{{ formset.management_form }}
                 {{ formset.as_p }}
