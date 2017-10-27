@@ -6,10 +6,11 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 
+from django.template import RequestContext
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.utils import timezone
-from .forms import NewPageForm
+from .forms import NewPageForm, UserDeleteForm
 from .models import Page
 
 from django.contrib.auth.models import User 
@@ -83,3 +84,21 @@ def editProfile(request):
     else:
         raise PermissionDenied
     return render(request, 'findafriend/create_group.html', {'form': form})
+
+@login_required
+def deleteUser(request):
+    if request.method == "POST":
+        
+        targetUser = User.objects.get(username=request.user.get_username())
+        if authenticate(username = request.user.get_username(),password = request.POST['password']): 
+            logout(request)
+            targetUser.delete()
+            return render(request, 'findafriend/delete_success.html')
+        else:
+            return render(request, 'findafriend/delete_failure.html')
+    elif request.method == "GET":
+        return render(request, 'findafriend/delete_user.html', {'form': UserDeleteForm()}, RequestContext(request))
+    else:
+        return HttpResponse(status=400)
+    
+
