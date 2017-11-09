@@ -39,3 +39,8 @@ def create_profile(sender, **kwargs):
 		user_profile.save()
 post_save.connect(create_profile, sender=User)
 
+class Chat(models.Model):
+    senderName = models.CharField(max_length=150)
+    recipientName = models.CharField(max_length=150) 
+    messageContent = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
