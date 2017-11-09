@@ -44,3 +44,6 @@ class Chat(models.Model):
     recipientName = models.CharField(max_length=150) 
     messageContent = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'sender: %s recipient: %s message: %s time: %s' % (self.senderName, self.recipientName, self.messageContent, self.timestamp)

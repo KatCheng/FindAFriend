@@ -18,6 +18,9 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
+from .models import Chat 
+
+import json
 
 def signup(request):
     if request.method == 'POST':
@@ -101,4 +104,16 @@ def deleteUser(request):
     else:
         return HttpResponse(status=400)
     
+
+def newMessage(request):
+    if request.method == "POST":
+        chat = json.JSONDecoder.decode(request.body)
+        Chat(
+                senderName=chat.senderName,
+                recipientName=chat.recipientName,
+                messageContent=chat.messageContent
+        ).save()
+        return HttpResponse(status=200)
+    else: 
+        return HttpResponse(status=404)
 
