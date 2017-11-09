@@ -6,3 +6,4 @@ include/
 *.py[cod]
 *.pyc
 .DS_Store
+*.sqlite3
