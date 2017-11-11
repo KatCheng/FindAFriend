@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 # 'django.contrib.sites'
     'findafriend',
+    'channels',
     
 ]
 
@@ -143,3 +144,11 @@ STATIS_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Channels 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "tacos.routing.channel_routing",
+    },        
+}
