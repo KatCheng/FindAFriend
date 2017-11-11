@@ -1,4 +1,6 @@
 # virtual environment files
+bin/
+include/
 lib/
 lib64
 pip-selfcheck.json
