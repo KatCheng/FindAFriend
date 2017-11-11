@@ -5,7 +5,14 @@ lib/
 lib64
 pip-selfcheck.json
 include/
+# Python related
 *.py[cod]
 *.pyc
+**/__pycache__/*
+**/migrations/*
+
+# Vim swap file
+*.swp
+
 .DS_Store
 *.sqlite3
