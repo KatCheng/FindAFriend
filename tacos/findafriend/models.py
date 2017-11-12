@@ -47,3 +47,4 @@ class Chat(models.Model):
 
     def __str__(self):
         return 'sender: %s recipient: %s message: %s time: %s' % (self.senderName, self.recipientName, self.messageContent, self.timestamp)
+

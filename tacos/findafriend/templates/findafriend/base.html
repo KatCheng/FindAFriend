@@ -2,8 +2,8 @@
 <html>
     <head>
 	    <title>Find A Friend</title>
-        
-
+	    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     </head>
     <body>
         <style>
@@ -21,6 +21,8 @@
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
         </div>
+	<div id="chatbox">
+	</div>
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
