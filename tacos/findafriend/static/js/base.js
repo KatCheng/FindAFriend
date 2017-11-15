@@ -1,10 +1,16 @@
 socket = new WebSocket("ws://" + window.location.host + "/chat/");
 socket.onmessage = function(e){
-	document.getElementById("chatbox").innerHTML = e.data;	
+	$("#chatmsg")[0].innerHTML = e.data;
 }
 
 socket.onopen = function() {
-	socket.send("Hi there");
+	$("#chat").submit(function(e){
+		e.preventDefault();	
+		socket.send(document.forms["chatContent"]["message"].value);		
+	});
+
+
 }
+
 
 if(socket.readyState == WebSocket.OPEN) socket.onopen();

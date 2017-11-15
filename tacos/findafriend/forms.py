@@ -15,3 +15,6 @@ class UserProfileForm(forms.ModelForm):
 
 class UserDeleteForm(forms.Form):
     password = forms.CharField()
+
+class ChatForm(forms.Form):
+    message = forms.CharField()

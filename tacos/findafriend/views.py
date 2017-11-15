@@ -10,7 +10,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.utils import timezone
-from .forms import NewPageForm, UserDeleteForm
+from .forms import NewPageForm, UserDeleteForm, ChatForm
 from .models import Page
 
 from django.contrib.auth.models import User 
@@ -18,7 +18,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
-from .models import Chat 
+from .models import Chat
 
 import json
 
@@ -38,7 +38,7 @@ def signup(request):
 
 def home(request):
     users = {'user':request.user}
-    return HttpResponse(get_template('findafriend/home.html').render(users))
+    return HttpResponse(get_template('findafriend/home.html').render({'user':request.user, 'chatform': ChatForm()}))
 
 
 @login_required
