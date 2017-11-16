@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User # profile
 from django.db.models.signals import post_save # profile
+import json
 
 SIZEOPTIONS =(
 	('Under 5', 'Under 5'),
@@ -44,6 +45,9 @@ class Chat(models.Model):
     recipientName = models.CharField(max_length=150) 
     messageContent = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def toJSON (self): 
+        return json.dumps({"sender": self.senderName, "recipient": self.recipientName, "message": self.messageContent, "time": self.timestamp})
 
     def __str__(self):
         return 'sender: %s recipient: %s message: %s time: %s' % (self.senderName, self.recipientName, self.messageContent, self.timestamp)

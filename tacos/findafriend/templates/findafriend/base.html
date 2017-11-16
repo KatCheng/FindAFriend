@@ -3,6 +3,7 @@
     <head>
 	    <title>Find A Friend</title>
 	    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	    <script> var recipient = "{{ recipient }}"</script>
 	    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
     </head>
@@ -21,15 +22,6 @@
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
-        </div>
-	<div id="chatbox">
-		<form id="chat" name="chatContent">
-			{% csrf_token %}
-			{{ chatform }}
-			<input type="submit" value="send"/>
-		</form>
-		<div id="chatmsg"></div>
-	</div>
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">

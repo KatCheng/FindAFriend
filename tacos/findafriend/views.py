@@ -37,7 +37,6 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 def home(request):
-    users = {'user':request.user}
     return HttpResponse(get_template('findafriend/home.html').render({'user':request.user, 'chatform': ChatForm()}))
 
 
@@ -116,4 +115,10 @@ def newMessage(request):
         return HttpResponse(status=200)
     else: 
         return HttpResponse(status=404)
+
+def chatDirect(request, recipient):
+    return render(request, "findafriend/room.html", {
+        'chatform': ChatForm(),
+        'recipient': recipient,
+        })
 
