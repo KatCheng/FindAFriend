@@ -17,8 +17,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User 
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
-from tacos.findafriend.models import Page, UserProfile, Chat, ChatRoom
-from tacos.findafriend.forms import NewPageForm, UserDeleteForm, ChatForm 
+from findafriend.models import Page, UserProfile, Chat, ChatRoom
+from findafriend.forms import NewPageForm, UserDeleteForm, ChatForm 
 
 import json
 

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from tacos.findafriend.models import Page, UserProfile, Chat, ChatRoom 
+from findafriend.models import Page, UserProfile, Chat, ChatRoom 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
