@@ -1,0 +1,6 @@
+<h2>My Groups</h2>
+<ul class="groups">
+  <li *ngFor="let group of groups" (click)="onSelect(group)">
+    <span class="badge"></span> {{group.name}}
+  </li>
+</ul>
