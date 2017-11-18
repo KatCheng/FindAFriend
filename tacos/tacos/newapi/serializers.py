@@ -11,14 +11,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class PageSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Page
-		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated')
+		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members')
 
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = UserProfile
-		fields = ('user', 'university', 'hometown')
+		fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
 
 
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
