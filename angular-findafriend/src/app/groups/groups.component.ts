@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Group} from '../group';
 import {GROUPS} from '../list-of-groups';
 import { GroupServiceService } from '../group-service.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-groups',
@@ -10,17 +11,18 @@ import { GroupServiceService } from '../group-service.service';
 })
 export class GroupsComponent implements OnInit {
   
-  groups :Group[];
+  groups :string[];
 
-  constructor(private groupService:GroupServiceService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   	this.getGroups();
   }
 
   getGroups():void{
-  	this.groupService.getGroups()
-      .subscribe(groups => this.groups = groups);
+  	this.http.get('/api/items').subscribe(data => {
+      this.groups = data['groups']
+    })
   }
 
 }

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { GroupsComponent } from './groups/groups.component';
 import { GroupServiceService } from './group-service.service';
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { GroupServiceService } from './group-service.service';
     BrowserModule,
     FormsModule,
     GroupServiceService,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

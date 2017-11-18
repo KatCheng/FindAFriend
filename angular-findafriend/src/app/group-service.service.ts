@@ -10,7 +10,7 @@ export class GroupServiceService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'api/heroes';  // URL to web api
+  private url = '127.0.0.1:8000/heroes';  // URL to web api
 
   getGroups():Observable<Group[]>{
   	return this.http.get<Group[]>(this.url);
