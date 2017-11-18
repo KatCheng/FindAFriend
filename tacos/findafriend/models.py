@@ -33,6 +33,7 @@ class UserProfile(models.Model):
 	last_name = models.CharField(max_length=30, default='', blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
+	group_member = models.ManyToManyField(Page, related_name='groups')
 
 
 	def __str__(self):
