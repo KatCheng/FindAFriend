@@ -1,3 +1,7 @@
 export class Group{
-	name : string;
+	title : string;
+	creator: string;
+	sizeOfGroup: string;
+	description: string;
+	timeCreated: string;
 }

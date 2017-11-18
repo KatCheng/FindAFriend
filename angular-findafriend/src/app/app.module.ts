@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { GroupsComponent } from './groups/groups.component';
+import { GroupServiceService } from './group-service.service';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { GroupsComponent } from './groups/groups.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    GroupServiceService,
   ],
   providers: [],
   bootstrap: [AppComponent]
