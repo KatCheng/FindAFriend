@@ -9,11 +9,11 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'pages', views.PageViewSet)
-router.register(r'profiles', views.ProfileViewSet)
-router.register(r'messages', views.ChatViewSet)
-router.register(r'chatrooms', views.ChatRoomViewSet)
+router.register(r'api/users', views.UserViewSet)
+router.register(r'api/pages', views.PageViewSet)
+router.register(r'api/profiles', views.ProfileViewSet)
+router.register(r'api/messages', views.ChatViewSet)
+router.register(r'api/chatrooms', views.ChatRoomViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^chat/(?P<recipient>[\w-]+)/$', chatDirect, name='chat'),
     url(r'', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'',include('tacos.newapi.urls')),
+    url(r'', include('tacos.newapi.urls')),
 
 
     ]

@@ -39,6 +39,7 @@ class PageViewSet(viewsets.ModelViewSet):
 
 	queryset = Page.objects.all().order_by('-timeCreated')
 	serializer_class = PageSerializer
+	lookup_field = 'title'
 
 
 class ProfileViewSet(viewsets.ModelViewSet):

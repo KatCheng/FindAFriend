@@ -9,10 +9,10 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-	url(r'^pageSearch/$', PageSearch.as_view(), name='list'),
-	url(r'^pageDetail/$', PageDetail.as_view(), name='detail'),
-	url(r'^retrieve/(?P<title>[\w|\W]+)/$', PageRetrieve.as_view(), name='retrieve'),
-	url(r'^profiles/(?P<user>[\w|\W]+)/$', ProfileAPIView.as_view(), name='profiles'),
+	url(r'^api/pageSearch/$', PageSearch.as_view(), name='list'),
+	url(r'^api/pageDetail/$', PageDetail.as_view(), name='detail'),
+	url(r'^api/retrieve/(?P<title>[\w|\W]+)/$', PageRetrieve.as_view(), name='retrieve'),
+	url(r'^api/profiles/(?P<user>[\w|\W]+)/$', ProfileAPIView.as_view(), name='profiles'),
 
 ]
 
