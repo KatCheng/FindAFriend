@@ -20,8 +20,9 @@ export class GroupsComponent implements OnInit {
   }
 
   getGroups():void{
-  	this.http.get('/api/items').subscribe(data => {
-      this.groups = data['groups']
+    console.log("fuck");
+  	this.http.get('/api/pages').subscribe(data => {
+      this.groups = data['creator']
     })
   }
 
