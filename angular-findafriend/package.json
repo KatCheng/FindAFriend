@@ -1,4 +1,5 @@
 {
+  "start":"ng serve --proxy-config proxy.conf.json -o",
   "name": "angular-findafriend",
   "version": "0.0.0",
   "license": "MIT",
