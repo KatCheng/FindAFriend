@@ -1,11 +1,24 @@
 {% extends "findafriend/base.html" %}
 
 {% block content %}
-	<h1 align="center" style="font-size: 40px;font-family:Impact">Profile</h1>
-
+<head>
+<style>
+	header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+</style>
+</head>
 	{% for profile in user.userprofile_set.all %}
 		 {{profile.university}}
 	{% endfor %}
+	
+	<header>
+	<h1>Profile</h1>
+	</header>
 
 	<p align="center" style="font-size: 20px;font-family:Impact"> Username: {{ user.username }} </p>
 	<p align="center" style="font-size: 20px;font-family:Impact"> First name: {{ user.first_name }} </p>
