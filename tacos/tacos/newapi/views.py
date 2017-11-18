@@ -47,6 +47,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
 	serializer_class = ProfileSerializer
 	lookup_field = 'user'
 
+class ProfileAPIView(generics.RetrieveAPIView):
+	queryset = UserProfile.objects.all()
+	serializer_class = ProfileSerializer
+	lookup_field = 'user'
+
 
 class ProfileUpdateView(generics.UpdateAPIView):
 	queryset = UserProfile.objects.all()
@@ -82,7 +87,7 @@ class PageDetail(generics.RetrieveUpdateDestroyAPIView):
 class PageSearch(generics.ListAPIView):
 	queryset = Page.objects.all()
 	serializer_class = PageSerializer
-
+	lookup_field = 'title'
 
 	def get_queryset(self, *args, **kwargs):
 		#queryset_list = super(PageSearch, self).get_queryset(*args, **kwargs)
