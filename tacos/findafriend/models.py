@@ -6,17 +6,12 @@ from django.contrib.auth.models import User # profile
 from django.db.models.signals import post_save # profile
 import json
 
-SIZEOPTIONS =(
-	('Under 5', 'Under 5'),
-	('Under 5', 'Under 20'),
-	('Under 20', 'Under 50'),
-	('More than 50', 'More than 50'),
-	)
+
 
 class Page(models.Model):
 	title = models.CharField(max_length=200)
 	creator = models.ForeignKey('auth.User')
-	sizeOfGroup = models.CharField(max_length=12, choices=SIZEOPTIONS)
+	sizeOfGroup = models.IntegerField()
 	description = models.TextField()
 	timeCreated = models.DateTimeField(default=timezone.now)
 
