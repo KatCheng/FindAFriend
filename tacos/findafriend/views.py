@@ -66,12 +66,12 @@ def editProfile(request):
 
     if request.user.is_authenticated() and request.user.id == user.id:
         if request.method == "POST":
-            form = UserProfileForm(instance=user)
-            formset = ProfileInlineFormset(request.POST, instance=user)
+            form = UserProfileForm(request.POST, request.FILES, instance=user)
+            formset = ProfileInlineFormset(request.POST, request.FILES, instance=user)
 
             if form.is_valid():
                 created_profile = form.save(commit=False)
-                formset = ProfileInlineFormset(request.POST, instance=created_profile)
+                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_profile)
                 
                 if formset.is_valid():
                     created_profile.save()
@@ -88,8 +88,8 @@ def editProfile(request):
     return render(request, 'findafriend/create_group.html', {'form': form})
     
 def viewProfile(request):
-	user = request.user
-	return render(request, 'findafriend/profile.html', {'user': request.user})
+	context=locals()
+	return render(request, 'findafriend/profile.html', context)
 
 @login_required
 def deleteUser(request):

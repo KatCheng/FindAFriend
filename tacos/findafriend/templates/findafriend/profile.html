@@ -3,11 +3,17 @@
 {% block content %}
 	<h1 align="center" style="font-size: 40px;font-family:Impact">Profile</h1>
 
+	{% for profile in user.userprofile_set.all %}
+		 {{profile.university}}
+	{% endfor %}
+
 	<p align="center" style="font-size: 20px;font-family:Impact"> Username: {{ user.username }} </p>
 	<p align="center" style="font-size: 20px;font-family:Impact"> First name: {{ user.first_name }} </p>
 	<p align="center" style="font-size: 20px;font-family:Impact"> Last name: {{ user.last_name }} </p>
 	<p align="center" style="font-size: 20px;font-family:Impact"> Email: {{ user.email }} </p>
-	<p align="center" style="font-size: 20px;font-family:Impact"> University: {{ user.UserProfile.university }} </p>
-	<p align="center" style="font-size: 20px;font-family:Impact"> Hometown: {{ user.UserProfile.hometown }}</p>
+	<p align="center" style="font-size: 20px;font-family:Impact"> University: {{ user.user.university }} </p>
+	<p align="center" style="font-size: 20px;font-family:Impact"> Hometown: {{ user.user.hometown }}</p>
+
+
 
 {% endblock %}

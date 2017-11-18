@@ -21,8 +21,8 @@ class Page(models.Model):
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, null=True, related_name='user')
-#	first_name = models.CharField(max_length=30, blank=True)
-#	last_name = models.CharField(max_length=30, blank=True)
+	#first_name = models.CharField(max_length=30, blank=True)
+	#last_name = models.CharField(max_length=30, blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
 
