@@ -24,7 +24,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Chat
-		fields = ('senderName', 'recipientName', 'messageContent', 'timeStamp')
+		fields = ('senderName', 'recipientName', 'messageContent', 'timestamp')
 
 
 class ChatRoomSerializer(serializers.HyperlinkedModelSerializer):

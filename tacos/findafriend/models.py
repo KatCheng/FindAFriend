@@ -19,16 +19,21 @@ class Page(models.Model):
 	sizeOfGroup = models.CharField(max_length=12, choices=SIZEOPTIONS)
 	description = models.TextField()
 	timeCreated = models.DateTimeField(default=timezone.now)
+	#members = models.ManyToManyField(User)
 
 	def __str__(self):
 		return self.title
 
+	#def __str__(self):
+	#	return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
+
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, null=True, related_name='user')
-#	first_name = models.CharField(max_length=30, blank=True)
-#	last_name = models.CharField(max_length=30, blank=True)
+	#first_name = models.CharField(max_length=30, default='', blank=True)
+	#last_name = models.CharField(max_length=30, default='', blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
+
 
 	def __str__(self):
 		return self.user.username

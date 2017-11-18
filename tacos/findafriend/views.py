@@ -10,7 +10,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.utils import timezone
-from .forms import NewPageForm, UserDeleteForm, ChatForm
+from .forms import NewPageForm, UserDeleteForm, ChatForm, SearchForm
 from .models import Page
 
 from django.contrib.auth.models import User 
@@ -20,7 +20,24 @@ from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from .models import Chat
 
+#Below imports are from REST framework
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt 
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+
+from rest_framework import serializers
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from tacos.newapi.serializers import UserSerializer, ProfileSerializer
+from tacos.newapi.serializers import PageSerializer, ChatSerializer, ChatRoomSerializer
+from tacos.newapi import views
+
+
 import json
+
 
 def signup(request):
     if request.method == 'POST':
@@ -31,25 +48,31 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('home') 
+
     else:
         form = UserCreationForm()
+    #return Response('registration/signup.html', {'form': form})
     return render(request, 'registration/signup.html', {'form': form})
 
 def home(request):
+    #return Response(get_template('findafriend/home.html').render({'user':request.user, 'chatform': ChatForm()}))
     return HttpResponse(get_template('findafriend/home.html').render({'user':request.user, 'chatform': ChatForm()}))
 
 
 @login_required
+#@api_view(['GET', 'POST'])
 def newGroup(request):
+    
     if request.method == "POST":
         form = NewPageForm(request.POST)
+        
         if form.is_valid():
             post = form.save(commit=False)
             post.creator = request.user
             post.timeCreated = timezone.now()
             post.save()
-            return redirect('home')
+        return redirect('home')
     else:
         form = NewPageForm()
     return render(request, 'findafriend/create_group.html', {'form': form})
@@ -121,4 +144,5 @@ def chatDirect(request, recipient):
         'chatform': ChatForm(),
         'recipient': recipient,
         })
+
 

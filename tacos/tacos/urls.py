@@ -5,9 +5,15 @@ from django.contrib.auth import views
 from findafriend.views import home, signup, deleteUser, chatDirect
 from rest_framework import routers
 from tacos.newapi import views
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'pages', views.PageViewSet)
+router.register(r'profiles', views.ProfileViewSet)
+router.register(r'messages', views.ChatViewSet)
+router.register(r'chatrooms', views.ChatRoomViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -18,7 +24,11 @@ urlpatterns = [
     url(r'',include('findafriend.urls')),
     url(r'^accounts/delete/$', deleteUser, name='delete'),
     url(r'^chat/(?P<recipient>[\w-]+)/$', chatDirect, name='chat'),
-    url(r'^', include(router.urls)),
+    url(r'', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    
-]
+    url(r'',include('tacos.newapi.urls')),
+
+
+    ]
+
+#urlpatterns = format_suffix_patterns(urlpatterns)
