@@ -21,8 +21,9 @@ export class GroupsComponent implements OnInit {
 
   getGroups():void{
     console.log("fuck");
-  	this.http.get('/api/pages').subscribe(data => {
-      this.groups = data['creator']
+    url :string = '/api/pages/?format=json';
+  	this.http.get(url).subscribe(data => {
+      this.groups = data['title']
     })
   }
 
