@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User # profile
 from django.db.models.signals import post_save # profile
+from django.core.validators import MinValueValidator # profile
 import json
 
 
@@ -11,7 +12,7 @@ import json
 class Page(models.Model):
 	title = models.CharField(max_length=200)
 	creator = models.ForeignKey('auth.User')
-	sizeOfGroup = models.IntegerField()
+	sizeOfGroup = models.PositiveIntegerField(validators=[MinValueValidator(2)])
 	description = models.TextField()
 	timeCreated = models.DateTimeField(default=timezone.now)
 
