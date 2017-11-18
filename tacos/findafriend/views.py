@@ -86,6 +86,10 @@ def editProfile(request):
     else:
         raise PermissionDenied
     return render(request, 'findafriend/create_group.html', {'form': form})
+    
+def viewProfile(request):
+	user = request.user
+	return render(request, 'findafriend/profile.html', {'user': request.user})
 
 @login_required
 def deleteUser(request):
