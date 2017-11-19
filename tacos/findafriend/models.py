@@ -16,7 +16,7 @@ class Page(models.Model):
 	title = models.CharField(max_length=200)
 	creator = models.ForeignKey('auth.User')
 	sizeOfGroup = models.PositiveIntegerField(validators=[MinValueValidator(2)])
-	groupTypes = models.CharField(max_length=15, choices=GROUPTYPES)
+	groupTypes = models.CharField(max_length=15, default='social', choices=GROUPTYPES)
 	description = models.TextField()
 	timeCreated = models.DateTimeField(default=timezone.now)
 
