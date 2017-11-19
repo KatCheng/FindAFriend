@@ -19,16 +19,27 @@ class Page(models.Model):
 	groupTypes = models.CharField(max_length=15, choices=GROUPTYPES)
 	description = models.TextField()
 	timeCreated = models.DateTimeField(default=timezone.now)
+	members = models.ManyToManyField(User, related_name='members')
 
 	def __str__(self):
 		return self.title
 
+	def __str__(self):
+		return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
+
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, null=True, related_name='user')
+<<<<<<< HEAD
 	#first_name = models.CharField(max_length=30, blank=True)
 	#last_name = models.CharField(max_length=30, blank=True)
+=======
+	first_name = models.CharField(max_length=30, default='', blank=True)
+	last_name = models.CharField(max_length=30, default='', blank=True)
+>>>>>>> django_rest
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
+	group_member = models.ManyToManyField(Page, related_name='groups')
+
 
 	def __str__(self):
 		return self.user.username

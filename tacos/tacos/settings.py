@@ -40,8 +40,23 @@ INSTALLED_APPS = [
 # 'django.contrib.sites'
     'findafriend',
     'channels',
+    'rest_framework',
+    'tacos.newapi',
     
 ]
+
+REST_FRAMEWORK = {
+	'DEFAULT_PERMISSION_CLASSES':[
+		'rest_framework.permissions.IsAdminUser',
+	],
+	#'PAGE_SIZE':10,
+    
+     'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+}
+	
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
