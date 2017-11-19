@@ -4,19 +4,19 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User # profile
 from django.db.models.signals import post_save # profile
-from django.core.validators import MinValueValidator # profile
 import json
 
-GROUPTYPES=(('social', 'social'),
-			('academic', 'academic'),
-			('carpool', 'carpool'),
-			('others', 'others'))
+SIZEOPTIONS =(
+	('Under 5', 'Under 5'),
+	('Under 5', 'Under 20'),
+	('Under 20', 'Under 50'),
+	('More than 50', 'More than 50'),
+	)
 
 class Page(models.Model):
 	title = models.CharField(max_length=200)
 	creator = models.ForeignKey('auth.User')
-	sizeOfGroup = models.PositiveIntegerField(validators=[MinValueValidator(2)])
-	groupTypes = models.CharField(max_length=15, choices=GROUPTYPES)
+	sizeOfGroup = models.CharField(max_length=12, choices=SIZEOPTIONS)
 	description = models.TextField()
 	timeCreated = models.DateTimeField(default=timezone.now)
 	members = models.ManyToManyField(User, related_name='members')
@@ -29,13 +29,8 @@ class Page(models.Model):
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, null=True, related_name='user')
-<<<<<<< HEAD
-	#first_name = models.CharField(max_length=30, blank=True)
-	#last_name = models.CharField(max_length=30, blank=True)
-=======
 	first_name = models.CharField(max_length=30, default='', blank=True)
 	last_name = models.CharField(max_length=30, default='', blank=True)
->>>>>>> django_rest
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
 	group_member = models.ManyToManyField(Page, related_name='groups')

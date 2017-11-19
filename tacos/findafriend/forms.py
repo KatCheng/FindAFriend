@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class NewPageForm(forms.ModelForm):
     class Meta:
         model = Page
-        fields = ('title', 'sizeOfGroup','groupTypes', 'description')
+        fields = ('title', 'sizeOfGroup','description')
 
 class UserProfileForm(forms.ModelForm):
 	class Meta:
