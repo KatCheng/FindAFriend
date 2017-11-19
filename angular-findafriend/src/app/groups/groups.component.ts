@@ -12,6 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class GroupsComponent implements OnInit {
   
   groups :string[];
+  groups = ["dsf"];
 
   constructor(private http: HttpClient) { }
 
@@ -21,9 +22,22 @@ export class GroupsComponent implements OnInit {
 
   getGroups():void{
     console.log("fuck");
-    url :string = '/api/pages/?format=json';
+
+
+    let url :string;
+    url = "/api/pages/?format=json";
+
+   
+
+
+
+    console.log(url);
+
   	this.http.get(url).subscribe(data => {
-      this.groups = data['title']
+      // let obj = Group: JSON.parse(data);
+      // console.log(obj.title);
+      this.groups = data;
+      console.log(this.groups);
     })
   }
 
