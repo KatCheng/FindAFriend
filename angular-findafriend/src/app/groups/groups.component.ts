@@ -11,8 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class GroupsComponent implements OnInit {
   
-  groups :string[];
-  groups = ["dsf"];
+  groups :Object;
 
   constructor(private http: HttpClient) { }
 
