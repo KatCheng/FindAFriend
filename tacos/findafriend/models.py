@@ -8,8 +8,8 @@ import json
 
 SIZEOPTIONS =(
 	('Under 5', 'Under 5'),
-	('Under 5', 'Under 20'),
-	('Under 20', 'Under 50'),
+	('Under 20', 'Under 20'),
+	('Under 50', 'Under 50'),
 	('More than 50', 'More than 50'),
 	)
 

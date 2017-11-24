@@ -1,0 +1,36 @@
+.container {
+	width: 80%; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+.group-title {
+	height: 30px;
+	padding-top: 10px;
+	background-color: #939393;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.group-content {
+	background-color: #f6f6f6;
+	border-radius: 15px;
+}
+
+.group-meta {
+	height: 30px;
+	background-color: #d9d9d9;
+	padding-top: 5px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.metas {
+	float: left; 
+	margin: 0 20px 0 0;
+	font-size: 15px; 
+}
+
+.group-title, .group-description, .group-meta {
+	padding-left: 10px;
+}
