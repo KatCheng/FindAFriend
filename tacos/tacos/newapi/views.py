@@ -1,9 +1,11 @@
 from __future__ import unicode_literals
 
 from rest_framework import viewsets
-from tacos.newapi.serializers import UserSerializer, ProfileSerializer
+from tacos.newapi.serializers import UserSerializer, UserCreateSerializer, UserLoginSerializer, ProfileSerializer
 from tacos.newapi.serializers import PageSerializer, ChatSerializer, ChatRoomSerializer
 from django.db.models import Q
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import 
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
