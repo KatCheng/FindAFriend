@@ -5,7 +5,7 @@ from tacos.newapi.serializers import UserSerializer, UserCreateSerializer, UserL
 from tacos.newapi.serializers import PageSerializer, ChatSerializer, ChatRoomSerializer
 from django.db.models import Q
 from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import 
+from rest_framework.permissions import AllowAny
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
