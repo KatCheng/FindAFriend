@@ -34,3 +34,7 @@
 .group-title, .group-description, .group-meta {
 	padding-left: 10px;
 }
+
+h2,div{
+	text-align: center;
+}

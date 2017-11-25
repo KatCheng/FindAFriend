@@ -20,6 +20,7 @@ export class GroupsComponent implements OnInit {
   	this.getGroups();
   }
 
+  /* GET GROUPS FROM BACKEND */
   getGroups():void{
 
     let url :string;
@@ -35,7 +36,9 @@ export class GroupsComponent implements OnInit {
     })
   }
 
-  onKey(value:String):void{
+
+  /* SEARCH BAR */
+  onKey(value:String):void{    
     this.displayGroups = [];
     var notSelected: any = [];
     var notSelected2: any = [];
