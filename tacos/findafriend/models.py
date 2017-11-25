@@ -13,11 +13,18 @@ SIZEOPTIONS =(
 	('More than 50', 'More than 50'),
 	)
 
+GROUPOPTIONS = (
+	('Sport', 'Sport'),
+	('Academic', 'Academic'),
+	('Business', 'Business'),
+	('Other', 'Other')
+	)
 class Page(models.Model):
 	title = models.CharField(max_length=200)
 	creator = models.ForeignKey('auth.User')
 	sizeOfGroup = models.CharField(max_length=12, choices=SIZEOPTIONS)
 	description = models.TextField()
+	typeOfGroup = models.CharField(max_length=12, choices=GROUPOPTIONS)
 	timeCreated = models.DateTimeField(default=timezone.now)
 	members = models.ManyToManyField(User, related_name='members')
 

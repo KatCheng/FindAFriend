@@ -1,14 +1,21 @@
 
 <div class="container">
 	<h2>My Groups</h2>
-	<div class="group" *ngFor="let group of groups">
+
+	<div>
+		<div class="search">
+			<input #box (keyup)="onKey(box.value)" type="text" class="searchTerm" placeholder="What group are you into?" id="searchInput">
+ 	</div>
+</div>
+
+	<div class="group" *ngFor="let group of displayGroups">
 		<div class="group-content">
 			<h3 class="group-title">{{group.title}}</h3>
 			<p class="group-description">{{group.description}}</p>
 			
 			<div class="group-meta">
 				<div class="metas">Created {{group.timeCreated | date }}</div>
-				<div class="metas">by AOLLARVE</div>
+				<div class="metas">by {{group.creator}}</div>
 				<div class="metas">{{ group.sizeOfGroup }}</div>
 			</div>
 		</div>

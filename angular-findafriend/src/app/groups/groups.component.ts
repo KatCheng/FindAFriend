@@ -11,7 +11,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class GroupsComponent implements OnInit {
   
-  groups :Object;
+  groups :any;
+  displayGroups: any = [];
 
   constructor(private http: HttpClient) { }
 
@@ -20,15 +21,9 @@ export class GroupsComponent implements OnInit {
   }
 
   getGroups():void{
-    console.log("fuck");
-
 
     let url :string;
     url = "/api/pages/?format=json";
-
-   
-
-
 
     console.log(url);
 
@@ -38,6 +33,63 @@ export class GroupsComponent implements OnInit {
       this.groups = data;
       console.log(this.groups);
     })
+  }
+
+  onKey(value:String):void{
+    this.displayGroups = [];
+    var notSelected: any = [];
+    var notSelected2: any = [];
+
+
+    var i:number = 0;
+
+    for(i ; i <this.groups.length;i++){         //Search for title match first
+      if((this.groups[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
+        this.displayGroups.push(this.groups[i]);
+        console.log(this.displayGroups);
+      }
+      else{
+        notSelected.push(this.groups[i]);
+      }
+    }
+
+    i =0;
+    for(i ; i <notSelected.length;i++){       //Search for typeOfGroup next
+      if((notSelected[i].typeOfGroup.toLowerCase()).search(value.toLowerCase()) != -1){
+        this.displayGroups.push(notSelected[i]);
+        console.log(this.displayGroups);
+      }
+      else{
+        notSelected2.push(notSelected[i]);
+      }
+    }
+
+    notSelected = [];
+    i=0;
+    for(i ; i <notSelected2.length;i++){      //Search for creator next
+      if((notSelected2[i].creator.toLowerCase()).search(value.toLowerCase()) != -1){
+        this.displayGroups.push(notSelected2[i]);
+        console.log(this.displayGroups);
+      }
+      else{
+        notSelected.push(notSelected2[i]);
+      }
+    }
+
+    i=0;
+
+    for(i ; i <notSelected.length;i++){         //Search for description next
+      if((notSelected[i].description.toLowerCase()).search(value.toLowerCase()) != -1){
+        this.displayGroups.push(notSelected[i]);
+        console.log(this.displayGroups);
+      }
+    }
+
+
+
+
+    console.log(value);
+
   }
 
 }
