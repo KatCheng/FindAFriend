@@ -31,8 +31,8 @@ class Page(models.Model):
 	def __str__(self):
 		return self.title
 
-	def __str__(self):
-		return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
+#	def __str__(self):
+#		return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, null=True, related_name='user')
@@ -53,20 +53,19 @@ def create_profile(sender, **kwargs):
 		user_profile.save()
 post_save.connect(create_profile, sender=User)
 
-class Chat(models.Model):
-    senderName = models.CharField(max_length=150)
-    recipientName = models.CharField(max_length=150) 
+class Chat(models.Model): 
+    sender = models.ForeignKey(User)
+    recipient = models.ForeignKey(Page)
     messageContent = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def toJSON (self): 
-        return json.dumps({"sender": self.senderName, "recipient": self.recipientName, "message": self.messageContent, "time": self.timestamp})
+        return json.dumps({"sender": self.sender.username, "recipient": self.recipient.title, "message": self.messageContent, "time": self.timestamp})
 
     def __str__(self):
-        return 'sender: %s recipient: %s message: %s time: %s' % (self.senderName, self.recipientName, self.messageContent, self.timestamp)
+        return 'sender: %s recipient: %s message: %s time: %s' % (self.sender, self.recipient, self.messageContent, self.timestamp)
 
+# Not Needed
 class ChatRoom(models.Model):
-    chatters = models.ManyToManyField(User)
-
-    def __str__(self):
-        return 'In Chat:' + ' '.join(map(lambda u: u.__str__(), self.chatters.all()))
+   chatters = models.ManyToManyField(User)
+    

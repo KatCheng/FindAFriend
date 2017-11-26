@@ -2,12 +2,6 @@ socket = new WebSocket("ws://" + window.location.host + "/chat/");
 socket.onmessage = function(e){
 	$("#chatmsg")[0].innerHTML = e.data;
 	var data = JSON.parse(e.data);
-	$("#chatmsg").append('<tr>'
-		+ '<td>' + data.timestamp + '</td>'
-		+ '<td>' + data.senderName + '</td>'
-		+ '<td>' + data.recepientName + '</td>'
-		+ '<td>' + data.message + '</td>'
-		+ '</tr>');
 };
 
 socket.onopen = function() {

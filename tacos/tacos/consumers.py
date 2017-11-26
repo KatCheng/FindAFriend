@@ -1,7 +1,7 @@
 from channels import Channel, Group
 from channels.sessions import channel_session, enforce_ordering
 from channels.auth import channel_session_user, channel_session_user_from_http
-from findafriend.models import Chat
+from findafriend.models import Page, Chat
 import json
 import logging
 
@@ -37,9 +37,10 @@ def ws_msg(msg):
 
     data = json.loads(msg['text'])
     data['sender'] = msg.user.username
+
     
     # save to database
-    c = Chat(senderName=msg.user.username, recipientName=data['recipientName'], messageContent=data['messageContent'])
+    c = Chat(sender=msg.user, recipient=Page.objects.get(title = data['recipientName']), messageContent=data['messageContent'])
     c.save()
     
     log.debug("recipientName=%s message=%s", data['recipientName'], data['messageContent'])
