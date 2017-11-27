@@ -13,6 +13,7 @@ export class GroupsComponent implements OnInit {
   
   groups :any;
   displayGroups: any = [];
+  selectedGroup:any;
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +35,11 @@ export class GroupsComponent implements OnInit {
       this.groups = data;
       console.log(this.groups);
     })
+  }
+
+  onSelect(group:any):void{
+    console.log("ayyyy");
+    this.selectedGroup = group;
   }
 
 

@@ -1,0 +1,11 @@
+<div *ngIf="group">
+
+  <h2>"{{ group.title }}" Details</h2>
+  <h3> By {{group.creator}} </h3>
+  <br>
+	<div> Created: {{group.timeCreated | date }}</div>
+	<div> Size Goal: {{ group.sizeOfGroup }}</div>
+	<p > Description: {{group.description}}</p>
+
+
+</div>
