@@ -67,6 +67,7 @@ class ChatViewSet(viewsets.ModelViewSet):
 
 	queryset = Chat.objects.all().order_by('-timestamp')
 	serializer_class = ChatSerializer
+	lookup_field = 'recipient'
 
 
 class ChatRoomViewSet(viewsets.ModelViewSet):
