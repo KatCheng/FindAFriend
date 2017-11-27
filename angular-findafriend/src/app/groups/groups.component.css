@@ -8,6 +8,7 @@
 .group-title {
 	height: 30px;
 	padding-top: 10px;
+	margin-bottom: 0px;
 	background-color: #939393;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
