@@ -98,7 +98,7 @@ class UserLoginSerializer(serializers.HyperlinkedModelSerializer):
 class PageSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Page
-		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
+		fields = ('title', 'creator.username', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
 
 
 
@@ -111,7 +111,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Chat
-		fields = ('senderName', 'recipientName', 'messageContent', 'timestamp')
+		fields = ('sender', 'recipient', 'messageContent', 'timestamp')
 
 
 class ChatRoomSerializer(serializers.HyperlinkedModelSerializer):
