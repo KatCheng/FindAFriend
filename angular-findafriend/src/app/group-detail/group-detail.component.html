@@ -6,6 +6,9 @@
 	<div> Created: {{group.timeCreated | date }}</div>
 	<div> Size Goal: {{ group.sizeOfGroup }}</div>
 	<p > Description: {{group.description}}</p>
+	<div class="context">
+	  <button (click)="addGroup()">Join group</button>
+	</div>
 
 
 </div>

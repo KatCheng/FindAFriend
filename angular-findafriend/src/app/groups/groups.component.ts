@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-  
+
   groups :any;
   displayGroups: any = [];
   selectedGroup:any;
@@ -20,6 +20,9 @@ export class GroupsComponent implements OnInit {
   ngOnInit() {
   	this.getGroups();
   }
+
+  alert(msg?: string)      { window.alert(msg); }
+  canSave=true;
 
   /* GET GROUPS FROM BACKEND */
   getGroups():void{
@@ -42,9 +45,13 @@ export class GroupsComponent implements OnInit {
     this.selectedGroup = group;
   }
 
+  addGroup(group:Group){
+    this.alert(`Join ${group ? group.title : 'this group'}.`);
+  }
+
 
   /* SEARCH BAR */
-  onKey(value:String):void{    
+  onKey(value:String):void{
     this.displayGroups = [];
     var notSelected: any = [];
     var notSelected2: any = [];
