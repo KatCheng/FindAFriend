@@ -40,8 +40,9 @@ export class GroupMessageComponent implements OnInit {
    //  })
   }
 
-  sentMessage(){
+  sentMessage(msg:string){
     console.log("here");
+    console.log(msg);
   }
 
 
