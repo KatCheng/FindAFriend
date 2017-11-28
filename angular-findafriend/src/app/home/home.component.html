@@ -1,0 +1,15 @@
+<section class="jumbotron text-center">
+	<div class="container">
+		<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<!-- 		<div *ngIf="username">
+			<h1 class="jumbotron-heading">Hola, {{ username }}!</h1>
+				<a href="#" >Main call to action</a>
+				<a href="#" class="btn btn-secondary">Secondary action</a>
+			</p>
+		</div> -->
+		<nav align="center">
+ 			<a routerLink="/users">User</a>
+			<a routerLink="/groups">Groups</a>
+		</nav>
+	</div>
+</section>

@@ -1,7 +1,4 @@
-<h1>{{title}}</h1>
-<nav align="center">
-  <a routerLink="/users">User</a>
-  <a routerLink="/groups">Groups</a>
-</nav>
-<router-outlet></router-outlet>
+<!--<h1>{{title}}</h1>-->
 <!--<app-groups></app-groups>-->
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<router-outlet></router-outlet>
