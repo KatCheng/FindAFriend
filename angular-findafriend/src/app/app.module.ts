@@ -7,6 +7,7 @@ import { GroupsComponent } from './groups/groups.component';
 import {HttpClientModule} from '@angular/common/http';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupMessageComponent } from './group-message/group-message.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { GroupMessageComponent } from './group-message/group-message.component';
     AppComponent,
     GroupsComponent,
     GroupDetailComponent,
-    GroupMessageComponent
+    GroupMessageComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
