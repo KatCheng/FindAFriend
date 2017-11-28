@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GroupDetailComponent implements OnInit {
 	@Input() group: any;
-  constructor() { }
+  constructor(
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(){
   }
-
 }

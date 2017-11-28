@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Find a Friend';
+	public loading = true;
+  	title = 'Find a Friend';
+
+  	ngOnInit(){
+		this.loading = false;
+	}
 }

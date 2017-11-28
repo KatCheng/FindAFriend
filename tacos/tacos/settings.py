@@ -42,23 +42,46 @@ INSTALLED_APPS = [
     'channels',
     'rest_framework',
     'tacos.newapi',
-    
+    'corsheaders',
 ]
 
-REST_FRAMEWORK = {
-	'DEFAULT_PERMISSION_CLASSES':[
-		'rest_framework.permissions.IsAdminUser',
-	],
-	#'PAGE_SIZE':10,
+# REST_FRAMEWORK = {
+# 	'DEFAULT_PERMISSION_CLASSES':[
+# 		'rest_framework.permissions.IsAdminUser',
+# 	],
+# 	#'PAGE_SIZE':10,
     
-     'DEFAULT_RENDERER_CLASSES': (
+#      'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ),
+# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata',
+    'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
+    # 'DEFAULT_PARSER_CLASSES': (
+    #     'rest_framework.parsers.JSONParser',
+    # )
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+         # 'rest_framework.authentication.SessionAuthentication',
+         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        #'rest_framework.authentication.BasicAuthentication'
+
+    ), 
+    "DEFAULT_PERMISSION_CLASSES": (
+        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
 }
 	
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -167,3 +190,22 @@ CHANNEL_LAYERS = {
         "ROUTING": "tacos.routing.channel_routing",
     },        
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ALLOW_HEADERS = (
+#     'x-requested-with',
+#     'content-type',
+#     'accept',
+#     'origin',
+#     'authorization',
+#     'x-csrftoken'
+# )
+
+CORS_ORIGIN_WHITELIST = (
+    '127.0.0.1:8000',
+    'localhost:4200'
+)
+
+CORS_ORIGIN_REGEX_WHITELIST = []
+

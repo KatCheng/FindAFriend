@@ -4,6 +4,12 @@ from findafriend.models import Page, UserProfile, Chat, ChatRoom
 from rest_framework.serializers import ( CharField, EmailField, HyperlinkedIdentityField,
     SerializerMethodField, ValidationError )
 
+
+from rest_framework_jwt.settings import api_settings
+
+jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = User
@@ -95,11 +101,15 @@ class UserLoginSerializer(serializers.HyperlinkedModelSerializer):
 	            return data
 	    raise ValidationError("Invalid Credentials")
 
+# class PageSerializer(serializers.HyperlinkedModelSerializer):
+# 	class Meta:
+# 		model = Page
+# 		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup)
+
 class PageSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Page
 		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
-
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
@@ -107,6 +117,11 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 		model = UserProfile
 		fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
 
+
+# class ChatSerializer(serializers.HyperlinkedModelSerializer):
+# 	class Meta:
+# 		model = Chat
+# 		fields = ('senderName', 'recipientName', 'messageContent', 'timestamp')
 
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
