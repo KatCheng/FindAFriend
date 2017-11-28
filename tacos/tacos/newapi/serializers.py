@@ -98,7 +98,7 @@ class UserLoginSerializer(serializers.HyperlinkedModelSerializer):
 class PageSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Page
-		fields = ('title', 'creator.username', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
+		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
 
 
 

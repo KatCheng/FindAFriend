@@ -1,0 +1,12 @@
+#messenger{
+	margin-top: 2em;
+	border: .5px solid black;
+    outline-style: solid;
+    height: 50%;
+}
+.msgSender{
+	float: right;
+}
+.msgContent{
+	float:left;
+}
