@@ -63,7 +63,7 @@ class Chat(models.Model):
         return json.dumps({"sender": self.sender.username, "recipient": self.recipient.title, "message": self.messageContent, "time": self.timestamp})
 
     def __str__(self):
-        return 'sender: %s recipient: %s message: %s time: %s' % (self.sender, self.recipient, self.messageContent, self.timestamp)
+        return 'sender: %s recipient: %s message: %s time: %s' % (self.sender.username, self.recipient.title, self.messageContent, self.timestamp)
 
 # Not Needed
 class ChatRoom(models.Model):
