@@ -1,6 +1,20 @@
 <div *ngIf="group">
-	<p>
-	  group-message works!
-	  {{group.title}}
-	</p>
+	<div id= "messenger">
+		<div class="messages" *ngFor="let msg of messages">
+			<div class="msg">
+				<div class="msgSender">from {{msg.sender}}</div>
+				<div class="msgContent">{{msg.messageContent}}</div>
+				<br>
+			</div>
+		</div>
+		<div id="newMessage">
+			<!-- Not sure how to send data back to group-message.component.ts -->
+			<form >
+			   <input type="text" ng-model="name" />
+			   <input type="submit" (click)=sentMessage(name)>
+			</form>
+			
+		</div>
+	</div>
+
 </div>
