@@ -10,7 +10,7 @@
 
 	<div class="group" *ngFor="let group of displayGroups"
 		[class.selected] = "group === selectedGroup"
-		(click)=onSelect(group)>
+		(click)=onSelect(group)>-
 		<div class="group-content">
 			<h3 class="group-title">{{group.title}}</h3>
 			<div class="group-meta">
@@ -20,6 +20,7 @@
 		</div>
 	</div>
 </div>
+
 
 <div id="right">
 	<app-group-detail [group]="selectedGroup"></app-group-detail>

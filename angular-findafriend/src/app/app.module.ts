@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupMessageComponent } from './group-message/group-message.component';
 import { UsersComponent } from './users/users.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { UsersComponent } from './users/users.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
