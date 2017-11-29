@@ -47,11 +47,13 @@
 </div> -->
 <div class="nav">
 	<ul>
-			<li><a (click) ="showUsers()">User</a></li>
-		<li><a (click)="showGroups()">Groups</a></li>
+			<li><a (click) ="showUsers()">User Profile</a></li>
+		<li><a (click)="showGroups()">View Groups</a></li>
+		<li><a (click)="createGroups()">Create Groups</a></li>
 		<li style="float:right"><a style="cursor: pointer" (click)="logout()" routerLink="/login">Log out</a></li>
 	</ul>
 </div>
 <app-groups *ngIf="groupsView" [username]="username"> </app-groups>
 <app-users *ngIf="usersView" [username]="username"> </app-users>
+<app-create-group *ngIf="creategroupsView" [username]="username"> </app-create-group>
 <!-- <apps-users *ngIf="userView" [username]="username"> </apps-users> -->

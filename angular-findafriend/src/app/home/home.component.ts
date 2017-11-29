@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 	username: string;
   usersView:boolean = null;
   groupsView:boolean = null;
+  creategroupsView: boolean = null;
 
   su: number = 0;
 
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
 	     this.username = cUser['username'];
 	   } else {
 		  this.username = null;
-	   }  
+	   }
   }
 
   ngOnDestroy() {	}
@@ -48,11 +49,18 @@ export class HomeComponent implements OnInit {
   showGroups(){
     this.usersView=null;
     this.groupsView=true;
+    this.creategroupsView=null;
   }
 
   showUsers(){
     this.usersView=true;
     this.groupsView=null;
+    this.creategroupsView=null;
   }
 
+  createGroups(){
+    this.usersView=null;
+    this.groupsView=null;
+    this.creategroupsView=true;
+  }
 }

@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routing';
 import { SignupComponent } from './signup/signup.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     GroupMessageComponent,
     SignupComponent,
-    UsersComponent
+    UsersComponent,
+    CreateGroupComponent
   ],
   imports: [
     BrowserModule,
