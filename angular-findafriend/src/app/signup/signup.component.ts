@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../headers';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,10 +19,12 @@ export class SignupComponent implements OnInit {
 	email2Error: [any];
 	passwordError: [any];
 
+	su: number = 0;
 
-  constructor(public _router: Router, public _http: Http) {};
+  constructor(public _router: Router, public _http: Http, public _authenticationService: AuthenticationService) {};
 
   ngOnInit() {
+  	this._authenticationService.logout();
   }
 
   signup(event, username, email, email2, password) {
