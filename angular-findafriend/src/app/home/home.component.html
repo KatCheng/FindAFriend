@@ -4,8 +4,11 @@
 
 		<a *ngIf="username" style="cursor: pointer" routerLink="/login">Log out</a>
 		<nav align="center">
- 			<a routerLink="/users">User</a>
-			<a routerLink="/groups">Groups</a>
+ 			<div (click) ="showUsers()">User</div>
+			<div (click)="showGroups()">Groups</div>
 		</nav>
 	</div>
 </section>
+
+<app-groups *ngIf="groupsView" [username]="username"> </app-groups>
+<!-- <apps-users *ngIf="userView" [username]="username"> </apps-users> -->

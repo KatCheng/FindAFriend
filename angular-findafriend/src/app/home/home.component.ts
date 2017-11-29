@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
   public _router: Router;
   public _authenticationService: AuthenticationService;
 	username: string;
+  usersView:boolean = null;
+  groupsView:boolean = null;
 
   constructor() { }
 
@@ -33,6 +35,18 @@ export class HomeComponent implements OnInit {
   logout() {
     this._authenticationService.logout();
     this._router.navigate(['login']);
+  }
+
+
+
+  showGroups(){
+    this.usersView=null;
+    this.groupsView=true;
+  }
+
+  showUsers(){
+    this.usersView=true;
+    this.groupsView=null;
   }
 
 }
