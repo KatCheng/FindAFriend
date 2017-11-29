@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from './websocket.service';
-//import { ChatService } from './chat.service';
+import { ChatService } from './chat.service';
 
 @Component({
   selector: 'app-group-message',
@@ -26,11 +26,10 @@ export class GroupMessageComponent implements OnInit {
 		});
 	}
 	
-	constructor(private http: HttpClient) { };
 
 	private message = {
-		sender: 'Yeonwoo',
-		messageContent: "this is testing messages"
+		author: 'Yeonwoo',
+		message: "this is testing messages"
 	}
 
   	sendMsg() {
