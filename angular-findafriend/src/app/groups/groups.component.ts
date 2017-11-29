@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Group} from '../group';
 import {GROUPS} from '../list-of-groups';
 import { GroupServiceService } from '../group-service.service';
@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class GroupsComponent implements OnInit {
 
+  @Input() username:string;
   groups :any;
   displayGroups: any = [];
   selectedGroup:any;
@@ -19,6 +20,7 @@ export class GroupsComponent implements OnInit {
 
   ngOnInit() {
   	this.getGroups();
+    console.log(this.username);
   }
 
   alert(msg?: string)      { window.alert(msg); }

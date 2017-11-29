@@ -1,7 +1,7 @@
 
 <div class="container">
 	<h2>Groups</h2>
-
+	{{username}}
 	<div>
 		<div class="search">
 			<input #box (keyup)="onKey(box.value)" type="text" class="searchTerm" placeholder="What group are you into?" id="searchInput">
@@ -10,7 +10,7 @@
 
 	<div class="group" *ngFor="let group of displayGroups"
 		[class.selected] = "group === selectedGroup"
-		(click)=onSelect(group)>-
+		(click)=onSelect(group)>
 		<div class="group-content">
 			<h3 class="group-title">{{group.title}}</h3>
 			<div class="group-meta">
@@ -23,7 +23,7 @@
 
 
 <div id="right">
-	<app-group-detail [group]="selectedGroup"></app-group-detail>
+	<app-group-detail [group]="selectedGroup" [username]="username"></app-group-detail>
 </div>
 
 

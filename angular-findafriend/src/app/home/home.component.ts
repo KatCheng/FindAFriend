@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthHttp } from 'angular2-jwt';
+import { AuthenticationService } from '../authentication.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,19 +13,40 @@ import { AuthHttp } from 'angular2-jwt';
 export class HomeComponent implements OnInit {
 
 	public loading = false;
+  public _router: Router;
+  public _authenticationService: AuthenticationService;
 	username: string;
+  usersView:boolean = null;
+  groupsView:boolean = null;
 
-  	constructor() { }
+  constructor() { }
 
-  	ngOnInit() {
-  		let cUser = JSON.parse(localStorage.getItem('cUser'));
-		if (cUser) {
-			this.username = cUser['username'];
-		} else {
-			this.username = null;
-		}
-  	}
+  ngOnInit() {
+  	let cUser = JSON.parse(localStorage.getItem('cUser'));
+	   if (cUser) {
+	     this.username = cUser['username'];
+	   } else {
+		  this.username = null;
+	   }  
+  }
 
-  	ngOnDestroy() {	}
+  ngOnDestroy() {	}
+
+  logout() {
+    this._authenticationService.logout();
+    this._router.navigate(['login']);
+  }
+
+
+
+  showGroups(){
+    this.usersView=null;
+    this.groupsView=true;
+  }
+
+  showUsers(){
+    this.usersView=true;
+    this.groupsView=null;
+  }
 
 }

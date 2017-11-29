@@ -1,15 +1,22 @@
 <section class="jumbotron text-center">
 	<div class="container">
 		<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<!-- 		<div *ngIf="username">
-			<h1 class="jumbotron-heading">Hola, {{ username }}!</h1>
-				<a href="#" >Main call to action</a>
-				<a href="#" class="btn btn-secondary">Secondary action</a>
-			</p>
-		</div> -->
+<!-- 
+		<a *ngIf="username" style="cursor: pointer" routerLink="/login">Log out</a>
 		<nav align="center">
- 			<a routerLink="/users">User</a>
-			<a routerLink="/groups">Groups</a>
-		</nav>
+ 			<div (click) ="showUsers()">User</div>
+			<div (click)="showGroups()">Groups</div>
+		</nav> -->
+		<div class="nav">
+			<ul>
+	  			<li><a (click) ="showUsers()">User</a></li>
+				<li><a (click)="showGroups()">Groups</a></li>
+				<li style="float:right"><a style="cursor: pointer" routerLink="/login">Log out</a></li>
+			</ul>
+		</div>
 	</div>
 </section>
+
+<app-groups *ngIf="groupsView" [username]="username"> </app-groups>
+<app-users *ngIf="usersView" [username]="username"> </app-users>
+<!-- <apps-users *ngIf="userView" [username]="username"> </apps-users> -->

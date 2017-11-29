@@ -26,7 +26,8 @@ class Page(models.Model):
 	description = models.TextField()
 	typeOfGroup = models.CharField(max_length=12, choices=GROUPOPTIONS, null=True)
 	timeCreated = models.DateTimeField(default=timezone.now)
-	members = models.ManyToManyField(User, related_name='members')
+	# members = models.ManyToManyField(User, related_name='members')
+	members = ['test', 'person2']
 
 	def __str__(self):
 		return self.title
