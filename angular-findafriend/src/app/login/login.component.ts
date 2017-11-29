@@ -13,11 +13,13 @@ export class LoginComponent implements OnInit {
 
 	req: any;
 	title: string = "Login";
-	endpoint: string = "http://127.0.0.1:8000/api//login/";
+	endpoint: string = "http://127.0.0.1:8000/api/login/";
 	usernameError: [any];
 	passwordError: [any];
 	nonFieldError: [any];
 	error: string;
+
+	su: number = 0;
 
   constructor(
   	public _router: Router,
@@ -47,11 +49,12 @@ export class LoginComponent implements OnInit {
 	};
 
 	signup(event) {
+		event.preventDefault();
 		this._router.navigate(['signup']);
 	};
 
 	ngOnDestroy(){
-		this.req.unsubscribe();
+		// this.req.unsubscribe();
 	}
 
 }

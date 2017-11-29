@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   usersView:boolean = null;
   groupsView:boolean = null;
 
+  su: number = 0;
+
   constructor() { }
 
   ngOnInit() {
@@ -33,10 +35,14 @@ export class HomeComponent implements OnInit {
   ngOnDestroy() {	}
 
   logout() {
+    console.log("heresdsd");
     this._authenticationService.logout();
-    this._router.navigate(['login']);
+    // this._router.navigate(['logout']);
   }
 
+  // signup(event) {
+  //   this._router.navigate(['signup']);
+  // };
 
 
   showGroups(){

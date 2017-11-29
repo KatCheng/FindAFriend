@@ -1,30 +1,42 @@
 <div class="login-container">
 
-	<h1>{{ title }}</h1>
+	<div class="nav">
+		<ul>
+			<li style="float:right"><a [routerLink]="['/signup']">Register</a></li>
+		</ul>
+	</div>
 
-	<form role="form" (submit)="login($event, username.value, password.value)">
-		<label class="form-label" for="username">Username</label>
-		<input type="text" #username class="form-control" id="username">
-		<div style="margin-top: 10px;" *ngIf="usernameError" class="alert alert-danger" role="alert">	
-			<span *ngFor="let error of usernameError">
-				{{ error }}
-			</span>
-		</div>
+<!-- 	<div *ngIf="su == 0"> -->
+		<h1>{{ title }}</h1>
 
-		<label class="form-label" for="password">Password</label>
-		<input type="password" #password class="form-control" id="password">
-		<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">	
-			<span *ngFor="let error of passwordError">
-				{{ error }}
-			</span>
-		</div>
-		<div style="margin-top: 10px;" *ngIf="nonFieldError" class="alert alert-danger" role="alert">	
-			<span *ngFor="let error of nonFieldError">
-				{{ error }}
-			</span>
-		</div>
-		<button type="submit" class="btn btn-default float-left">Submit</button>
-<!-- 		<a class="float-right" [routerLink]="['/signup']">Click here to signup</a> -->
-	</form>
+		<form role="form" (submit)="login($event, username.value, password.value)">
+			<label for="username">Username</label>
+			<input type="text" #username class="form-control" id="username">
+			<div style="margin-top: 10px;" *ngIf="usernameError" class="alert alert-danger" role="alert">	
+				<span *ngFor="let error of usernameError">
+					{{ error }}
+				</span>
+			</div>
 
+			<label for="password">Password</label>
+			<input type="password" #password>
+			<div style="margin-top: 10px;" *ngIf="passwordError">	
+				<span *ngFor="let error of passwordError">
+					{{ error }}
+				</span>
+			</div>
+			<div style="margin-top: 10px;" *ngIf="nonFieldError">	
+				<span *ngFor="let error of nonFieldError">
+					{{ error }}
+				</span>
+			</div>
+			<button (click)="su = 1" >Submit</button>
+	<!-- 		<a class="float-right" [routerLink]="['/signup']">Click here to signup</a> -->
+		</form>
+<!-- 	</div> -->
+
+<!-- 	<div *ngIf="su == 1">
+		<br>
+		<app-signup></app-signup>
+	</div> -->
 </div>

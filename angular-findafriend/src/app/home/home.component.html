@@ -1,12 +1,12 @@
-<section class="jumbotron text-center">
+<!-- <section class="jumbotron text-center">
 	<div class="container">
 		<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<!-- 
+
 		<a *ngIf="username" style="cursor: pointer" routerLink="/login">Log out</a>
 		<nav align="center">
  			<div (click) ="showUsers()">User</div>
 			<div (click)="showGroups()">Groups</div>
-		</nav> -->
+		</nav>
 		<div class="nav">
 			<ul>
 	  			<li><a (click) ="showUsers()">User</a></li>
@@ -15,8 +15,43 @@
 			</ul>
 		</div>
 	</div>
-</section>
+</section> -->
+<!-- <div *ngIf="su == 0 && username" >
+	<div class="nav">
+		<ul>
+			<li><a (click) ="showUsers()">User</a></li>
+			<li><a (click)="showGroups()">Groups</a></li>
+			<li style="float:right"><a style="cursor: pointer"  (click)="su = 2" (click)="logout()">Log out</a></li>
+		</ul>
+	</div>
+	<app-groups *ngIf="groupsView" [username]="username"> </app-groups>
+	<app-users *ngIf="usersView" [username]="username"> </app-users>
+</div>
 
+<div *ngIf="!username && su == 0 || su == 1">
+	<div class="nav">
+		<ul>
+			<li style="float:right"><a (click)="su = 2" (click)="logout()">Register</a></li>
+		</ul>
+	</div>
+	<app-login></app-login>
+</div>
+
+<div *ngIf="su == 2">
+	<div class="nav">
+		<ul>
+			<li style="float:right"><a (click)="su = 1">Log in</a></li>
+		</ul>
+	</div>
+	<app-signup></app-signup>
+</div> -->
+<div class="nav">
+	<ul>
+			<li><a (click) ="showUsers()">User</a></li>
+		<li><a (click)="showGroups()">Groups</a></li>
+		<li style="float:right"><a style="cursor: pointer" (click)="logout()" routerLink="/login">Log out</a></li>
+	</ul>
+</div>
 <app-groups *ngIf="groupsView" [username]="username"> </app-groups>
 <app-users *ngIf="usersView" [username]="username"> </app-users>
 <!-- <apps-users *ngIf="userView" [username]="username"> </apps-users> -->
