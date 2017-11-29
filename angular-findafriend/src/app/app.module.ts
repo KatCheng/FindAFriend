@@ -19,6 +19,7 @@ import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routing';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AppRoutingModule } from './app.routing';
     LoginComponent,
     HomeComponent,
     GroupMessageComponent,
+    SignupComponent,
     UsersComponent
   ],
   imports: [
