@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class GroupMessageComponent implements OnInit {
 	@Input() group: any;
+  @Input() username:string;
   
   messages:any = [
   { sender: 'akshay', messageContent: 'Mr. Nice' },
