@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Group} from '../group';
 import {GROUPS} from '../list-of-groups';
-import { GroupServiceService } from '../group-service.service';
+// import { GroupServiceService } from '../group-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
