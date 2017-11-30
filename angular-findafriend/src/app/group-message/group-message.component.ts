@@ -10,11 +10,10 @@ import { ChatService } from './chat.service';
   providers: [ WebsocketService, ChatService ]
 })
 
-export class GroupMessageComponent implements OnInit {
+export class GroupMessageComponent {
 	@Input() group: any;
   	@Input() username:string;
- 	echoMessage = '';
-
+	
   	messages:any = [
   		{ sender: 'akshay', messageContent: 'Mr. Nice' },
   		{ sender: 'akshay', messageContent: 'hello' },
@@ -22,22 +21,29 @@ export class GroupMessageComponent implements OnInit {
   	];
 	constructor(private chatService: ChatService) {
 		chatService.messages.subscribe(msg=>{
+			document.getElementById("#chatmsg")[0].innerHTML = msg; 
 			console.log("Websocket giving response: "+ msg);
 		});
 	}
-	
 
 	private message = {
-		author: 'Yeonwoo',
-		message: "this is testing messages"
+		sender: this.username,
+		recipient: this.group,
+		message: "nope"
+	
 	}
-
   	sendMsg() {
+	
+		if(document.forms["chatContent"]["textbox"].value != ""){
+			this.message = {
+	        		sender: this.username,
+				recipient: this.group.title,
+				message: document.forms["chatContent"]["textbox"].value
+			}
+		}
 		console.log('new message from client to websocket: ', this.message);
 		this.chatService.messages.next(this.message);
 		this.message.message = '';
 	}
-
-	ngOnInit() { };
 
 }

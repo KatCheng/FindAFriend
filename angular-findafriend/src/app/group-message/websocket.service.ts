@@ -5,19 +5,19 @@ import * as Rx from 'rxjs/Rx';
 export class WebsocketService {
   constructor() { }
 
-  private subject: Rx.Subject<MessageEvent>;
+  private socket: Rx.Subject<MessageEvent>;
 
   public connect(url): Rx.Subject<MessageEvent> {
-    if (!this.subject) {
-      this.subject = this.create(url);
+    if (!this.socket) {
+      this.socket = this.create(url);
       console.log("Successfully connected: " + url);
     } 
-    return this.subject;
+    return this.socket;
   }
 
   private create(url): Rx.Subject<MessageEvent> {
     let ws = new WebSocket(url);
-
+    
     let observable = Rx.Observable.create(
 	(obs: Rx.Observer<MessageEvent>) => {
 		ws.onmessage = obs.next.bind(obs);
@@ -25,7 +25,8 @@ export class WebsocketService {
 		ws.onclose = obs.complete.bind(obs);
 		return ws.close.bind(ws);
 	})
-let observer = {
+
+    let observer = {
 		next: (data: Object) => {
 			if (ws.readyState === WebSocket.OPEN) {
 				ws.send(JSON.stringify(data));

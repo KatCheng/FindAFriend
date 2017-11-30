@@ -40,10 +40,10 @@ def ws_msg(msg):
 
     
     # save to database
-    c = Chat(sender=msg.user, recipient=Page.objects.get(title = data['recipientName']), messageContent=data['messageContent'])
+    c = Chat(sender=msg.user, recipient=Page.objects.get(title = data['recipient']), messageContent=data['message'])
     c.save()
     
-    log.debug("recipientName=%s message=%s", data['recipientName'], data['messageContent'])
+    log.debug("recipient=%s message=%s", data['recipient'], data['messageContent'])
     # 
     Group(msg.user.username).send({
         "text": json.dumps(data),     

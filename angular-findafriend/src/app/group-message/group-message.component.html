@@ -9,10 +9,11 @@
 		</div>
 		<div id="newMessage">
 			<!-- Not sure how to send data back to group-message.component.ts -->
-			<form id="chatform" (submit)="chat($event, text.value)" name="chatContent" >
+			<form id="chatform"  name="chatContent">
 				<input id="textbox" type="text" #textbox ng-model="name"/>
-				<button (click)="sendMsg()">Send Message<button/>	
+				<button (click)="sendMsg()">Send Message</button>	
 			</form>
+			<div id="chatmsg"></div>
 				
 		</div>
 	</div>
