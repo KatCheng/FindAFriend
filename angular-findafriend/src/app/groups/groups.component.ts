@@ -66,9 +66,9 @@ export class GroupsComponent implements OnInit {
     for(i ; i <this.groups.length;i++){         //Search for title match first
       if((this.groups[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
         // Change creator url to username
-        this.http.get(this.groups[i].creator).subscribe(data => {
-          try{this.groups[i].creator = data.username;}
-        })
+        //this.http.get(this.groups[i].creator).subscribe(data => {
+        //    this.groups[i].creator = data.username;
+        //})
         this.displayGroups.push(this.groups[i]);
         console.log(this.displayGroups);
       }
