@@ -1,4 +1,4 @@
-import { Component, Input, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
 import { WebsocketService } from './websocket.service';
 
@@ -13,7 +13,6 @@ export interface Message {
 @Injectable()
 export class ChatService {
 
-	@Input() group: any;
 	public messages: Subject<Message>;
 
 	constructor(wsService: WebsocketService) {

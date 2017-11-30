@@ -1,11 +1,10 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as Rx from 'rxjs/Rx';
 
 @Injectable()
 export class WebsocketService {
   constructor() { }
 
-  @Input() group: any;
   private socket: Rx.Subject<MessageEvent>;
 
   public connect(url): Rx.Subject<MessageEvent> {
@@ -13,6 +12,7 @@ export class WebsocketService {
       this.socket = this.create(url);
     return this.socket;
   }
+}
 
   private create(url): Rx.Subject<MessageEvent> {
     let ws = new WebSocket(url);
