@@ -19,10 +19,11 @@ export class GroupMessageComponent {
   		{ sender: 'akshay', messageContent: 'hello' },
   		{ sender: 'akshay', messageContent: 'akhsya' },
   	];
+
 	constructor(private chatService: ChatService) {
 		chatService.messages.subscribe(msg=>{
-			document.getElementById("#chatmsg")[0].innerHTML = msg; 
-			console.log("Websocket giving response: "+ msg);
+			document.getElementById("chatmsg").innerHTML = msg.message; 
+			console.log("Websocket giving response: "+ msg.message);
 		});
 	}
 

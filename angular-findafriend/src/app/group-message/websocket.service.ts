@@ -1,23 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import * as Rx from 'rxjs/Rx';
 
 @Injectable()
 export class WebsocketService {
   constructor() { }
 
+  @Input() group: any;
   private socket: Rx.Subject<MessageEvent>;
 
   public connect(url): Rx.Subject<MessageEvent> {
     if (!this.socket) {
       this.socket = this.create(url);
-      console.log("Successfully connected: " + url);
-    } 
     return this.socket;
   }
 
   private create(url): Rx.Subject<MessageEvent> {
     let ws = new WebSocket(url);
-    
     let observable = Rx.Observable.create(
 	(obs: Rx.Observer<MessageEvent>) => {
 		ws.onmessage = obs.next.bind(obs);
