@@ -21,11 +21,22 @@ export class GroupsComponent implements OnInit {
 
   ngOnInit() {
   	this.getGroups();
+  	this.getUsername();
     console.log(this.username);
   }
 
   alert(msg?: string)      { window.alert(msg); }
   canSave=true;
+
+  getUsername():void{
+    var i:number = 0;
+    for(i ; i <this.groups.length;i++){
+      // Change creator url to username
+      this.http.get(this.groups[i].creator).subscribe(data => {
+        this.groups[i].creator = (data as any).username;
+      })
+    }
+  }
 
   /* GET GROUPS FROM BACKEND */
   getGroups():void{
@@ -66,9 +77,9 @@ export class GroupsComponent implements OnInit {
     for(i ; i <this.groups.length;i++){         //Search for title match first
       if((this.groups[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
         // Change creator url to username
-        //this.http.get(this.groups[i].creator).subscribe(data => {
-        //    this.groups[i].creator = data.username;
-        //})
+        this.http.get(this.groups[i].creator).subscribe(data => {
+          this.groups[i].creator = (data as any).username;
+        })
         this.displayGroups.push(this.groups[i]);
         console.log(this.displayGroups);
       }
@@ -80,6 +91,10 @@ export class GroupsComponent implements OnInit {
     i =0;
     for(i ; i <notSelected.length;i++){       //Search for typeOfGroup next
       if((notSelected[i].typeOfGroup.toLowerCase()).search(value.toLowerCase()) != -1){
+        // Change creator url to username
+        this.http.get(this.groups[i].creator).subscribe(data => {
+          this.groups[i].creator = (data as any).username;
+        })
         this.displayGroups.push(notSelected[i]);
         console.log(this.displayGroups);
       }
@@ -92,6 +107,10 @@ export class GroupsComponent implements OnInit {
     i=0;
     for(i ; i <notSelected2.length;i++){      //Search for creator next
       if((notSelected2[i].creator.toLowerCase()).search(value.toLowerCase()) != -1){
+        // Change creator url to username
+        this.http.get(this.groups[i].creator).subscribe(data => {
+          this.groups[i].creator = (data as any).username;
+        })
         this.displayGroups.push(notSelected2[i]);
         console.log(this.displayGroups);
       }
@@ -104,6 +123,10 @@ export class GroupsComponent implements OnInit {
 
     for(i ; i <notSelected.length;i++){         //Search for description next
       if((notSelected[i].description.toLowerCase()).search(value.toLowerCase()) != -1){
+        // Change creator url to username
+        this.http.get(this.groups[i].creator).subscribe(data => {
+          this.groups[i].creator = (data as any).username;
+        })
         this.displayGroups.push(notSelected[i]);
         console.log(this.displayGroups);
       }
