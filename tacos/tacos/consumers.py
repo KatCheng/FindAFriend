@@ -15,14 +15,14 @@ def ws_con(msg):
         "accept": True
     })
 
-    # query histroy
-    for c in Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)).order_by('timestamp'):
-        chatJSON = {}
-        chatJSON["sender"] = c.sender.username
-        chatJSON["recipient"] = c.recipient.title
-        chatJSON["message"] = c.messageContent
-        chatJSON["timestamp"] = c.timestamp.isoformat(' ')
-
+    if( Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)))is not None:
+        # query histroy
+        for c in Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)).order_by('timestamp'):
+            chatJSON = {}
+            chatJSON["sender"] = c.sender.username
+            chatJSON["recipient"] = c.recipient.title
+            chatJSON["message"] = c.messageContent
+            chatJSON["timestamp"] = c.timestamp.isoformat(' ')
     # send histroy to user
     msg.reply_channel.send({"text":json.dumps(chatJSON)})
 

@@ -57,7 +57,7 @@ export class GroupsComponent implements OnInit {
   onSelect(group:any):void{
     // console.log("ayyyy");
     this.selectedGroup = group;
-    this.selectedGroup.creator = this.selectedGroupCreator.username;
+    /**this.selectedGroup.creator = this.selectedGroupCreator.username;*/
   }
 
   addGroup(group:Group){
