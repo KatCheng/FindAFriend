@@ -23,8 +23,8 @@ def ws_con(msg):
             chatJSON["recipient"] = c.recipient.title
             chatJSON["message"] = c.messageContent
             chatJSON["timestamp"] = c.timestamp.isoformat(' ')
-    # send histroy to user
-    msg.reply_channel.send({"text":json.dumps(chatJSON)})
+            # send histroy to user
+            msg.reply_channel.send({"text":json.dumps(chatJSON)})
 
     # display
 #    if Chat.objects.filter(recipient=u) is not None:
