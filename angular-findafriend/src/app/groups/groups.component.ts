@@ -61,7 +61,7 @@ export class GroupsComponent implements OnInit {
 
     var i:number = 0;
 
-    for(i ; i <this.groups.length;i++){         //Search for title match first
+    for(i ; i < this.groups.length;i++){         //Search for title match first
       if((this.groups[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
         this.displayGroups.push(this.groups[i]);
         console.log(this.displayGroups);
@@ -72,7 +72,7 @@ export class GroupsComponent implements OnInit {
     }
 
     i =0;
-    for(i ; i <notSelected.length;i++){       //Search for typeOfGroup next
+    for(i ; i < notSelected.length;i++){       //Search for typeOfGroup next
       if((notSelected[i].typeOfGroup.toLowerCase()).search(value.toLowerCase()) != -1){
         this.displayGroups.push(notSelected[i]);
         console.log(this.displayGroups);
@@ -84,7 +84,7 @@ export class GroupsComponent implements OnInit {
 
     notSelected = [];
     i=0;
-    for(i ; i <notSelected2.length;i++){      //Search for creator next
+    for(i ; i < notSelected2.length;i++){      //Search for creator next
       if((notSelected2[i].creator.toLowerCase()).search(value.toLowerCase()) != -1){
         this.displayGroups.push(notSelected2[i]);
         console.log(this.displayGroups);
@@ -96,7 +96,7 @@ export class GroupsComponent implements OnInit {
 
     i=0;
 
-    for(i ; i <notSelected.length;i++){         //Search for description next
+    for(i ; i < notSelected.length;i++){         //Search for description next
       if((notSelected[i].description.toLowerCase()).search(value.toLowerCase()) != -1){
         this.displayGroups.push(notSelected[i]);
         console.log(this.displayGroups);

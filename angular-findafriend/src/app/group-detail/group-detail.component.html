@@ -8,7 +8,7 @@
 	<h4 (click)="seeMembers()" id="memButton"> {{group.members.length}} Members (Show)</h4>
 	<div *ngIf="showMembers">
 		<div class="members" *ngFor="let mem of group.members">
-			<div> {{mem}}</div>
+			<div> {{mem.username}}</div>
 		</div>		
 	</div>
 

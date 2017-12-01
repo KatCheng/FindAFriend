@@ -24,7 +24,8 @@ export class ChatService {
 				return {
 					sender: data.sender,
 					recipient: data.recipient,
-					message: data.message
+					message: data.message,
+					time: data.time
 				}
 			});
 	}

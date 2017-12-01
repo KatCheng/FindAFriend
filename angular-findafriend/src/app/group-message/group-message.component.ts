@@ -13,16 +13,17 @@ import { ChatService } from './chat.service';
 export class GroupMessageComponent {
 	@Input() group: any;
   	@Input() username:string;
-	
-  	messages:any = [
-  		{ sender: 'akshay', messageContent: 'Mr. Nice' },
-  		{ sender: 'akshay', messageContent: 'hello' },
-  		{ sender: 'akshay', messageContent: 'akhsya' },
-  	];
+
+	messages: any = [];
 
 	constructor(private chatService: ChatService) {
 		chatService.messages.subscribe(msg=>{
-			document.getElementById("chatmsg").innerHTML = msg.message; 
+		/**	document.getElementById("chatmsg").innerHTML = msg.message; */
+		this.messages.push(
+			{sender: msg.sender},
+			{recipient: msg.recipient},
+			{messageContent: msg.message},
+		);
 			console.log("Websocket giving response: "+ msg.message);
 		});
 	}
@@ -31,8 +32,8 @@ export class GroupMessageComponent {
 		sender: this.username,
 		recipient: this.group,
 		message: "nope"
-	
 	}
+
   	sendMsg() {
 	
 		if(document.forms["chatContent"]["textbox"].value != ""){
