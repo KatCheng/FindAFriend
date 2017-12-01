@@ -22,8 +22,8 @@ export class GroupMessageComponent {
 		this.messages.push({
 			sender: msg.sender,
 			recipient: msg.recipient,
-			messageContent: msg.message
-		);
+			messageContent: msg.message,
+		});
 
 			console.log("Websocket giving response: "+ msg.message);
 		});
