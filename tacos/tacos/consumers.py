@@ -15,7 +15,7 @@ def ws_con(msg):
         "accept": True
     })
 
-    if( Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)))is not None:
+    if(Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)))is not None:
         # query histroy
         for c in Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)).order_by('timestamp'):
             chatJSON = {}
@@ -36,6 +36,7 @@ def ws_con(msg):
       #      "text":t
        # })
     
+    print(chatJSON)
     # add to the chat group
     Group(msg.user.username).add(msg.reply_channel); 
 
@@ -55,9 +56,9 @@ def ws_msg(msg):
     
     log.debug("recipient=%s message=%s", data['recipient'], data['message'])
     # send message to the group
-    for m in Page.objects.get(title=data['recipient']).members.all(): 
-        Group(msg.user.username).send({
-        "text": json.dumps(data)     
+#    for m in Page.objects.get(title=data['recipient']).members.all(): 
+    Group(msg.user.username).send({
+    "text": json.dumps(data)     
     })
 
     
