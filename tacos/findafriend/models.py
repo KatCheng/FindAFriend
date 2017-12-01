@@ -26,14 +26,14 @@ class Page(models.Model):
 	description = models.TextField()
 	typeOfGroup = models.CharField(max_length=12, choices=GROUPOPTIONS, null=True)
 	timeCreated = models.DateTimeField(default=timezone.now)
-	# members = models.ManyToManyField(User, related_name='members')
-	members = ['test', 'person2']
+	members = models.ManyToManyField(User, related_name='members')
+	#members = ['test', 'person2']
 
 	def __str__(self):
 		return self.title
 
-#	def __str__(self):
-#		return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
+	def __str__(self):
+		return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, null=True, related_name='user')

@@ -15,6 +15,17 @@ def ws_con(msg):
         "accept": True
     })
 
+    # query histroy
+    for c in Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)).order_by('timestamp'):
+        chatJSON = {}
+        chatJSON["sender"] = c.sender.username
+        chatJSON["recipient"] = c.recipient.title
+        chatJSON["message"] = c.messageContent
+        chatJSON["timestamp"] = c.timestamp.isoformat(' ')
+
+    # send histroy to user
+    msg.reply_channel.send({"text":json.dumps(chatJSON)})
+
     # display
 #    if Chat.objects.filter(recipient=u) is not None:
  #       qs = Chat.objects.filter(recipient=data['recipient'])
@@ -26,15 +37,15 @@ def ws_con(msg):
        # })
     
     # add to the chat group
-    Group("chat").add(msg.reply_channel); 
+    Group(msg.user.username).add(msg.reply_channel); 
 
 # Connected to websocket.receive
 @channel_session_user
 def ws_msg(msg):
     # echo to sender
-    msg.reply_channel.send({
-        "text": msg.content['text'],
-    })
+    #msg.reply_channel.send({
+    #"text": msg.content['text'],
+    #})
 
     data = json.loads(msg.content['text'])
 
@@ -43,12 +54,13 @@ def ws_msg(msg):
     c.save()
     
     log.debug("recipient=%s message=%s", data['recipient'], data['message'])
-    # 
-    Group("chat").send({
-        "text": json.dumps(data),     
+    # send message to the group
+    for m in Page.objects.get(title=data['recipient']).members.all(): 
+        Group(msg.user.username).send({
+        "text": json.dumps(data)     
     })
 
     
 @channel_session_user
 def ws_discon(msg):
-    Group("chat").discard(msg.reply_channel)
+    Group(msg.user.username).discard(msg.reply_channel)
