@@ -107,9 +107,11 @@ class UserLoginSerializer(serializers.HyperlinkedModelSerializer):
 # 		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup)
 
 class PageSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = Page
-		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
+    members = UserSerializer(read_only=True, many=True)
+    creator = serializers.CharField(source='creator.username')
+    class Meta:
+            model = Page
+            fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
