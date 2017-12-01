@@ -18,8 +18,9 @@
 	  <button (click)="addToGroup()">Join group</button>
 	</div>
 
-	<app-group-message [group]="group" [username]="username"></app-group-message>
-
+	<div *ngIf="inGroup==true">
+		<app-group-message [group]="group" [username]="username"></app-group-message>
+	</div>
 
 </div>
 

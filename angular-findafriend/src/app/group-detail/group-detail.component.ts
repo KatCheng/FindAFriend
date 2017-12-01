@@ -7,13 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GroupDetailComponent implements OnInit {
 	@Input() group: any;
- 	@Input() username:string;
-	showMembers:boolean = null;
+  @Input() username:string;
+	@Input() inGroup:boolean;
 
   constructor(
   ) { }
 
   ngOnInit(){
+
   }
 
 
@@ -27,6 +28,8 @@ export class GroupDetailComponent implements OnInit {
   		document.getElementById("memButton").innerHTML = this.group.members.length +" Members (Show)";
   	}
   }
+
+
 
   addToGroup(){
     //Post data to django to add name to list
