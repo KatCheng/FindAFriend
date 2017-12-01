@@ -31,9 +31,16 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
+from django.contrib.auth import get_user_model
+
 
 
 import json
+# from . import authentication
+# from django.contrib.auth import login, logout
+
+User = get_user_model()
+user = User.objects.get(username="aollarve")
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -56,6 +63,18 @@ class UserLoginAPIView(APIView):
 		serializer = UserLoginSerializer(data=data)
 		if serializer.is_valid(raise_exception=True):
 			new_data = serializer.data
+			# account = authenticate(email='aollarve@u.rochester.edu', password='123andres')
+			# account = authenticate(username='aollarve', password='123andres')
+			# # account  = authenticate(username=username, password=password)
+			user = User.objects.get(username=data['username'])
+			user.backend = 'django.contrib.auth.backends.ModelBackend'
+			if user.is_authenticated:
+				print(user.username)
+			#login(self.request, account)
+			# credentials = {
+   #          	self.username_field: attrs.get(self.username_field),
+   #          	'password': attrs.get('password')
+   #      	}
 			return Response(new_data, status=HTTP_200_OK)
 		else:
 			return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
@@ -67,6 +86,13 @@ class UserLoginAPIView(APIView):
 	#     response.headers['Access-Control-Allow-Headers'] = 'content-type'
 	#     return response
 
+# class UserLogoutAPIView(APIView):
+# 	permissions_classes = [AllowAny]
+
+# 	def post(request, format=None):
+# 	    logout(request)
+
+# 	    return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
 class PageViewSet(viewsets.ModelViewSet):
@@ -74,7 +100,8 @@ class PageViewSet(viewsets.ModelViewSet):
 	queryset = Page.objects.all().order_by('-timeCreated')
 	serializer_class = PageSerializer
 	lookup_field = 'title'
-	permission_classes = [AllowAny]
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 
 
@@ -83,18 +110,23 @@ class ProfileViewSet(viewsets.ModelViewSet):
 	queryset = UserProfile.objects.all().order_by('-user')
 	serializer_class = ProfileSerializer
 	lookup_field = 'user'
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 class ProfileAPIView(generics.RetrieveAPIView):
 	queryset = UserProfile.objects.all()
 	serializer_class = ProfileSerializer
 	lookup_field = 'user'
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 
 class ProfileUpdateView(generics.UpdateAPIView):
 	queryset = UserProfile.objects.all()
 	serializer_class = ProfileSerializer
 	lookup_field = 'user'
-
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 
 class ChatViewSet(viewsets.ModelViewSet):
@@ -102,30 +134,39 @@ class ChatViewSet(viewsets.ModelViewSet):
 	queryset = Chat.objects.all().order_by('-timestamp')
 	serializer_class = ChatSerializer
 	lookup_field = 'recipient'
-
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 class ChatRoomViewSet(viewsets.ModelViewSet):
 
 	queryset = ChatRoom.objects.all()
 	serializer_class = ChatRoomSerializer
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 
 class PageRetrieve(generics.RetrieveAPIView):
 	queryset = Page.objects.all()
 	serializer_class = PageSerializer
 	lookup_field = 'title'
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 
 class PageDetail(generics.RetrieveUpdateDestroyAPIView):
 
 	queryset = Page.objects.all()
 	serializer_class = PageSerializer
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 
 class PageSearch(generics.ListAPIView):
 	queryset = Page.objects.all()
 	serializer_class = PageSerializer
 	lookup_field = 'title'
+	if user.is_authenticated:
+		permission_classes = [AllowAny]
 
 	def get_queryset(self, *args, **kwargs):
 		#queryset_list = super(PageSearch, self).get_queryset(*args, **kwargs)

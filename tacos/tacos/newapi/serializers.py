@@ -6,9 +6,12 @@ from rest_framework.serializers import ( CharField, EmailField, HyperlinkedIdent
 
 
 from rest_framework_jwt.settings import api_settings
+from django.contrib.auth import get_user_model, login, authenticate
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+
+User = get_user_model()
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
