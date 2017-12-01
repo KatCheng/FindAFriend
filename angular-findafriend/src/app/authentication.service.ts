@@ -98,9 +98,7 @@ export class AuthenticationService {
 
         // clear token remove user from local storage to log user out
         this.token = null;
-        // this._http.post("http://127.0.0.1:8000/api/logout/", 'aollarve');
         localStorage.removeItem('cUser');
-        console.log("logout");
     }
 
     // obtain the login status
