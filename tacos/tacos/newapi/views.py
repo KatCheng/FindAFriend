@@ -56,7 +56,8 @@ class UserLoginAPIView(APIView):
 		serializer = UserLoginSerializer(data=data)
 		if serializer.is_valid(raise_exception=True):
 			new_data = serializer.data
-			account = authenticate(username=data['username'])
+			account = User.objects.get(username=data['username'])
+			#account = authenticate(username=data['username'])
 			account.backend = 'django.contrib.auth.backends.ModelBackend'
 			if account.is_authenticated:
 				print("au")
