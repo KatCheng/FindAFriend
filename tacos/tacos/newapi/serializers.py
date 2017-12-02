@@ -178,10 +178,10 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
                 sizeOfGroup = validated_data['sizeOfGroup'],
                 description = validated_data['description'],
                 timeCreated = currentTime,
-                #members = [User.objects.get( username="test" )],
                 typeOfGroup = validated_data['typeOfGroup']
             )
         page_obj.save()
+        page_obj.members.add(User.objects.get( username = validated_data['creator']['username'] ))
         return validated_data
 
 
