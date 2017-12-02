@@ -190,7 +190,19 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
 # 		model = Chat
 # 		fields = ('senderName', 'recipientName', 'messageContent', 'timestamp')
 
+class PageTitleSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Page
+		fields = ('title', 'members')
+
+class UserToUsernameSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = User
+		fields = ('username', 'url')
+
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
+	sender = UserToUsernameSerializer()
+	recipient = PageTitleSerializer()
 	class Meta:
 		model = Chat
 		fields = ('sender', 'recipient', 'messageContent', 'timestamp')

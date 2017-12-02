@@ -35,6 +35,38 @@ from rest_framework.response import Response
 
 import json
 
+class JoinGroupSet(viewsets.ModelViewSet):
+	serializer_class = PageSerializer
+	queryset = Page.objects.all()
+	lookup_field = 'title'
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		queryset = Page.objects.all().filter(title= self.kwargs['group'])
+		lookup_field = 'title'
+		userq = User.objects.all().filter(username = self.kwargs['username'])
+		queryset[0].members.add(userq[0])
+		print("--------------------join------------------------------------")
+		print(self.kwargs['group'] + "----"+ self.kwargs['username'])
+		return queryset
+
+
+class LeaveGroupSet(viewsets.ModelViewSet):
+	serializer_class = PageSerializer
+	queryset = Page.objects.all()
+	lookup_field = 'title'
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		queryset = Page.objects.all().filter(title= self.kwargs['group'])
+		lookup_field = 'title'
+		userq = User.objects.all().filter(username = self.kwargs['username'])
+		queryset[0].members.remove(userq[0])
+		print("-----------------------remove----------------------------------")
+		print(self.kwargs['group'] + "----"+ self.kwargs['username'])
+		return queryset
+
+
 class UserViewSet(viewsets.ModelViewSet):
 
 	queryset = User.objects.all().order_by('-date_joined')
@@ -167,6 +199,8 @@ class PageSearch(generics.ListAPIView):
 				Q(content_icontains=query)
 				).distinct()
 		return queryset_list
+
+
 
 
 
