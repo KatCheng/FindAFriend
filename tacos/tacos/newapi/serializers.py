@@ -114,6 +114,27 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
             fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
 
 
+class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
+    creator = serializers.CharField(source='creator.username')
+    
+    class Meta:
+            model = Page
+            fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'typeOfGroup')
+
+
+    def create(self, validated_data):
+	    page_obj = Page(
+	            title = validated_data['title'],
+	            creator = User.objects.get( username = validated_data['creator']['username'] ),
+	            sizeOfGroup = validated_data['sizeOfGroup'],
+	            description = validated_data['description'],
+	            timeCreated = validated_data['timeCreated'],
+	            #members = [User.objects.get( username="test" )],
+	            typeOfGroup = validated_data['typeOfGroup']
+	        )
+	    page_obj.save()
+	    return validated_data
+
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = UserProfile
