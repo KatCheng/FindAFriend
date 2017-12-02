@@ -15,17 +15,6 @@ def ws_con(msg):
         "accept": True
     })
 
-    if(Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)))is not None:
-        # query histroy
-        for c in Chat.objects.filter(recipient__in=Page.objects.filter(members=msg.user)).order_by('timestamp'):
-            chatJSON = {}
-            chatJSON["sender"] = c.sender.username
-            chatJSON["recipient"] = c.recipient.title
-            chatJSON["message"] = c.messageContent
-            chatJSON["timestamp"] = c.timestamp.isoformat(' ')
-            # send histroy to user
-            msg.reply_channel.send({"text":json.dumps(chatJSON)})
-
     # display
 #    if Chat.objects.filter(recipient=u) is not None:
  #       qs = Chat.objects.filter(recipient=data['recipient'])
@@ -36,7 +25,6 @@ def ws_con(msg):
       #      "text":t
        # })
     
-    print(chatJSON)
     # add to the chat group
     Group(msg.user.username).add(msg.reply_channel); 
 
@@ -50,16 +38,30 @@ def ws_msg(msg):
 
     data = json.loads(msg.content['text'])
 
-    # save to database
-    c = Chat(sender=User.objects.get(username=data['sender']), recipient=Page.objects.get(title = data['recipient']), messageContent=data['message'])
-    c.save()
+    # history calling from request
+    if(data['isRequest'] == 'True'):
+        if(Chat.objects.filter(recipient__in=Page.objects.filter(title=data['recipient'])))is not None:
+            # query histroy
+            print(data['isRequest'])
+            for c in Chat.objects.filter(recipient__in=Page.objects.filter(title=data['recipient'])).order_by('timestamp'):
+                chatJSON = {}
+                chatJSON["sender"] = c.sender.username
+                chatJSON["recipient"] = c.recipient.title
+                chatJSON["message"] = c.messageContent
+                chatJSON["timestamp"] = c.timestamp.isoformat(' ')
+                # send histroy to user
+                msg.reply_channel.send({"text":json.dumps(chatJSON)})
+    else: 
+        # save to database
+        c = Chat(sender=User.objects.get(username=data['sender']), recipient=Page.objects.get(title = data['recipient']), messageContent=data['message'])
+        c.save()
     
-    log.debug("recipient=%s message=%s", data['recipient'], data['message'])
-    # send message to the group
-#    for m in Page.objects.get(title=data['recipient']).members.all(): 
-    Group(msg.user.username).send({
-    "text": json.dumps(data)     
-    })
+        log.debug("recipient=%s message=%s", data['recipient'], data['message'])
+        # send message to the group
+        #for m in Page.objects.get(title=data['recipient']).members.all(): 
+        Group(msg.user.username).send({
+        "text": json.dumps(data)     
+        })
 
     
 @channel_session_user

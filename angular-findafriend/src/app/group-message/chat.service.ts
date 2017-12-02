@@ -7,7 +7,8 @@ const CHAT_URL = 'ws://localhost:8000/chat';
 export interface Message {
 	sender: string,
 	recipient: string,
-	message: string
+	message: string,
+	isRequest: string,
 }
 
 @Injectable()
@@ -24,6 +25,7 @@ export class ChatService {
 					sender: data.sender,
 					recipient: data.recipient,
 					message: data.message,
+					isRequest: data.isRequest,
 				}
 			});
 	}

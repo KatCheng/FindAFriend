@@ -1,16 +1,13 @@
 <div *ngIf="group">
 	<div id= "messenger">
-		<div class="messages" *ngFor="let msg of messages">
-			<div class="msg">
-				{{msg.messageContent}} from {{msg.sender}} to {{msg.recipient}}
-				<!--<div class="msgSender">from {{msg.sender}}</div>
-				<div class="msgRecipient">to {{msg.recipient}}</div>
-				<div class="msgContent">{{msg.messageContent}}</div>
-				<br>-->
+		<button (click)="showChat()">Let's Chat</button>
+		<div id="newMessage" *ngIf="showSelected">
+
+			<div class="messages" *ngFor="let msg of messages">
+				<div class="msg">
+					{{msg.messageContent}} from {{msg.sender}} to {{msg.recipient}}
+				</div>
 			</div>
-		</div>
-		<div id="newMessage">
-			<!-- Not sure how to send data back to group-message.component.ts -->
 			<form id="chatform"  name="chatContent">
 				<input id="textbox" type="text" #textbox ng-model="name"/>
 				<button (click)="sendMsg()">Send Message</button>	
