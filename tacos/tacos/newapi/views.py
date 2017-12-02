@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from rest_framework import viewsets
-from tacos.newapi.serializers import UserSerializer, UserCreateSerializer, UserLoginSerializer, ProfileSerializer
+from tacos.newapi.serializers import UserSerializer, UserCreateSerializer, UserLoginSerializer, ProfileSerializer, PageCreateSerializer
 from tacos.newapi.serializers import PageSerializer, ChatSerializer, ChatRoomSerializer
 from django.db.models import Q
 from rest_framework.views import APIView
@@ -76,7 +76,12 @@ class PageViewSet(viewsets.ModelViewSet):
 	lookup_field = 'title'
 	permission_classes = [AllowAny]
 
+class PageCreateAPIView(CreateAPIView):
 
+	queryset = Page.objects.all()
+	serializer_class = PageCreateSerializer
+	lookup_field = 'title'
+	permission_classes = [AllowAny]
 
 class ProfileViewSet(viewsets.ModelViewSet):
 

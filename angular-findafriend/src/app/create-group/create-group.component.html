@@ -1,3 +1,49 @@
-<p>
-  create-group works!
-</p>
+<div class="container">
+
+  <p></p>
+
+  <form>
+    <!-- Username -->
+		<div class="form-group">
+			<label>Title</label>
+			<input type="text" #username>
+			<p style="color: #636c72; margin: auto;"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></p>
+		</div>
+		<p></p>
+
+		<!-- Size of group -->
+		<div class="form-group">
+			<label>Size of Groupd</label>
+		  <select name="size_of_group">
+        <option value="Under 5">Under 5</option>
+        <option value="Under 20">Under 20</option>
+        <option value="Under 50">Under 50</option>
+        <option value="More than 50">More than 50</option>
+      </select>
+    </div>
+    <p></p>
+
+    <!-- Type of group -->
+    <div class="form-group">
+			<label>Size of Groupd</label>
+		  <select name="type_of_group">
+        <option value="Sport">Sport</option>
+        <option value="Academic">Academic</option>
+        <option value="Business">Business</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <p></p>
+
+		<!-- Description -->
+		<div class="form-group">
+			<label>Description</label>
+			<input type="text">
+		</div>
+		<p></p>
+
+    <button type="submit">Submit</button>
+
+	</form>
+
+<div>
