@@ -23,7 +23,7 @@ export class GroupDetailComponent implements OnInit {
   seeMembers(){
   	if (this.showMembers == null){
   		this.showMembers = true;
-
+      document.getElementById("memButton").innerHTML = this.group.members.length +" Members (Show)";
   	}
   	else{
   		this.showMembers = null;
@@ -32,16 +32,19 @@ export class GroupDetailComponent implements OnInit {
   }
 
   leaveGroup(){
-
     this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
     this.inGroup=false;
+    this.group.members.length = this.group.members.length-1;
   }
 
   joinGroup(){
-
     this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
     this.inGroup=true;
+    this.group.members.length = this.group.members.length-1;
+  }
 
+  deleteGroup(){
+    this.http.get("api/deleteGroup/"+this.group.title).subscribe();
   }
 
 }

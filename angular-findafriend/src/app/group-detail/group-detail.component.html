@@ -5,7 +5,7 @@
   <br>
 	<div> Created: {{group.timeCreated | date }}</div>
 	<div> Size Goal: {{ group.sizeOfGroup }}</div>
-	<h4 (click)="seeMembers()" id="memButton"> {{group.members.length}} Members (Show)</h4>
+	<h4  (click)="seeMembers()" id="memButton"> Members (Show)</h4>
 	<div *ngIf="showMembers">
 		<div class="members" *ngFor="let mem of group.members">
 			<div> {{mem.username}}</div>
@@ -23,12 +23,17 @@
 		<button (click)="joinGroup()">Join Group</button>
 	</div>
 
+	<div *ngIf="group.creator==username">
+		<button (click)="deleteGroup()">Delete Group</button>
+	</div>
+
+
 	<div *ngIf="inGroup==true">
 		<app-group-message [group]="group" [username]="username"></app-group-message>
 	</div>
 
 
-		
+
 </div>
 
 

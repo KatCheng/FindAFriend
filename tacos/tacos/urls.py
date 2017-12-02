@@ -16,6 +16,7 @@ router.register(r'api/messages', views.ChatViewSet)
 router.register(r'api/chatrooms', views.ChatRoomViewSet)
 router.register(r'api/joinGroup/(?P<group>.+)/(?P<username>.+)', views.JoinGroupSet)
 router.register(r'api/leaveGroup/(?P<group>.+)/(?P<username>.+)', views.LeaveGroupSet)
+router.register(r'api/deleteGroup/(?P<group>.+)', views.DeleteGroupSet)
 
 
 
