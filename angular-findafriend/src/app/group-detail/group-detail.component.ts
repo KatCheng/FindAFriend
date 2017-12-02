@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-group-detail',
@@ -11,8 +13,7 @@ export class GroupDetailComponent implements OnInit {
 	@Input() inGroup:boolean;
   showMembers = null;
 
-  constructor(
-  ) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(){
 
@@ -30,10 +31,14 @@ export class GroupDetailComponent implements OnInit {
   	}
   }
 
+  leaveGroup(){
 
+    this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
+  }
 
-  addToGroup(){
-    //Post data to django to add name to list
+  joinGroup(){
+
+    this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
   }
 
 }

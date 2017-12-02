@@ -63,14 +63,17 @@ export class GroupsComponent implements OnInit {
   }
 
   checkInGroup(){
-    if (this.selectedGroup.members.indexOf(this.username) > -1){
-      console.log("gucci");
-      this.inGroup = true;
+    for (let u of this.selectedGroup.members){
+      if (u.username == this.username){
+        console.log("gucci");
+        this.inGroup = true;
+        return;
+      }
     }
-    else{
-      console.log("nahh");
-      this.inGroup=false;
-    }
+    
+    console.log("nahh");
+    this.inGroup=false;
+  
   }
 
   addGroup(group:Group){
