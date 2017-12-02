@@ -1,24 +1,24 @@
 <div *ngIf="group">
-	
+
 	<button *ngIf="showSelected==false" (click)="showChat()">Open Chat</button>
 	<button *ngIf="showSelected==true" (click)="closeChat()">Close Chat</button>
 
-
-	<div id= "messenger" *ngIf="showSelected">
-		<div id="newMessage" >
-
-			<div class="messages" *ngFor="let msg of messages">
-				<div class="msg">
-					{{msg.messageContent}} from {{msg.sender}} to {{msg.recipient}}
-				</div>
-			</div>
-			<form id="chatform"  name="chatContent">
-				<input id="textbox" type="text" #textbox ng-model="name"/>
-				<button (click)="sendMsg()">Send Message</button>	
-			</form>
-			<div id="chatmsg">Send the message to your group!</div>
-				
-		</div>
-	</div>
-
+	<div id= "messenger">
+		<div id="chatBox" *ngIf="showSelected">
+			<div id="newMessage">
+				<div id="historyBox">
+					<div class="messages" *ngFor="let msg of messages">
+						<div class="msg">{{msg.messageContent}} from {{msg.sender}} to {{msg.recipient}}</div>
+					</div><!--class: messages-->
+				</div><!--id: box-->
+				<div id="sendBox">
+					<form id="chatform"  name="chatContent">
+						<input id="textbox" type="text" #textbox ng-model="name"/>
+						<button (click)="sendMsg()">Send Message</button>	
+					</form>
+					<div id="chatmsg">Send the message to your group!</div>
+				</div><!--id: sendBox-->
+			</div><!--id: newMessage-->
+		</div><!--id: messanger-->
+	</div><!--id: chatBox-->
 </div>
