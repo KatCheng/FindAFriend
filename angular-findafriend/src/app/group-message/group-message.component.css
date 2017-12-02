@@ -9,6 +9,11 @@
 	margin-top: 20px;
 }
 
+#textbox{
+	width:300px;
+	text-align: left;
+}
+
 #historyBox{
 	padding: 5px;
 	margin: 5px;
@@ -24,7 +29,6 @@
 
 .msg{
 	max-width: 450px;
-	text-align: center;
 }
 
 .messages{
