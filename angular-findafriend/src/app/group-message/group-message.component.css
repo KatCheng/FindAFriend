@@ -9,16 +9,38 @@
 	margin-top: 20px;
 }
 
+#textbox{
+	max-width:300px;
+	text-align: left;
+}
+
 #historyBox{
 	padding: 5px;
 	margin: 5px;
 	border: 2px solid black;
 	overflow-y: scroll;
+	overflow-x: hidden;
 	min-height: 60px;
 	max-width: 500px;
 	max-height: 300px;
 	text-align: center;
 	border-radius: 20px;	
+}
+
+.msg{
+	max-width: 450px;
+}
+
+.messages{
+	max-width: 500px;
+	margin: 5px;
+}
+
+.messages:nth-child(2n){
+	background: rgba(224, 30, 127, 0.1);
+}
+.messages:nth-child(2n+1){
+	background: rgba(63, 127, 191, 0.1);
 }
 
 #sendBox{

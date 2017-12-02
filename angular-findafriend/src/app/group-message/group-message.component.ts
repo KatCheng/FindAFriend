@@ -32,6 +32,11 @@ export class GroupMessageComponent {
 
 	}
 
+	updateScroll(){
+		var e = document.getElementById("historyBox");
+		e.scrollTop = e.scrollHeight;
+	}
+
 	ngOnChanges(){
 		this.showSelected = false;
 		this.messages = [];
@@ -72,6 +77,7 @@ export class GroupMessageComponent {
 		this.chatService.messages.next(this.message);
 		this.message.message = '';
 		document.forms["chatContent"]["textbox"].value = "";
+		this.updateScroll();
 	}
 
 

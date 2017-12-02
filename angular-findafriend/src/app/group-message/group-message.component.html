@@ -1,7 +1,7 @@
 <div *ngIf="group">
 
-	<button *ngIf="showSelected==false" (click)="showChat()">Open Chat</button>
-	<button *ngIf="showSelected==true" (click)="closeChat()">Close Chat</button>
+	<button id="chatButton" *ngIf="showSelected==false" (click)="showChat()">Open Chat</button>
+	<button id="chatButton" *ngIf="showSelected==true" (click)="closeChat()">Close Chat</button>
 
 	<div id= "messenger">
 		<div id="chatBox" *ngIf="showSelected">
@@ -16,7 +16,6 @@
 						<input id="textbox" type="text" #textbox ng-model="name"/>
 						<button (click)="sendMsg()">Send Message</button>	
 					</form>
-					<div id="chatmsg">Send the message to your group!</div>
 				</div><!--id: sendBox-->
 			</div><!--id: newMessage-->
 		</div><!--id: messanger-->
