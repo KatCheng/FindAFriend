@@ -10,7 +10,7 @@
 }
 
 #textbox{
-	width:300px;
+	max-width:300px;
 	text-align: left;
 }
 
@@ -35,7 +35,6 @@
 	max-width: 500px;
 	margin: 5px;
 }
-
 
 .messages:nth-child(2n){
 	background: rgba(224, 30, 127, 0.1);
