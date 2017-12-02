@@ -6,7 +6,7 @@ from tacos.newapi.serializers import PageSerializer, ChatSerializer, ChatRoomSer
 from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework import generics
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
@@ -56,6 +56,10 @@ class UserLoginAPIView(APIView):
 		serializer = UserLoginSerializer(data=data)
 		if serializer.is_valid(raise_exception=True):
 			new_data = serializer.data
+			account = authenticate(username=data['username'])
+			account.backend = 'django.contrib.auth.backends.ModelBackend'
+			if account.is_authenticated:
+				print("au")
 			return Response(new_data, status=HTTP_200_OK)
 		else:
 			return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
@@ -84,21 +88,41 @@ class PageCreateAPIView(CreateAPIView):
 	permission_classes = [AllowAny]
 
 class ProfileViewSet(viewsets.ModelViewSet):
-
 	queryset = UserProfile.objects.all().order_by('-user')
 	serializer_class = ProfileSerializer
 	lookup_field = 'user'
 
 class ProfileAPIView(generics.RetrieveAPIView):
-	queryset = UserProfile.objects.all()
-	serializer_class = ProfileSerializer
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
 	lookup_field = 'user'
 
+class ProfileUpdateView(UpdateAPIView):
+	queryset = User
+	serializer_class = UserSerializer
 
-class ProfileUpdateView(generics.UpdateAPIView):
-	queryset = UserProfile.objects.all()
-	serializer_class = ProfileSerializer
-	lookup_field = 'user'
+	def get_object(self):
+		return User.objects.get(username=self.request.user)
+
+	def patch(self, request, format=None):
+
+  		user = UserSerializer(data=request.data)
+
+  		if user.is_valid():
+  			user.update(instance=request.user)
+  			return Response(HTTP_200_OK)
+
+  		return Response(user.errors)
+
+
+# class ProfileUpdateAPIView(UpdateAPIView):
+# 	queryset = UserProfile.objects.all()
+# 	serializer_class = ProfileUpdateSerializer
+# 	#lookup_field = 'user'
+
+	# def get_object(self):
+	# 	return UserProfile.objects.get(user=self.request.user)
+		
 
 
 

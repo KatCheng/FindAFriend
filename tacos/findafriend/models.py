@@ -36,16 +36,16 @@ class Page(models.Model):
 		return 'Members:' + ' '.join(map(lambda u: u.__str__(), self.members.all()))
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User, null=True, related_name='user')
+	user = models.OneToOneField(User, null=True, related_name='userprofile')
 	first_name = models.CharField(max_length=30, default='', blank=True)
 	last_name = models.CharField(max_length=30, default='', blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
-	group_member = models.ManyToManyField(Page, related_name='groups')
+	#group_member = models.ManyToManyField(Page, related_name='groups')
 
 
-	def __str__(self):
-		return self.user.username
+	# def __str__(self):
+	# 	return self.user.username
 
 def create_profile(sender, **kwargs):
 	user = kwargs["instance"]

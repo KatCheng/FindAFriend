@@ -3,17 +3,57 @@ from rest_framework import serializers
 from findafriend.models import Page, UserProfile, Chat, ChatRoom 
 from rest_framework.serializers import ( CharField, EmailField, HyperlinkedIdentityField,
     SerializerMethodField, ValidationError )
-
+from django.contrib.auth.validators import UnicodeUsernameValidator
 
 from rest_framework_jwt.settings import api_settings
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
+
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+	#user = serializers.CharField(source='user.username')
+	#user = serializers.CharField(unique=False)
+	#first_name = serializers.CharField(source='user.first_name')
+	#last_name = serializers.CharField(source='user.last_name')
+	class Meta:
+		model = UserProfile
+		#fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
+		fields = ('first_name', 'last_name', 'university', 'hometown')
+
+	# def update(self, instance, data):
+	# 	instance.user = data.get('user', instance.user)
+	# 	instance.save()
+	# 	return instance
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+	profile = ProfileSerializer()
+	
 	class Meta:
 		model = User
-		fields = ('url', 'username', 'email', 'groups')
+		# fields = ('url', 'username', 'email', 'groups')
+		fields = ('url', 'username', 'email', 'groups', 'profile')
+
+	def update(self, instance, validated_data):
+		if validated_data.get('profile'):
+			profile_data = validated_data.get('profile')
+			profile_serializer = ProfileSerializer(data=profile_data)
+
+			if profile_serializer.is_valid():
+				profile = profile_serializer.update(instance=instance.userprofile, validated_data=profile_data)
+				validated_data['profile'] = profile
+		
+		return super(UserSerializer, self).update(instance, validated_data)
+
+
+
+		#def update()
+		# extra_kwargs = {
+  #           'username': {
+  #               'validators': [UnicodeUsernameValidator()],
+  #           }
+  #       }
+
 
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
 	token = CharField(allow_blank=True, read_only=True)
@@ -135,11 +175,6 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
             )
         page_obj.save()
         return validated_data
-
-class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = UserProfile
-		fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
 
 
 # class ChatSerializer(serializers.HyperlinkedModelSerializer):
