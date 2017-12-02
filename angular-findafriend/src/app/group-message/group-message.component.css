@@ -1,12 +1,26 @@
-#messenger{
-	margin-top: 2em;
-	border: .5px solid white;
-    outline-style: solid;
-    height: 50%;
+#chatBox{
+	margin: 2em;
+	padding: 5px;
+	border: 3px solid midnightblue;
+	border-radius: 20px;
 }
-.msgSender{
-	float: right;
+
+#chatButton{
+	margin-top: 20px;
 }
-.msgContent{
-	float:left;
+
+#historyBox{
+	padding: 5px;
+	margin: 5px;
+	border: 2px solid black;
+	overflow-y: scroll;
+	min-height: 60px;
+	max-width: 500px;
+	max-height: 300px;
+	text-align: center;
+	border-radius: 20px;	
+}
+
+#sendBox{
+	margin-top: 20px;
 }

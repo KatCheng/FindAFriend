@@ -67,6 +67,7 @@ export class GroupMessageComponent {
 		console.log('new message from client to websocket: ', this.message);
 		this.chatService.messages.next(this.message);
 		this.message.message = '';
+		document.forms["chatContent"]["textbox"].value = "";
 	}
 
 
