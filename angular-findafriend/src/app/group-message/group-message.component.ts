@@ -10,7 +10,6 @@ import { ChatService } from './chat.service';
   providers: [ WebsocketService, ChatService ]
 })
 
-
 export class GroupMessageComponent {
 	@Input() group: any;
   	@Input() username:string;
@@ -19,6 +18,7 @@ export class GroupMessageComponent {
 	messages: any = [];
 	private message;
 
+	
 	constructor(private chatService: ChatService) {
 		this.showSelected = false;
 		
@@ -30,12 +30,13 @@ export class GroupMessageComponent {
 			});
 			console.log("Websocket giving response: "+ msg.message);
 		});
+
 	}
-
-
+	
 	showChat(){
     		this.showSelected = true;
 		console.log("group name: " + this.group.title);
+		this.messages = [];
 		this.message = {
 			sender: this.username,
 			recipient: this.group.title,
@@ -45,8 +46,8 @@ export class GroupMessageComponent {
 
 		console.log('new request from client to websocket: ', this.message);
 		this.chatService.messages.next(this.message);
-		this.message.message = '';
 	}
+
 
   	sendMsg() {
 	
@@ -63,4 +64,6 @@ export class GroupMessageComponent {
 		this.message.message = '';
 	}
 
+
 }
+
