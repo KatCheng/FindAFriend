@@ -14,12 +14,22 @@
 
 
 	<p > Description: {{group.description}}</p>
-	<div class="context">
-	  <button (click)="addToGroup()">Join group</button>
+
+	<div *ngIf="inGroup==true">
+		<button (click)="leaveGroup()">Leave Group</button>
+	</div>
+	
+	<div *ngIf="inGroup==false">
+		<button (click)="joinGroup()">Join Group</button>
 	</div>
 
-	<app-group-message [group]="group" [username]="username"></app-group-message>
+	<div *ngIf="inGroup==true">
+		<app-group-message [group]="group" [username]="username"></app-group-message>
+	</div>
 
+	<div *ngIf="inGroup==true">
+		<app-group-message [group]="group" [username]="username"></app-group-message>
+	</div>
 
 </div>
 

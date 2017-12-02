@@ -16,6 +16,7 @@ export class GroupsComponent implements OnInit {
   displayGroups: any = [];
   selectedGroup:any;
   selectedGroupCreator:any;
+  inGroup:boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -57,7 +58,22 @@ export class GroupsComponent implements OnInit {
   onSelect(group:any):void{
     // console.log("ayyyy");
     this.selectedGroup = group;
-    /**this.selectedGroup.creator = this.selectedGroupCreator.username;*/
+    // this.selectedGroup.creator = this.selectedGroupCreator.username;
+    this.checkInGroup();
+  }
+
+  checkInGroup(){
+    for (let u of this.selectedGroup.members){
+      if (u.username == this.username){
+        console.log("gucci");
+        this.inGroup = true;
+        return;
+      }
+    }
+    
+    console.log("nahh");
+    this.inGroup=false;
+  
   }
 
   addGroup(group:Group){

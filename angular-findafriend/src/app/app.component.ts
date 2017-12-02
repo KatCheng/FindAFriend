@@ -13,5 +13,8 @@ export class AppComponent {
 
   	ngOnInit(){
 		this.loading = false;
+		
 	}
+
+
 }

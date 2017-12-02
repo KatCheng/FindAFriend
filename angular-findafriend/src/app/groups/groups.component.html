@@ -22,8 +22,8 @@
 </div>
 
 
-<div id="right">
-	<app-group-detail [group]="selectedGroup" [username]="username"></app-group-detail>
+<div id="right" ngif="selectedGroup">
+	<app-group-detail  [inGroup]="inGroup" [group]="selectedGroup" [username]="username"></app-group-detail>
 </div>
 
 
