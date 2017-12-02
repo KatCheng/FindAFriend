@@ -126,6 +126,14 @@ class ProfileAPIView(generics.RetrieveAPIView):
 	serializer_class = UserSerializer
 	lookup_field = 'user'
 
+class MessageFilter(viewsets.ModelViewSet):
+	serializer_class = ChatSerializer
+	queryset = Chat.objects.all()
+
+	def get_queryset(self):
+		queryset= Chat.objects.all().filter(title= self.recipient.kwargs['group'])
+		return queryset
+
 class ProfileUpdateView(UpdateAPIView):
 	queryset = User
 	serializer_class = UserSerializer

@@ -13,10 +13,8 @@ router.register(r'api/users', views.UserViewSet)
 router.register(r'api/pages', views.PageViewSet)
 router.register(r'api/profiles', views.ProfileViewSet)
 router.register(r'api/messages', views.ChatViewSet)
-router.register(r'api/chatrooms', views.ChatRoomViewSet)
 router.register(r'api/joinGroup/(?P<group>.+)/(?P<username>.+)', views.JoinGroupSet)
 router.register(r'api/leaveGroup/(?P<group>.+)/(?P<username>.+)', views.LeaveGroupSet)
-
 
 
 
