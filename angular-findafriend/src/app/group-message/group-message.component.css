@@ -22,9 +22,14 @@
 	border-radius: 20px;	
 }
 
+.msg{
+	max-width: 450px;
+	text-align: center;
+}
+
 .messages{
 	max-width: 500px;
-	margin: 5px -1em;
+	margin: 5px;
 }
 
 
