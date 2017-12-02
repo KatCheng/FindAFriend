@@ -6,73 +6,29 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   selector: 'app-group-message',
   templateUrl: './group-message.component.html',
   styleUrls: ['./group-message.component.css'],
-  providers: [ WebsocketService, ChatService ]
+ 
 })
 
-export class GroupMessageComponent {
-	@Input() group: any;
-  	@Input() username:string;
-	messages: any = [];
-	showSelected: boolean;
-	private message;
+export class GroupMessageComponent implements OnInit {
+  @Input() group: any;
+  @Input() username:string;
+  
+  messages:any = [];
 
-	
-	constructor(private chatService: ChatService) {
-		this.showSelected = false;
-		
-		chatService.messages.subscribe(msg=>{
-			this.messages.push({
-				sender: msg.sender,
-				recipient: msg.recipient,
-				messageContent: msg.message,
-			});
-			console.log("Websocket giving response: "+ msg.message);
-		});
+  constructor(private http: HttpClient) { }
 
-	}
+  ngOnInit() {
+  	this.getMessages();
+  }
 
-	ngOnChanges(){
-		this.showSelected = false;
-		this.messages = [];
-		console.log("selected another group");
-	}
-	
-	showChat(){
-    	this.showSelected = true;
-		console.log("group name: " + this.group.title);
-		this.messages = [];
-		this.message = {
-			sender: this.username,
-			recipient: this.group.title,
-			message: "connecting",
-			isRequest: "True"
-		}
-
-		console.log('new request from client to websocket: ', this.message);
-		this.chatService.messages.next(this.message);
-	}
-
-	closeChat(){
-		this.showSelected=false;
-	}
+  getMessages():void{
 
 
-  	sendMsg() {
-	
-		if(document.forms["chatContent"]["textbox"].value != ""){
-			this.message = {
-	        		sender: this.username,
-				recipient: this.group.title,
-				message: document.forms["chatContent"]["textbox"].value,
-				isRequest: "False"
-			}
-		}
-		console.log('new message from client to websocket: ', this.message);
-		this.chatService.messages.next(this.message);
-		this.message.message = '';
-		document.forms["chatContent"]["textbox"].value = "";
-	}
 
+    this.http.get("/api/messages/"+this.group.title).subscribe(data => {
+      this.messages = data;
+      console.log(this.messages);
+    });
+  }
 
 }
-
