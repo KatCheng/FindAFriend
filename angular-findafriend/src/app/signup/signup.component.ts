@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
 
 
 			}
-		);
+    );
 	};
 
 	login(event) {

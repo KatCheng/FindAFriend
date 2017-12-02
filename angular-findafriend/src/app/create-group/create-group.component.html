@@ -1,15 +1,18 @@
 <div class="container">
 
-  <p></p>
-
   <form (submit)="createGroup($event, title.value, sizeOfGroup.value, typeOfGroup.value, description.value)">
-    <!-- Username -->
+    <!-- title -->
 		<div class="form-group">
 			<label>Title</label>
 			<input type="text" #title>
 			<p style="color: #636c72; margin: auto;"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></p>
+      <div style="margin-top: 10px;" *ngIf="titleError">
+				<span *ngFor="let error of titleError">
+					{{ error }}
+				</span>
+			</div>
 		</div>
-		<p></p>
+
 
 		<!-- Size of group -->
 		<div class="form-group">
@@ -20,8 +23,13 @@
         <option value="Under 50">Under 50</option>
         <option value="More than 50">More than 50</option>
       </select>
+      <div style="margin-top: 10px;" *ngIf="sizeOfGroupError">
+				<span *ngFor="let error of sizeOfGroupError">
+					{{ error }}
+				</span>
+			</div>
     </div>
-    <p></p>
+
 
     <!-- Type of group -->
     <div class="form-group">
@@ -32,15 +40,25 @@
         <option value="Business">Business</option>
         <option value="Other">Other</option>
       </select>
+      <div style="margin-top: 10px;" *ngIf="typeOfGroupError">
+				<span *ngFor="let error of typeOfGroupError">
+					{{ error }}
+				</span>
+			</div>
     </div>
-    <p></p>
+
 
 		<!-- Description -->
 		<div class="form-group">
 			<label>Description</label>
 			<input type="text" #description>
+			<div style="margin-top: 10px;" *ngIf="descriptionError">
+				<span *ngFor="let error of descriptionError">
+					{{ error }}
+				</span>
+			</div>
 		</div>
-		<p></p>
+
 
     <button type="submit">Submit</button>
 

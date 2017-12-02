@@ -14,6 +14,12 @@ export class CreateGroupComponent implements OnInit {
   req: any;
 	title: string = "Create Group";
 	endpoint: string = "http://127.0.0.1:8000/api/pageCreate/";
+	titleError: [any];
+//	creatorError: [any];
+	sizeOfGroupError: [any];
+	descriptionError: [any];
+	typeOfGroupError: [any];
+
 
 	constructor(public _router: Router, public _http: Http) { }
 
@@ -37,7 +43,42 @@ export class CreateGroupComponent implements OnInit {
 		.subscribe(
 			response => {
 				this._router.navigate(['/']);
-			});
+			},
+			error => {
+				let createGroupError = error.json();
+
+				if (createGroupError.title) {
+					this.titleError = createGroupError.title;
+				} else {
+					this.titleError = null;
+				}
+
+//				if (createGroupError.creator) {
+//					this.creatorError = createGroupError.creator;
+//				} else {
+//					this.creatorError = null;
+//				}
+
+				if (createGroupError.sizeOfGroup) {
+					this.sizeOfGroupError = createGroupError.sizeOfGroup;
+				} else {
+					this.sizeOfGroupError = null;
+				}
+
+				if (createGroupError.description) {
+					this.descriptionError = createGroupError.description;
+				} else {
+					this.descriptionError = null;
+				}
+
+				if (createGroupError.typeOfGroup) {
+					this.typeOfGroupError = createGroupError.typeOfGroup;
+				} else {
+					this.typeOfGroupError = null;
+				}
+
+			}
+    );
 
 	};
 
