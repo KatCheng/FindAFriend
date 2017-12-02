@@ -11,7 +11,6 @@ export class GroupDetailComponent implements OnInit {
 	@Input() group: any;
   @Input() username:string;
 	@Input() inGroup:boolean;
-  showMembers = null;
 
   constructor(private http: HttpClient) { }
 

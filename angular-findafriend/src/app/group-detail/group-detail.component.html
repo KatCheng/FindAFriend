@@ -27,7 +27,9 @@
 		<app-group-message [group]="group" [username]="username"></app-group-message>
 	</div>
 
-
+	<div *ngIf="inGroup==true">
+		<app-group-message [group]="group" [username]="username"></app-group-message>
+	</div>
 
 </div>
 
