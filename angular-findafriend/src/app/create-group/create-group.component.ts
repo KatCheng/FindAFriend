@@ -20,9 +20,18 @@ export class CreateGroupComponent implements OnInit {
 	createGroup(event, title, sizeOfGroup, typeOfGroup, description) {
 
     event.preventDefault();
-    let username = this.username;
-    let timeCreated = '2015-10-01T00:00';
-    let body = JSON.stringify({ title, username, sizeOfGroup, description, timeCreated, typeOfGroup });
+    let creator = this.username;
+    // For test purpose only
+    //let body2 = '{ "title": "test_group_6", "creator": "test", "sizeOfGroup": "Under 5", "description": "123", "typeOfGroup": "Sport" }';
+
+
+    let body = JSON.stringify({ title, creator, sizeOfGroup, description, typeOfGroup });
+
+    //let body3 = '{ "title": "test_group_desparate_0", "creator": "test", "sizeOfGroup": "Under 5", "description": "' + body + '", "typeOfGroup": "Sport" }';
+
+    console.log("test");
+
+    let test = "http://127.0.0.1:8080";
 
     this.req = this._http.post(this.endpoint, body, { headers: contentHeaders})
 		.subscribe(

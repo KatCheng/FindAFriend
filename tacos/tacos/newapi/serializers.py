@@ -7,6 +7,9 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 
 from rest_framework_jwt.settings import api_settings
 
+from datetime import datetime
+
+
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
@@ -159,17 +162,22 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
             model = Page
-            fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'typeOfGroup')
+            fields = ('title', 'creator', 'sizeOfGroup', 'description', 'typeOfGroup')
 
 
     def create(self, validated_data):
         print(validated_data)
+        #currentTime = '2015-10-01T00:00'
+        # time would be in format like "2011-05-03 17:45:35.177000"
+        currentTime = str(datetime.now())
+        currentTime = currentTime[:16]
+        currentTime = currentTime.replace(' ', 'T')
         page_obj = Page(
                 title = validated_data['title'],
                 creator = User.objects.get( username = validated_data['creator']['username'] ),
                 sizeOfGroup = validated_data['sizeOfGroup'],
                 description = validated_data['description'],
-                timeCreated = validated_data['timeCreated'],
+                timeCreated = currentTime,
                 #members = [User.objects.get( username="test" )],
                 typeOfGroup = validated_data['typeOfGroup']
             )
