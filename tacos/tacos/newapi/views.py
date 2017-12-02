@@ -46,8 +46,6 @@ class JoinGroupSet(viewsets.ModelViewSet):
 		lookup_field = 'title'
 		userq = User.objects.all().filter(username = self.kwargs['username'])
 		queryset[0].members.add(userq[0])
-		print("--------------------join------------------------------------")
-		print(self.kwargs['group'] + "----"+ self.kwargs['username'])
 		return queryset
 
 
@@ -62,8 +60,6 @@ class LeaveGroupSet(viewsets.ModelViewSet):
 		lookup_field = 'title'
 		userq = User.objects.all().filter(username = self.kwargs['username'])
 		queryset[0].members.remove(userq[0])
-		print("-----------------------remove----------------------------------")
-		print(self.kwargs['group'] + "----"+ self.kwargs['username'])
 		return queryset
 
 

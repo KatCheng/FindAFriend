@@ -12,7 +12,7 @@ export class GroupDetailComponent implements OnInit {
   @Input() username:string;
 	@Input() inGroup:boolean;
   showMembers=null;
-  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
@@ -34,11 +34,14 @@ export class GroupDetailComponent implements OnInit {
   leaveGroup(){
 
     this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
+    this.inGroup=false;
   }
 
   joinGroup(){
 
     this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
+    this.inGroup=true;
+
   }
 
 }

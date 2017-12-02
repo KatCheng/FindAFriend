@@ -1,7 +1,11 @@
 <div *ngIf="group">
-	<div id= "messenger">
-		<button (click)="showChat()">Let's Chat</button>
-		<div id="newMessage" *ngIf="showSelected">
+	
+	<button *ngIf="showSelected==false" (click)="showChat()">Open Chat</button>
+	<button *ngIf="showSelected==true" (click)="closeChat()">Close Chat</button>
+
+
+	<div id= "messenger" *ngIf="showSelected">
+		<div id="newMessage" >
 
 			<div class="messages" *ngFor="let msg of messages">
 				<div class="msg">

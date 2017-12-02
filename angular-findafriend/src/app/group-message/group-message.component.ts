@@ -39,7 +39,7 @@ export class GroupMessageComponent {
 	}
 	
 	showChat(){
-    		this.showSelected = true;
+    	this.showSelected = true;
 		console.log("group name: " + this.group.title);
 		this.messages = [];
 		this.message = {
@@ -51,6 +51,10 @@ export class GroupMessageComponent {
 
 		console.log('new request from client to websocket: ', this.message);
 		this.chatService.messages.next(this.message);
+	}
+
+	closeChat(){
+		this.showSelected=false;
 	}
 
 
