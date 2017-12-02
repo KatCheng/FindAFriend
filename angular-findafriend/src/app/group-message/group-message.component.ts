@@ -13,9 +13,8 @@ import { ChatService } from './chat.service';
 export class GroupMessageComponent {
 	@Input() group: any;
   	@Input() username:string;
-
-	showSelected: boolean;
 	messages: any = [];
+	showSelected: boolean;
 	private message;
 
 	
@@ -31,6 +30,12 @@ export class GroupMessageComponent {
 			console.log("Websocket giving response: "+ msg.message);
 		});
 
+	}
+
+	ngOnChanges(){
+		this.showSelected = false;
+		this.messages = [];
+		console.log("selected another group");
 	}
 	
 	showChat(){
