@@ -71,7 +71,7 @@ export class UsersComponent implements OnInit {
     if(university == '') {
       university = "none";
     }
-    this.http.get("api/updateProfile/"+this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13)+"/"+ first_name+"/"+last_name+"/"+hometown+"/"+university+"/"+picture).subscribe();
+    this.http.get("api/updateProfile/"+this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13)+"/"+ first_name+"/"+last_name+"/"+hometown+"/"+university+"/"+this.num).subscribe();
   }
 
   // onSelect(user:any):void{

@@ -78,31 +78,31 @@
 		<div class="form-group">
 			<label class="form-label">Picture Number</label>
 			<label>
-  				<input type="radio" name="picture-num" value="0" checked #picture>
+  				<input type="radio" name="picture-num" value="0" checked (click)="num = 0">
   				<img src="assets\img\myAvatar.png">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="1" #picture>
+  				<input type="radio" name="picture-num" value="1" (click)="num = 1">
   				<img src="assets\img\myAvatar(1).png">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="2" #picture>
+  				<input type="radio" name="picture-num" value="2" (click)="num = 2">
   				<img src="assets\img\myAvatar(2).png">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="3" #picture>
+  				<input type="radio" name="picture-num" value="3" (click)="num = 3">
   				<img src="assets\img\myAvatar(3).png">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="4" #picture>
+  				<input type="radio" name="picture-num" value="4" (click)="num = 4">
   				<img src="assets\img\myAvatar(4).png">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="5" #picture>
+  				<input type="radio" name="picture-num" value="5" (click)="num = 5">
   				<img src="assets\img\myAvatar(5).png">
 			</label>
 		</div>
-		<button type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture.value)">Submit</button>
+		<button type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture)">Submit</button>
 		<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
 	</form>
 </div>
