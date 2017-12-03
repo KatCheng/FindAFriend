@@ -137,6 +137,7 @@ class ProfileAPIView(generics.RetrieveAPIView):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 	lookup_field = 'user'
+	permission_classes = [AllowAny]
 
 class ProfileUpdateView(UpdateAPIView):
 	queryset = User
