@@ -7,18 +7,18 @@
 	<h4  (click)="seeMembers()" id="memButton"> Members (Show)</h4>
 	<div *ngIf="showMembers">
 		<div class="members" *ngFor="let mem of group.members">
-			<div> {{mem.username}}</div>
+			<div *ngIf="mem.username !=username"> {{mem.username}}</div>
 		</div>		
 	</div>
 
 
 	<p > Description: {{group.description}}</p>
 
-	<div *ngIf="inGroup==true">
+	<div *ngIf="inGroup==true  && group.creator!=username">
 		<button (click)="leaveGroup()">Leave Group</button>
 	</div>
 	
-	<div *ngIf="inGroup==false">
+	<div *ngIf="inGroup==false && group.creator!=username">
 		<button (click)="joinGroup()">Join Group</button>
 	</div>
 
@@ -59,7 +59,7 @@
 			<button type="submit">Submit</button>
 		</form>	
 		</div>
-			
+
 	</div>
 
 

@@ -16,14 +16,13 @@ export class CreateGroupComponent implements OnInit {
 	endpoint: string = "http://127.0.0.1:8000/api/pageCreate/";
 	titleError: [any];
 //	creatorError: [any];
-	sizeOfGroupError: [any];
 	descriptionError: [any];
 	typeOfGroupError: [any];
 
 
 	constructor(public _router: Router, public _http: Http) { }
 
-	createGroup(event, title, sizeOfGroup, typeOfGroup, description) {
+	createGroup(event, title, typeOfGroup, description) {
 
     event.preventDefault();
     let creator = this.username;
@@ -31,7 +30,7 @@ export class CreateGroupComponent implements OnInit {
     //let body2 = '{ "title": "test_group_6", "creator": "test", "sizeOfGroup": "Under 5", "description": "123", "typeOfGroup": "Sport" }';
 
 
-    let body = JSON.stringify({ title, creator, sizeOfGroup, description, typeOfGroup });
+    let body = JSON.stringify({ title, creator, description, typeOfGroup });
 
     //let body3 = '{ "title": "test_group_desparate_0", "creator": "test", "sizeOfGroup": "Under 5", "description": "' + body + '", "typeOfGroup": "Sport" }';
 
@@ -59,11 +58,7 @@ export class CreateGroupComponent implements OnInit {
 //					this.creatorError = null;
 //				}
 
-				if (createGroupError.sizeOfGroup) {
-					this.sizeOfGroupError = createGroupError.sizeOfGroup;
-				} else {
-					this.sizeOfGroupError = null;
-				}
+				
 
 				if (createGroupError.description) {
 					this.descriptionError = createGroupError.description;
