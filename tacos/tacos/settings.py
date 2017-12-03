@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'tacos.newapi',
     'corsheaders',
+    # 'rest_framework.authtoken',
 ]
 
 # REST_FRAMEWORK = {

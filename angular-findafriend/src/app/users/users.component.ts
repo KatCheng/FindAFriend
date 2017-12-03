@@ -54,6 +54,24 @@ export class UsersComponent implements OnInit {
       console.log(this.users);
       this.putUsers();
     })
+
+  }
+
+  updateProfile(event, first_name, last_name, hometown, university, picture) {
+    console.log(this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13))
+    if(first_name == '') {
+      first_name = "none";
+    }
+    if(last_name == '') {
+      last_name = "none";
+    }
+    if(hometown == '') {
+      hometown = "none";
+    }
+    if(university == '') {
+      university = "none";
+    }
+    this.http.get("api/updateProfile/"+this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13)+"/"+ first_name+"/"+last_name+"/"+hometown+"/"+university+"/"+picture).subscribe();
   }
 
   // onSelect(user:any):void{
@@ -141,7 +159,14 @@ export class UsersComponent implements OnInit {
     event.preventDefault();
     //user = this.username;
     //username = this.username;
-    user = this.userProfile;
+    user = this.userProfile.url;
+    user = user.substring(11, user.length-13);
+    console.log(user);
+    console.log(first_name);
+    console.log(last_name);
+    console.log(hometown);
+    console.log(university);
+    console.log(picture);
     let body = JSON.stringify({ user, first_name, last_name, university, hometown, picture});
     this._http.post("http://127.0.0.1:8000/api/profiles/", body, { headers: contentHeaders})
         .subscribe(
@@ -174,6 +199,13 @@ export class UsersComponent implements OnInit {
       //   }
       // );
   };
+
+  // deleteUser(){
+  //   this.http.get("api/deleteUser/"+this.group.username).subscribe();
+  //   setTimeout(() => {
+  //     window.location.reload();
+  //   }, 100);
+  // }
 
 
   /* SEARCH BAR */

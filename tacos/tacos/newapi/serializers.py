@@ -17,12 +17,13 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 	#user = serializers.CharField(source='user.username')
 	#user = serializers.CharField(unique=False)
-	#first_name = serializers.CharField(source='user.first_name')
-	#last_name = serializers.CharField(source='user.last_name')
+	# username = serializers.CharField(source='user.username')
+	# first_name = serializers.CharField(source='user.first_name')
+	# last_name = serializers.CharField(source='user.last_name')
 	class Meta:
 		model = UserProfile
 		#fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
-		fields = ('user','first_name', 'last_name', 'university', 'hometown', 'picture')
+		fields = ('user', 'first_name', 'last_name', 'university', 'hometown', 'picture')
 
 	# def update(self, instance, data):
 	# 	instance.user = data.get('user', instance.user)

@@ -31,6 +31,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
+from tacos.newapi.permissions import IsOwnerOrReadOnly
+
 
 
 import json
@@ -74,6 +76,18 @@ class DeleteGroupSet(viewsets.ModelViewSet):
 		queryset = Page.objects.all().filter(title= self.kwargs['group'])
 		queryset[0].delete()
 		print("----------------------removed group-----------------------------------------")
+		return queryset
+
+# class DeleteUserSet(viewsets.ModelViewSet):
+# 	serializer_class = UserSerializer
+# 	queryset = User.objects.all()
+# 	lookup_field = 'username'
+# 	permission_classes = [AllowAny]
+
+# 	def get_queryset(self):
+# 		queryset = User.objects.all().filter(username= self.kwargs['username'])
+# 		queryset[0].delete()
+# 		print("----------------------removed user-----------------------------------------")
 		return queryset
 
 class UpdateGroupSet(viewsets.ModelViewSet):
@@ -150,10 +164,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
 	lookup_field = 'user'
 
 class ProfileAPIView(generics.RetrieveAPIView):
+	permission_classes = [IsOwnerOrReadOnly,]
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 	lookup_field = 'user'
-	permission_classes = [AllowAny]
 
 class ProfileUpdateView(UpdateAPIView):
 	queryset = User
@@ -171,6 +185,24 @@ class ProfileUpdateView(UpdateAPIView):
   			return Response(HTTP_200_OK)
 
   		return Response(user.errors)
+
+class UpdateProfile(viewsets.ModelViewSet):
+
+	serializer_class = ProfileSerializer
+	queryset = UserProfile.objects.all()
+	lookup_field = 'username'
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		queryset = UserProfile.objects.all().filter(user= self.kwargs['user'])
+		#print(queryset[0].username)
+		queryset.update(first_name=self.kwargs['first_name'])
+		queryset.update(last_name=self.kwargs['last_name'])	
+		queryset.update(hometown=self.kwargs['hometown'])
+		queryset.update(university=self.kwargs['university'])	
+		queryset.update(picture=self.kwargs['picture'])
+		#print("--------"+queryset[0].first_name+"---------updated group-----------"+queryset[0].typeOfGroup+"------------------")
+		return queryset
 
 
 # class ProfileUpdateAPIView(UpdateAPIView):

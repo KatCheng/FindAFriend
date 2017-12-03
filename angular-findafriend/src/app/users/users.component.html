@@ -27,6 +27,15 @@
 				</span>
 			</div>
 		</div> -->
+<!-- 		<div class="form-group">
+			<label class="form-label" for="password">Password</label>
+			<input type="password" #password class="form-control" id="password" placeholder="Password">
+			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">	
+				<span *ngFor="let error of passwordError">
+					{{ error }}
+				</span>
+			</div>
+		</div> -->
 		<!-- Email -->
 		<div class="form-group">
 			<label>First Name</label>
@@ -93,7 +102,7 @@
   				<img src="assets\img\myAvatar(5).png">
 			</label>
 		</div>
-		<button type="submit" (click)="yes = 0" (click)="update($event, username.value, email.value, first_name.value, last_name.value, hometown.value, university.value, picture.value)">Submit</button>
+		<button type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture.value)">Submit</button>
 		<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
 	</form>
 </div>
