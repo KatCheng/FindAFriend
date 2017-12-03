@@ -1,5 +1,4 @@
 <!-- <div *ngIf="su == 0"> -->
-<div class="container">
 
 	<div class="nav">
 		<ul>
@@ -8,11 +7,15 @@
 	</div>
 
 	<br>
+  <div class="container">
+  <h1 class = "title">Registration</h1>
 
 	<form (submit)="signup($event, username.value, email.value, email2.value, password.value)">
 		<!-- Username -->
-		<div class="form-group">
+		<div class="register">
+		  <br>
 			<label>Username</label>
+			<br>
 			<input type="text" #username>
 			<p style="color: #636c72; margin: auto;"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></p>
 			<div style="margin-top: 10px;" *ngIf="usernameError">
@@ -22,36 +25,45 @@
 			</div>
 		</div>
 		<!-- Email -->
-		<div class="form-group">
+		<div class="register">
+		  <br>
 			<label>Email Address</label>
+			<br>
 			<input type="text" #email>
-			<div style="margin-top: 10px;" *ngIf="emailError">	
+			<div style="margin-top: 10px;" *ngIf="emailError">
 				<span *ngFor="let error of emailError">
 					{{ error }}
 				</span>
 			</div>
 		</div>
 		<!-- Confirm email -->
-		<div class="form-group">
+		<div class="register">
+		  <br>
 			<label>Confirm Email</label>
+			<br>
 			<input type="text" #email2>
-			<div style="margin-top: 10px;" *ngIf="email2Error">	
+			<div style="margin-top: 10px;" *ngIf="email2Error">
 				<span *ngFor="let error of email2Error">
 					{{ error }}
 				</span>
 			</div>
 		</div>
 		<!-- Password -->
-		<div class="form-group">
+		<div class="register">
+		  <br>
 			<label class="form-label" for="password">Password</label>
+			<br>
 			<input type="password" #password class="form-control" id="password" placeholder="Password">
-			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">	
+			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
 				</span>
 			</div>
 		</div>
+		<div class="submit">
+		<br>
 		<button type="submit">Submit</button>
+		</div>
 		<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
 	</form>
 </div>
