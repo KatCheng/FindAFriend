@@ -1,19 +1,24 @@
 <!-- <p> {{ something }}</p> -->
+<div class = "container">
 <div *ngIf="yes == 0">
+  <h1 class = "title">{{ userProfile.username }}</h1>
 	<img class="profile-pic" src="assets\img\{{ picture }}" alt="{{ username }}" width="200">
-	<ul>
-		<li>{{ userProfile.username }}</li>
-		<li>{{ userProfile.email }}</li>
-		<li>{{ userProfile.url }}</li>
-		<li>{{ userProfile.profile[this.userProfile.profile.length-1].first_name }}</li>
-		<li>{{ userProfile.profile[this.userProfile.profile.length-1].last_name }}</li>
-		<li>{{ userProfile.profile[this.userProfile.profile.length-1].university }}</li>
-		<li>{{ userProfile.profile[this.userProfile.profile.length-1].hometown }}</li>
-		<li>{{ num }}</li>
-		<li (click)="yes = 1" style="color:GRAY;">update</li>
-		<li (click)="deleteUser()">Delete User</li>
-	</ul>
+
+<!--		<p>Username: {{ userProfile.username }}</p>  -->
+<div class = "elements">
+		<p>Email: {{ userProfile.email }}</p>
+<!--		<li>{{ userProfile.url }}</li> -->
+		<p>First name: {{ userProfile.profile[this.userProfile.profile.length-1].first_name }}</p>
+		<p>Last name: {{ userProfile.profile[this.userProfile.profile.length-1].last_name }}</p>
+		<p>University: {{ userProfile.profile[this.userProfile.profile.length-1].university }}</p>
+		<p>Hometown: {{ userProfile.profile[this.userProfile.profile.length-1].hometown }}</p>
+<!--		<p>{{ num }}</p> -->
 </div>
+</div>
+		<p (click)="yes = 1" style="color:GRAY">update</p>
+		<p (click)="deleteUser()">Delete User</p>
+</div>
+
 
 <div *ngIf="yes == 1">
 	<form>
@@ -31,7 +36,7 @@
 <!-- 		<div class="form-group">
 			<label class="form-label" for="password">Password</label>
 			<input type="password" #password class="form-control" id="password" placeholder="Password">
-			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">	
+			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
 				</span>
@@ -41,7 +46,7 @@
 		<div class="form-group">
 			<label>First Name</label>
 			<input type="text" #first_name>
-<!-- 			<div style="margin-top: 10px;" *ngIf="emailError">	
+<!-- 			<div style="margin-top: 10px;" *ngIf="emailError">
 				<span *ngFor="let error of emailError">
 					{{ error }}
 				</span>
@@ -51,7 +56,7 @@
 		<div class="form-group">
 			<label>Last Name</label>
 			<input type="text" #last_name>
-<!-- 			<div style="margin-top: 10px;" *ngIf="email2Error">	
+<!-- 			<div style="margin-top: 10px;" *ngIf="email2Error">
 				<span *ngFor="let error of email2Error">
 					{{ error }}
 				</span>
@@ -61,7 +66,7 @@
 		<div class="form-group">
 			<label class="form-label">Hometown</label>
 			<input type="text" #hometown>
-<!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">	
+<!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
 				</span>
@@ -70,7 +75,7 @@
 		<div class="form-group">
 			<label class="form-label">University</label>
 			<input type="text" #university>
-<!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">	
+<!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
 				</span>
@@ -107,3 +112,4 @@
 		<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
 	</form>
 </div>
+
