@@ -19,6 +19,15 @@ GROUPOPTIONS = (
 	('Business', 'Business'),
 	('Other', 'Other'),
 	)
+
+PROFILEPIC = (
+	(0, 'img-0.jpg'),
+	(1, 'img-1.jpg'),
+	(2, 'img-2.jpg'),
+	(3, 'img-3.jpg'),
+	(4, 'img-4.jpg'),
+	(5, 'img-5.jpg'),
+	)
 class Page(models.Model):
 	title = models.CharField(max_length=200)
 	creator = models.ForeignKey('auth.User')
@@ -42,6 +51,7 @@ class UserProfile(models.Model):
 	last_name = models.CharField(max_length=30, default='', blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)
 	hometown = models.CharField(max_length=30, default='', blank=True)
+	picture = models.IntegerField(default=0, choices=PROFILEPIC)
 	#group_member = models.ManyToManyField(Page, related_name='groups')
 
 

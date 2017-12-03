@@ -22,7 +22,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = UserProfile
 		#fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
-		fields = ('user','first_name', 'last_name', 'university', 'hometown')
+		fields = ('user','first_name', 'last_name', 'university', 'hometown', 'picture')
 
 	# def update(self, instance, data):
 	# 	instance.user = data.get('user', instance.user)
@@ -37,16 +37,16 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 		# fields = ('url', 'username', 'email', 'groups')
 		fields = ('url', 'username', 'email', 'groups', 'profile')
 
-	def update(self, instance, validated_data):
-		if validated_data.get('profile'):
-			profile_data = validated_data.get('profile')
-			profile_serializer = ProfileSerializer(data=profile_data)
+	# def update(self, instance, validated_data):
+	# 	if validated_data.get('profile'):
+	# 		profile_data = validated_data.get('profile')
+	# 		profile_serializer = ProfileSerializer(data=profile_data)
 
-			if profile_serializer.is_valid():
-				profile = profile_serializer.update(instance=instance.profile, validated_data=profile_data)
-				validated_data['profile'] = profile
+	# 		if profile_serializer.is_valid():
+	# 			profile = profile_serializer.update(instance=instance.profile, validated_data=profile_data)
+	# 			validated_data['profile'] = profile
 		
-		return super(UserSerializer, self).update(instance, validated_data)
+	# 	return super(UserSerializer, self).update(instance, validated_data)
 
 
 
