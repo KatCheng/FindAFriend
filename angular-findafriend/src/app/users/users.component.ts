@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {User} from '../user';
 import {USERS} from '../list-of-users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http } from '@angular/http';
+import { contentHeaders } from '../headers';
 
 @Component({
   selector: 'app-users',
@@ -14,9 +16,20 @@ export class UsersComponent implements OnInit {
   something: string;
   users :any = [];
   userProfile: any = [];
+  email : string = "None";
   // selectedUser:any;
 
-  constructor(private http: HttpClient) { }
+  first_name: string = "None";
+  last_name: string = "None";
+  university: string = "None";
+  hometown: string = "None";
+  num: number;
+  picture: string;
+
+  yes: number = 0;
+  //req: any;
+
+  constructor(private http: HttpClient, public _http: Http) { }
 
   ngOnInit() {
   	this.getUser();
@@ -73,11 +86,94 @@ export class UsersComponent implements OnInit {
     for(i ; i <this.users.length;i++){         //Search for title match first
       if((this.users[i].username.toLowerCase()).search(this.username.toLowerCase()) != -1){
         this.userProfile = this.users[i];
+        if(this.userProfile.email == '') {
+          this.userProfile.email = this.email;
+        } 
+        this.num = this.userProfile.profile[this.userProfile.profile.length-1].picture;
+        switch (this.num) {
+          case 0:
+            this.picture = "myAvatar.png";
+            break;
+          case 1:
+            this.picture = "myAvatar(1).png";
+            break;
+          case 2:
+            this.picture = "myAvatar(2).png";
+            break;
+          case 3:
+            this.picture = "myAvatar(3).png";
+            break;
+          case 4:
+            this.picture = "myAvatar(4).png";
+            break;
+          case 5:
+            this.picture = "myAvatar(5).png";
+            break;
+          default:
+            this.picture = "myAvatar.png"
+
+        }
+        // else {
+        //   this.email = this.userProfile.email;
+        // }
+
+        this.university = this.userProfile.profile[this.userProfile.profile.length-1].university;
+
+        if(this.userProfile.profile[this.userProfile.profile.length-1].first_name == '') {
+          this.userProfile.profile[this.userProfile.profile.length-1].first_name = this.first_name;
+        };
+        // if(this.userProfile.profile[0].last_name != '') {
+        //   this.last_name = this.userProfile.profile[1].last_name;
+        // }
+        if(this.userProfile.profile[this.userProfile.profile.length-1].university == '') {
+          this.userProfile.profile[this.userProfile.profile.length-1].university = this.university;
+        };
+        if(this.userProfile.profile[this.userProfile.profile.length-1].hometown == '') {
+          this.userProfile.profile[this.userProfile.profile.length-1].university = this.hometown;
+        };
         // this.something = this.userProfile.url;
         // console.log(this.something);
       }
     }
   }
+
+  update(event, user, first_name, last_name, hometown, university, picture) {
+    event.preventDefault();
+    //user = this.username;
+    //username = this.username;
+    user = this.userProfile;
+    let body = JSON.stringify({ user, first_name, last_name, university, hometown, picture});
+    this._http.post("http://127.0.0.1:8000/api/profiles/", body, { headers: contentHeaders})
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+            console.log("Error occured");
+          }
+        );
+    // const req = this._http.post("http://127.0.0.1:8000/api/profiles/", {
+    //   user: this.userProfile,
+    //   first_name: first_name,
+    //   last_name: last_name,
+    //   university: university,
+    //   hometown: hometown,
+    //   picture: picture
+    // }, { headers: contentHeaders})
+    //   .subscribe(
+    //     res => {
+    //       console.log(res);
+    //     },
+    //     err => {
+    //       console.log("Error occured");
+    //     }
+    //   );
+      // .subscribe(
+      //   response => {
+      //     //const response = res.text();
+      //   }
+      // );
+  };
 
 
   /* SEARCH BAR */

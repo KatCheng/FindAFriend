@@ -45,6 +45,9 @@ export class GroupDetailComponent implements OnInit {
 
   deleteGroup(){
     this.http.get("api/deleteGroup/"+this.group.title).subscribe();
+    setTimeout(() => {
+    	window.location.reload();
+    }, 100);
   }
 
   updateGroup(event, typeOfGroup, description) {
