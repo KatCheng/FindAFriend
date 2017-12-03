@@ -44,7 +44,7 @@ class Page(models.Model):
 
 class UserProfile(models.Model):
 	#user = models.OneToOneField(User, null=True, related_name='profile')
-	user = models.ForeignKey(User, related_name='profile', null=True)
+	user = models.ForeignKey(User, related_name='profile')
 	first_name = models.CharField(max_length=30, default='', blank=True)
 	last_name = models.CharField(max_length=30, default='', blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)
