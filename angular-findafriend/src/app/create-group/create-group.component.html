@@ -1,9 +1,14 @@
 <div class="container">
 
+  <h1 class = "title">Create Group</h1>
+
+
   <form (submit)="createGroup($event, title.value, typeOfGroup.value, description.value)">
     <!-- title -->
 		<div class="form-group">
+		  <br>
 			<label>Title</label>
+			<br>
 			<input type="text" #title>
 			<p style="color: #636c72; margin: auto;"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></p>
       <div style="margin-top: 10px;" *ngIf="titleError">
@@ -16,7 +21,9 @@
 
     <!-- Type of group -->
     <div class="form-group">
+      <br>
 			<label>Type of Group</label>
+			<br>
 		  <select name="type_of_group" #typeOfGroup>
         <option value="Sport">Sport</option>
         <option value="Academic">Academic</option>
@@ -33,7 +40,9 @@
 
 		<!-- Description -->
 		<div class="form-group">
+		  <br>
 			<label>Description</label>
+			<br>
 			<input type="text" #description>
 			<div style="margin-top: 10px;" *ngIf="descriptionError">
 				<span *ngFor="let error of descriptionError">
@@ -42,9 +51,10 @@
 			</div>
 		</div>
 
-
+    <div class="submit">
+    <br>
     <button type="submit">Submit</button>
-
+    </div>
 	</form>
 
 <div>

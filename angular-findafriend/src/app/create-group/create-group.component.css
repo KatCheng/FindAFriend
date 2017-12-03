@@ -1,0 +1,30 @@
+.container {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+}
+
+.title {
+	height: 30px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	background-color: #939393;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.form-group{
+  background-color: #f6f6f6;
+	border-radius: none;
+}
+
+.submit{
+  background-color: #f6f6f6;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+h2,div{
+	text-align: center;
+}
