@@ -4,30 +4,34 @@
   <h3> By {{group.creator}} </h3>
   <br>
 	<div> Created: {{group.timeCreated | date }}</div>
-	<h4  (click)="seeMembers()" id="memButton"> Members (Show)</h4>
+	<div> Type: {{group.typeOfGroup}}</div>
+	<h4  (click)="seeMembers()" id="memButton"> Other Members (Show)</h4>
 	<div *ngIf="showMembers">
 		<div class="members" *ngFor="let mem of group.members">
-			<div> {{mem.username}}</div>
+			<div *ngIf="mem.username !=username"> {{mem.username}}</div>
 		</div>		
 	</div>
 
 
 	<p > Description: {{group.description}}</p>
 
-	<div *ngIf="inGroup==true">
+	<div *ngIf="inGroup==true  && group.creator!=username">
 		<button (click)="leaveGroup()">Leave Group</button>
 	</div>
 	
-	<div *ngIf="inGroup==false">
+	<div *ngIf="inGroup==false && group.creator!=username">
 		<button (click)="joinGroup()">Join Group</button>
 	</div>
 
+	
+
 	<div *ngIf="group.creator==username">
+		<button *ngIf="updateSee==null" (click)="updateClicked()">Update Group</button>
+		<button *ngIf="updateSee" (click)="updateClicked()">Close Update Group</button>
 		<button (click)="deleteGroup()">Delete Group</button>
 		
-		<div>To Update group
 
-		<form (submit)="updateGroup($event, typeOfGroup.value, description.value)">
+		<form *ngIf= "updateSee" (submit)="updateGroup($event, typeOfGroup.value, description.value)">
 			<!-- Type of group -->
 	    <div class="form-group">
 				<label>Type of Group</label>
@@ -58,8 +62,7 @@
 
 			<button type="submit">Submit</button>
 		</form>	
-		</div>
-			
+
 	</div>
 
 

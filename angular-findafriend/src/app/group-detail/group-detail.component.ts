@@ -12,11 +12,21 @@ export class GroupDetailComponent implements OnInit {
   @Input() username:string;
 	@Input() inGroup:boolean;
   showMembers=null;
+  updateSee=null;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(){
 
+  }
+
+  updateClicked(){
+    if (this.updateSee==null){
+      this.updateSee=true;
+    }
+    else{
+      this.updateSee=null;
+    }
   }
 
 
@@ -34,13 +44,12 @@ export class GroupDetailComponent implements OnInit {
   leaveGroup(){
     this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
     this.inGroup=false;
-    this.group.members.length = this.group.members.length-1;
+
   }
 
   joinGroup(){
     this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
     this.inGroup=true;
-    this.group.members.length = this.group.members.length-1;
   }
 
   deleteGroup(){
@@ -52,6 +61,9 @@ export class GroupDetailComponent implements OnInit {
 
   updateGroup(event, typeOfGroup, description) {
     this.http.get("api/updateGroup/"+this.group.title +"/"+ description+"/"+typeOfGroup).subscribe();
+    setTimeout(() => {
+    	window.location.reload();
+    }, 100);
   }
 
 }

@@ -16,7 +16,6 @@ export class CreateGroupComponent implements OnInit {
 	endpoint: string = "http://127.0.0.1:8000/api/pageCreate/";
 	titleError: [any];
 //	creatorError: [any];
-	sizeOfGroupError: [any];
 	descriptionError: [any];
 	typeOfGroupError: [any];
 
@@ -30,7 +29,14 @@ export class CreateGroupComponent implements OnInit {
     // For test purpose only
     //let body2 = '{ "title": "test_group_6", "creator": "test", "sizeOfGroup": "Under 5", "description": "123", "typeOfGroup": "Sport" }';
 
-    let body = JSON.stringify({ title, creator , description, typeOfGroup });
+    let body = JSON.stringify({ title, creator, description, typeOfGroup });
+
+    //let body3 = '{ "title": "test_group_desparate_0", "creator": "test", "sizeOfGroup": "Under 5", "description": "' + body + '", "typeOfGroup": "Sport" }';
+
+    console.log("test");
+
+    let test = "http://127.0.0.1:8080";
+
 
     this.req = this._http.post(this.endpoint, body, { headers: contentHeaders})
 		.subscribe(
@@ -52,11 +58,7 @@ export class CreateGroupComponent implements OnInit {
 //					this.creatorError = null;
 //				}
 
-				if (createGroupError.sizeOfGroup) {
-					this.sizeOfGroupError = createGroupError.sizeOfGroup;
-				} else {
-					this.sizeOfGroupError = null;
-				}
+				
 
 				if (createGroupError.description) {
 					this.descriptionError = createGroupError.description;
@@ -72,11 +74,18 @@ export class CreateGroupComponent implements OnInit {
 
 			}
     );
-
+		this.blankOut();
 	};
 
-  ngOnInit() {
-    //this._authenticationService.login(username,password);
-  }
+	blankOut(){
+		var inputs = document.getElementsByTagName('input');
+		for (var i = 0; i<inputs.length; i++) {
+            inputs[i].value = '';  
+   		}
+	}
+
+	ngOnInit() {
+	  //this._authenticationService.login(username,password);
+	}
 
 }
