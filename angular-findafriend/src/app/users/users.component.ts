@@ -74,6 +74,13 @@ export class UsersComponent implements OnInit {
     this.http.get("api/updateProfile/"+this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13)+"/"+ first_name+"/"+last_name+"/"+hometown+"/"+university+"/"+this.num).subscribe();
   }
 
+  deleteUser(){
+    this.http.get("api/deleteUser/"+this.username).subscribe();
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  }
+
   // onSelect(user:any):void{
   //   console.log("ayyyy");
   //   this.selectedUser = user;

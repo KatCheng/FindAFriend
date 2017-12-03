@@ -19,7 +19,7 @@ router.register(r'api/leaveGroup/(?P<group>.+)/(?P<username>.+)', views.LeaveGro
 router.register(r'api/deleteGroup/(?P<group>.+)', views.DeleteGroupSet)
 router.register(r'api/updateGroup/(?P<group>.+)/(?P<description>.+)/(?P<type>.+)', views.UpdateGroupSet)
 router.register(r'api/updateProfile/(?P<user>.+)/(?P<first_name>.+)/(?P<last_name>.+)/(?P<hometown>.+)/(?P<university>.+)/(?P<picture>.+)', views.UpdateProfile)
-
+router.register(r'api/deleteUser/(?P<user>.+)', views.DeleteUser)
 
 
 

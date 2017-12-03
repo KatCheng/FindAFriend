@@ -204,6 +204,18 @@ class UpdateProfile(viewsets.ModelViewSet):
 		#print("--------"+queryset[0].first_name+"---------updated group-----------"+queryset[0].typeOfGroup+"------------------")
 		return queryset
 
+class DeleteUser(viewsets.ModelViewSet):
+	serializer_class = UserSerializer
+	queryset = User.objects.all()
+	lookup_field = 'username'
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		queryset = User.objects.all().filter(username= self.kwargs['user'])
+		queryset[0].delete()
+		print("----------------------removed group-----------------------------------------")
+		return queryset
+
 
 # class ProfileUpdateAPIView(UpdateAPIView):
 # 	queryset = UserProfile.objects.all()
