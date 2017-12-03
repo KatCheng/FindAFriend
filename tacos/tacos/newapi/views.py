@@ -39,6 +39,7 @@ class JoinGroupSet(viewsets.ModelViewSet):
 	serializer_class = PageSerializer
 	queryset = Page.objects.all()
 	lookup_field = 'title'
+	permission_classes = [AllowAny]
 
 	def get_queryset(self):
 		queryset = Page.objects.all().filter(title= self.kwargs['group'])
@@ -53,6 +54,7 @@ class LeaveGroupSet(viewsets.ModelViewSet):
 	serializer_class = PageSerializer
 	queryset = Page.objects.all()
 	lookup_field = 'title'
+	permission_classes = [AllowAny]
 
 	def get_queryset(self):
 		queryset = Page.objects.all().filter(title= self.kwargs['group'])
@@ -66,11 +68,25 @@ class DeleteGroupSet(viewsets.ModelViewSet):
 	serializer_class = PageSerializer
 	queryset = Page.objects.all()
 	lookup_field = 'title'
+	permission_classes = [AllowAny]
 
 	def get_queryset(self):
 		queryset = Page.objects.all().filter(title= self.kwargs['group'])
 		queryset[0].delete()
 		print("----------------------removed group-----------------------------------------")
+		return queryset
+
+class UpdateGroupSet(viewsets.ModelViewSet):
+	serializer_class = PageSerializer
+	queryset = Page.objects.all()
+	lookup_field = 'title'
+	permission_classes = [AllowAny]
+
+	def get_queryset(self):
+		queryset = Page.objects.all().filter(title= self.kwargs['group'])
+		queryset.update(description=self.kwargs['description'])
+		queryset.update(typeOfGroup=self.kwargs['type'])		
+		print("--------"+queryset[0].description+"---------updated group-----------"+queryset[0].typeOfGroup+"------------------")
 		return queryset
 
 

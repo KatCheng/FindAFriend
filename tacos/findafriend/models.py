@@ -20,14 +20,12 @@ GROUPOPTIONS = (
 	('Other', 'Other'),
 	)
 class Page(models.Model):
-	title = models.CharField(max_length=200)
+	title = models.CharField(max_length=200, unique=True)
 	creator = models.ForeignKey('auth.User')
-	sizeOfGroup = models.CharField(max_length=12, choices=SIZEOPTIONS)
 	description = models.TextField()
 	typeOfGroup = models.CharField(max_length=12, choices=GROUPOPTIONS, null=True)
 	timeCreated = models.DateTimeField(default=timezone.now)
 	members = models.ManyToManyField(User, related_name='members')
-	#members = ['test', 'person2']
 
 	def __str__(self):
 		return self.title
@@ -37,7 +35,7 @@ class Page(models.Model):
 
 class UserProfile(models.Model):
 	#user = models.OneToOneField(User, null=True, related_name='profile')
-	user = models.ForeignKey(User, related_name='profile')
+	user = models.ForeignKey(User, related_name='profile', null=True)
 	first_name = models.CharField(max_length=30, default='', blank=True)
 	last_name = models.CharField(max_length=30, default='', blank=True)
 	university = models.CharField(max_length=30, default='', blank=True)

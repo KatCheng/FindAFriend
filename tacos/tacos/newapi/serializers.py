@@ -154,7 +154,7 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
     creator = serializers.CharField(source='creator.username')
     class Meta:
             model = Page
-            fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup')
+            fields = ('title', 'creator', 'description', 'timeCreated', 'members', 'typeOfGroup')
 
 
 class PageCreateSerializer(serializers.HyperlinkedModelSerializer):

@@ -23,11 +23,11 @@ export class GroupDetailComponent implements OnInit {
   seeMembers(){
   	if (this.showMembers == null){
   		this.showMembers = true;
-      document.getElementById("memButton").innerHTML = this.group.members.length +" Members (Show)";
+      document.getElementById("memButton").innerHTML = " Members (Hide)";
   	}
   	else{
   		this.showMembers = null;
-  		document.getElementById("memButton").innerHTML = this.group.members.length +" Members (Show)";
+  		document.getElementById("memButton").innerHTML = " Members (Show)";
   	}
   }
 
@@ -47,4 +47,27 @@ export class GroupDetailComponent implements OnInit {
     this.http.get("api/deleteGroup/"+this.group.title).subscribe();
   }
 
+  updateGroup(event, typeOfGroup, description) {
+    this.http.get("api/updateGroup/"+this.group.title +"/"+ description+"/"+typeOfGroup).subscribe();
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form (submit)="createGroup($event, title.value, sizeOfGroup.value, typeOfGroup.value, description.value)">
+  <form (submit)="createGroup($event, title.value, typeOfGroup.value, description.value)">
     <!-- title -->
 		<div class="form-group">
 			<label>Title</label>
@@ -12,23 +12,6 @@
 				</span>
 			</div>
 		</div>
-
-
-		<!-- Size of group -->
-		<div class="form-group">
-			<label>Size of Group</label>
-		  <select name="size_of_group" #sizeOfGroup>
-        <option value="Under 5">Under 5</option>
-        <option value="Under 20">Under 20</option>
-        <option value="Under 50">Under 50</option>
-        <option value="More than 50">More than 50</option>
-      </select>
-      <div style="margin-top: 10px;" *ngIf="sizeOfGroupError">
-				<span *ngFor="let error of sizeOfGroupError">
-					{{ error }}
-				</span>
-			</div>
-    </div>
 
 
     <!-- Type of group -->
