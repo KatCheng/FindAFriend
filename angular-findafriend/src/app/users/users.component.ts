@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
   yes: number = 0;
   //req: any;
 
-  constructor(public _router: Router，private http: HttpClient, public _http: Http) { }
+  constructor(public _router: Router, private http: HttpClient, public _http: Http) { }
 
   ngOnInit() {
   	this.getUser();
