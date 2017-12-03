@@ -4,6 +4,7 @@ import {USERS} from '../list-of-users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../headers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -29,7 +30,7 @@ export class UsersComponent implements OnInit {
   yes: number = 0;
   //req: any;
 
-  constructor(private http: HttpClient, public _http: Http) { }
+  constructor(public _router: Router， private http: HttpClient, public _http: Http) { }
 
   ngOnInit() {
   	this.getUser();
@@ -78,6 +79,7 @@ export class UsersComponent implements OnInit {
     this.http.get("api/deleteUser/"+this.username).subscribe();
     setTimeout(() => {
       window.location.reload();
+      this._router.navigate(['login']);
     }, 100);
   }
 
@@ -113,7 +115,7 @@ export class UsersComponent implements OnInit {
         this.userProfile = this.users[i];
         if(this.userProfile.email == '') {
           this.userProfile.email = this.email;
-        } 
+        }
         this.num = this.userProfile.profile[this.userProfile.profile.length-1].picture;
         switch (this.num) {
           case 0:
