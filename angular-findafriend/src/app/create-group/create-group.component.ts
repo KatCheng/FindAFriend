@@ -74,11 +74,18 @@ export class CreateGroupComponent implements OnInit {
 
 			}
     );
-
+		this.blankOut();
 	};
 
-  ngOnInit() {
-    //this._authenticationService.login(username,password);
-  }
+	blankOut(){
+		var inputs = document.getElementsByTagName('input');
+		for (var i = 0; i<inputs.length; i++) {
+            inputs[i].value = '';  
+   		}
+	}
+
+	ngOnInit() {
+	  //this._authenticationService.login(username,password);
+	}
 
 }
