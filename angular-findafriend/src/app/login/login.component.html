@@ -1,4 +1,4 @@
-<div class="login-container">
+
 
 	<div class="nav">
 		<ul>
@@ -7,29 +7,37 @@
 	</div>
 
 <!-- 	<div *ngIf="su == 0"> -->
+<div class="login-container">
 		<h1>{{ title }}</h1>
 
 		<form role="form" (submit)="login($event, username.value, password.value)">
+		<div class="login-elements">
 			<label for="username">Username</label>
+			<br>
 			<input type="text" #username class="form-control" id="username">
-			<div style="margin-top: 10px;" *ngIf="usernameError" class="alert alert-danger" role="alert">	
+			<div style="margin-top: 10px;" *ngIf="usernameError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of usernameError">
 					{{ error }}
 				</span>
 			</div>
-
+			</div>
+      <br>
+      <div class="login-elements">
 			<label for="password">Password</label>
+			<br>
 			<input type="password" #password>
-			<div style="margin-top: 10px;" *ngIf="passwordError">	
+			<div style="margin-top: 10px;" *ngIf="passwordError">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
 				</span>
 			</div>
-			<div style="margin-top: 10px;" *ngIf="nonFieldError">	
+			<div style="margin-top: 10px;" *ngIf="nonFieldError">
 				<span *ngFor="let error of nonFieldError">
 					{{ error }}
 				</span>
 			</div>
+			</div>
+			<br>
 			<button (click)="su = 1" >Submit</button>
 	<!-- 		<a class="float-right" [routerLink]="['/signup']">Click here to signup</a> -->
 		</form>
