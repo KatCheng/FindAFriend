@@ -61,6 +61,9 @@ export class GroupDetailComponent implements OnInit {
 
   updateGroup(event, typeOfGroup, description) {
     this.http.get("api/updateGroup/"+this.group.title +"/"+ description+"/"+typeOfGroup).subscribe();
+    setTimeout(() => {
+    	window.location.reload();
+    }, 100);
   }
 
 }
