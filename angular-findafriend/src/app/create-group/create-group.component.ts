@@ -29,7 +29,6 @@ export class CreateGroupComponent implements OnInit {
     // For test purpose only
     //let body2 = '{ "title": "test_group_6", "creator": "test", "sizeOfGroup": "Under 5", "description": "123", "typeOfGroup": "Sport" }';
 
-
     let body = JSON.stringify({ title, creator, description, typeOfGroup });
 
     //let body3 = '{ "title": "test_group_desparate_0", "creator": "test", "sizeOfGroup": "Under 5", "description": "' + body + '", "typeOfGroup": "Sport" }';
@@ -37,6 +36,7 @@ export class CreateGroupComponent implements OnInit {
     console.log("test");
 
     let test = "http://127.0.0.1:8080";
+
 
     this.req = this._http.post(this.endpoint, body, { headers: contentHeaders})
 		.subscribe(

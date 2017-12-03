@@ -162,7 +162,7 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
             model = Page
-            fields = ('title', 'creator', 'sizeOfGroup', 'description', 'typeOfGroup')
+            fields = ('title', 'creator', 'description', 'typeOfGroup')
 
 
     def create(self, validated_data):
@@ -175,7 +175,6 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
         page_obj = Page(
                 title = validated_data['title'],
                 creator = User.objects.get( username = validated_data['creator']['username'] ),
-                sizeOfGroup = validated_data['sizeOfGroup'],
                 description = validated_data['description'],
                 timeCreated = currentTime,
                 typeOfGroup = validated_data['typeOfGroup']

@@ -12,6 +12,7 @@ export class GroupDetailComponent implements OnInit {
   @Input() username:string;
 	@Input() inGroup:boolean;
   showMembers=null;
+  updateSee=null;
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,14 @@ export class GroupDetailComponent implements OnInit {
 
   }
 
+  updateClicked(){
+    if (this.updateSee==null){
+      this.updateSee=true;
+    }
+    else{
+      this.updateSee=null;
+    }
+  }
 
 
   seeMembers(){
