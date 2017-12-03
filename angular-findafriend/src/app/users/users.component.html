@@ -14,13 +14,14 @@
 		<p>Hometown: {{ userProfile.profile[this.userProfile.profile.length-1].hometown }}</p>
 <!--		<p>{{ num }}</p> -->
 </div>
-</div>
 		<p (click)="yes = 1" style="color:GRAY">update</p>
 		<p (click)="deleteUser()">Delete User</p>
 </div>
+</div>
 
-
+<div class = "container2">
 <div *ngIf="yes == 1">
+<h1 class = "title">Update Profile</h1>
 	<form>
 		<!-- Username -->
 <!-- 		<div class="form-group">
@@ -44,7 +45,9 @@
 		</div> -->
 		<!-- Email -->
 		<div class="form-group">
+		<br>
 			<label>First Name</label>
+			<br>
 			<input type="text" #first_name>
 <!-- 			<div style="margin-top: 10px;" *ngIf="emailError">
 				<span *ngFor="let error of emailError">
@@ -52,9 +55,11 @@
 				</span>
 			</div> -->
 		</div>
+		<br>
 		<!-- Confirm email -->
 		<div class="form-group">
 			<label>Last Name</label>
+			<br>
 			<input type="text" #last_name>
 <!-- 			<div style="margin-top: 10px;" *ngIf="email2Error">
 				<span *ngFor="let error of email2Error">
@@ -62,9 +67,11 @@
 				</span>
 			</div> -->
 		</div>
+		<br>
 		<!-- Password -->
 		<div class="form-group">
 			<label class="form-label">Hometown</label>
+			<br>
 			<input type="text" #hometown>
 <!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
@@ -72,8 +79,10 @@
 				</span>
 			</div> -->
 		</div>
+		<br>
 		<div class="form-group">
 			<label class="form-label">University</label>
+			<br>
 			<input type="text" #university>
 <!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
@@ -82,34 +91,38 @@
 			</div> -->
 		</div>
 		<div class="form-group">
-			<label class="form-label">Picture Number</label>
+<!--			<label class="form-label">Picture Number</label> -->
+      <p> Profile Picture</p>
 			<label>
   				<input type="radio" name="picture-num" value="0" checked (click)="num = 0">
-  				<img src="assets\img\myAvatar.png">
+  				<img src="assets\img\myAvatar.png" style="width:100px;height:100px">
 			</label>
 			<label>
   				<input type="radio" name="picture-num" value="1" (click)="num = 1">
-  				<img src="assets\img\myAvatar(1).png">
+  				<img src="assets\img\myAvatar(1).png" style="width:100px;height:100px">
 			</label>
 			<label>
   				<input type="radio" name="picture-num" value="2" (click)="num = 2">
-  				<img src="assets\img\myAvatar(2).png">
+  				<img src="assets\img\myAvatar(2).png" style="width:100px;height:100px">
 			</label>
+			<br>
 			<label>
   				<input type="radio" name="picture-num" value="3" (click)="num = 3">
-  				<img src="assets\img\myAvatar(3).png">
+  				<img src="assets\img\myAvatar(3).png" style="width:100px;height:100px">
 			</label>
 			<label>
   				<input type="radio" name="picture-num" value="4" (click)="num = 4">
-  				<img src="assets\img\myAvatar(4).png">
+  				<img src="assets\img\myAvatar(4).png" style="width:100px;height:100px">
 			</label>
 			<label>
   				<input type="radio" name="picture-num" value="5" (click)="num = 5">
-  				<img src="assets\img\myAvatar(5).png">
+  				<img src="assets\img\myAvatar(5).png" style="width:100px;height:100px">
 			</label>
 		</div>
 		<button type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture)">Submit</button>
 		<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
 	</form>
 </div>
+</div>
+
 
