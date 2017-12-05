@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit {
   userProfile: any = [];
   email : string = "None";
   // selectedUser:any;
-
   first_name: string = "None";
   last_name: string = "None";
   university: string = "None";
@@ -29,11 +28,10 @@ export class UsersComponent implements OnInit {
 
   yes: number = 0;
   //req: any;
-
   constructor(public _router: Router, private http: HttpClient, public _http: Http) { }
 
   ngOnInit() {
-  	this.getUser();
+    this.getUser();
     console.log(this.username);
   }
 
@@ -48,7 +46,7 @@ export class UsersComponent implements OnInit {
 
     console.log(url);
 
-  	this.http.get(url).subscribe(data => {
+    this.http.get(url).subscribe(data => {
       // let obj = User: JSON.parse(data);
       // console.log(obj.title);
       this.users = data;
@@ -72,6 +70,34 @@ export class UsersComponent implements OnInit {
     if(university == '') {
       university = "none";
     }
+
+    switch (this.num) {
+      case 0:
+        this.picture = "myAvatar.png";
+        break;
+      case 1:
+        this.picture = "myAvatar(1).png";
+        break;
+      case 2:
+        this.picture = "myAvatar(2).png";
+        break;
+      case 3:
+        this.picture = "myAvatar(3).png";
+        break;
+      case 4:
+        this.picture = "myAvatar(4).png";
+        break;
+      case 5:
+        this.picture = "myAvatar(5).png";
+        break;
+      default:
+        this.picture = "myAvatar.png"
+
+    }
+    this.userProfile.profile[this.userProfile.profile.length-1].first_name = first_name;
+    this.userProfile.profile[this.userProfile.profile.length-1].last_name = last_name;
+    this.userProfile.profile[this.userProfile.profile.length-1].university = university;
+    this.userProfile.profile[this.userProfile.profile.length-1].hometown = hometown;
     this.http.get("api/updateProfile/"+this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13)+"/"+ first_name+"/"+last_name+"/"+hometown+"/"+university+"/"+this.num).subscribe();
   }
 
@@ -87,14 +113,11 @@ export class UsersComponent implements OnInit {
   //   console.log("ayyyy");
   //   this.selectedUser = user;
   // }
-
   // addUser(user:User){
   //   this.alert(`Join ${user ? user.title : 'this user'}.`);
   // }
-
   // var i:number = 0;
   // this.displayUsers = [];
-
   // for(i ; i <this.users.length; i++){         //Search for title match first
   //   // if((this.users[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
   //     this.displayUsers.push(this.users[i]);
@@ -143,20 +166,36 @@ export class UsersComponent implements OnInit {
         // else {
         //   this.email = this.userProfile.email;
         // }
+        // this.university = this.userProfile.profile[this.userProfile.profile.length-1].university;
 
-        this.university = this.userProfile.profile[this.userProfile.profile.length-1].university;
-
-        if(this.userProfile.profile[this.userProfile.profile.length-1].first_name == '') {
+        // if(this.userProfile.profile[this.userProfile.profile.length-1].first_name == '') {
+        //   this.userProfile.profile[this.userProfile.profile.length-1].first_name = this.first_name;
+        // };
+        // // if(this.userProfile.profile[0].last_name != '') {
+        // //   this.last_name = this.userProfile.profile[1].last_name;
+        // // }
+        // if(this.userProfile.profile[this.userProfile.profile.length-1].university == '') {
+        //   this.userProfile.profile[this.userProfile.profile.length-1].university = this.university;
+        // };
+        // if(this.userProfile.profile[this.userProfile.profile.length-1].hometown == '') {
+        //   this.userProfile.profile[this.userProfile.profile.length-1].university = this.hometown;
+        // };
+        if(this.userProfile.profile[this.userProfile.profile.length-1].first_name.split(' ').join('') == '') {
           this.userProfile.profile[this.userProfile.profile.length-1].first_name = this.first_name;
+          // this.first_name = this.userProfile.profile[this.userProfile.profile.length-1].first_name;
         };
-        // if(this.userProfile.profile[0].last_name != '') {
-        //   this.last_name = this.userProfile.profile[1].last_name;
-        // }
-        if(this.userProfile.profile[this.userProfile.profile.length-1].university == '') {
+
+        if(this.userProfile.profile[this.userProfile.profile.length-1].last_name.split(' ').join('') == '') {
+          // this.last_name = userProfile.profile[this.userProfile.profile.length-1].last_name;
+          this.userProfile.profile[this.userProfile.profile.length-1].last_name = this.last_name;
+        };
+        if(this.userProfile.profile[this.userProfile.profile.length-1].university.split(' ').join('') == '') {
           this.userProfile.profile[this.userProfile.profile.length-1].university = this.university;
+          // this.university = userProfile.profile[this.userProfile.profile.length-1].university;
         };
-        if(this.userProfile.profile[this.userProfile.profile.length-1].hometown == '') {
-          this.userProfile.profile[this.userProfile.profile.length-1].university = this.hometown;
+        if(this.userProfile.profile[this.userProfile.profile.length-1].hometown.split(' ').join('') == '') {
+          this.userProfile.profile[this.userProfile.profile.length-1].hometown = this.hometown;
+          // this.hometown = userProfile.profile[this.userProfile.profile.length-1].hometown;
         };
         // this.something = this.userProfile.url;
         // console.log(this.something);
@@ -216,16 +255,13 @@ export class UsersComponent implements OnInit {
   //   }, 100);
   // }
 
-
   /* SEARCH BAR */
   // onKey(value:String):void{
   //   this.displayUsers = [];
   //   var notSelected: any = [];
   //   var notSelected2: any = [];
 
-
   //   var i:number = 0;
-
     // for(i ; i <this.users.length;i++){         //Search for title match first
     //   if((this.users[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
     //     this.displayUsers.push(this.users[i]);
@@ -235,7 +271,6 @@ export class UsersComponent implements OnInit {
     //     notSelected.push(this.users[i]);
     //   }
     // }
-
   //   i =0;
   //   for(i ; i <notSelected.length;i++){       //Search for typeOfUser next
   //     if((notSelected[i].typeOfUser.toLowerCase()).search(value.toLowerCase()) != -1){
@@ -246,7 +281,6 @@ export class UsersComponent implements OnInit {
   //       notSelected2.push(notSelected[i]);
   //     }
   //   }
-
   //   notSelected = [];
   //   i=0;
   //   for(i ; i <notSelected2.length;i++){      //Search for creator next
@@ -258,9 +292,7 @@ export class UsersComponent implements OnInit {
   //       notSelected.push(notSelected2[i]);
   //     }
   //   }
-
   //   i=0;
-
   //   for(i ; i <notSelected.length;i++){         //Search for description next
   //     if((notSelected[i].description.toLowerCase()).search(value.toLowerCase()) != -1){
   //       this.displayUsers.push(notSelected[i]);
@@ -270,9 +302,6 @@ export class UsersComponent implements OnInit {
 
 
 
-
   //   console.log(value);
-
   // }
-
 }
