@@ -48,7 +48,7 @@
 		<br>
 			<label>First Name</label>
 			<br>
-			<input type="text" #first_name>
+			<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].first_name }}" #first_name>
 <!-- 			<div style="margin-top: 10px;" *ngIf="emailError">
 				<span *ngFor="let error of emailError">
 					{{ error }}
@@ -60,7 +60,7 @@
 		<div class="form-group">
 			<label>Last Name</label>
 			<br>
-			<input type="text" #last_name>
+			<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].last_name }}" #last_name>
 <!-- 			<div style="margin-top: 10px;" *ngIf="email2Error">
 				<span *ngFor="let error of email2Error">
 					{{ error }}
@@ -72,7 +72,7 @@
 		<div class="form-group">
 			<label class="form-label">Hometown</label>
 			<br>
-			<input type="text" #hometown>
+			<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].hometown }}" #hometown>
 <!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
@@ -83,7 +83,7 @@
 		<div class="form-group">
 			<label class="form-label">University</label>
 			<br>
-			<input type="text" #university>
+			<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].university }}" #university>
 <!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
@@ -94,28 +94,34 @@
 <!--			<label class="form-label">Picture Number</label> -->
       <p> Profile Picture</p>
 			<label>
-  				<input type="radio" name="picture-num" value="0" checked (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" checked *ngIf="num == 0" cli (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" *ngIf="num != 0" cli (click)="num = 0">
   				<img src="assets\img\myAvatar.png" style="width:100px;height:100px">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="1" (click)="num = 1">
+  				<input type="radio" name="picture-num" value="0"  checked *ngIf="num == 1" cli (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" *ngIf="num != 1" cli (click)="num = 0">
   				<img src="assets\img\myAvatar(1).png" style="width:100px;height:100px">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="2" (click)="num = 2">
+  				<input type="radio" name="picture-num" value="0"  checked *ngIf="num == 2" cli (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" *ngIf="num != 2" cli (click)="num = 0">
   				<img src="assets\img\myAvatar(2).png" style="width:100px;height:100px">
 			</label>
 			<br>
 			<label>
-  				<input type="radio" name="picture-num" value="3" (click)="num = 3">
+  				<input type="radio" name="picture-num" value="0"  checked *ngIf="num == 3" cli (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" *ngIf="num != 3" cli (click)="num = 0">
   				<img src="assets\img\myAvatar(3).png" style="width:100px;height:100px">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="4" (click)="num = 4">
+  				<input type="radio" name="picture-num" value="0"  checked *ngIf="num == 4" cli (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" *ngIf="num != 4" cli (click)="num = 0">
   				<img src="assets\img\myAvatar(4).png" style="width:100px;height:100px">
 			</label>
 			<label>
-  				<input type="radio" name="picture-num" value="5" (click)="num = 5">
+  				<input type="radio" name="picture-num" value="0"  checked *ngIf="num == 5" cli (click)="num = 0">
+  				<input type="radio" name="picture-num" value="0" *ngIf="num != 5" cli (click)="num = 0">
   				<img src="assets\img\myAvatar(5).png" style="width:100px;height:100px">
 			</label>
 		</div>
