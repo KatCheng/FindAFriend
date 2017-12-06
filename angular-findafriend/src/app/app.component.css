@@ -39,3 +39,9 @@ nav a {
  nav a.active {
    color: #039be5;
  }
+
+ html{
+  background-image: "/assets/back.jpg"
+ }
+
+
