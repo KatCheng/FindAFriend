@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../headers';
 import { Router } from '@angular/router';
+import { AuthHttp } from 'angular2-jwt';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-users',
@@ -13,26 +15,56 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-  @Input() username:string;
-  something: string;
+  // public _router: Router;
+  public _authenticationService: AuthenticationService;
+  username: string;
+  usersView:boolean = null;
+  groupsView:boolean = null;
+  creategroupsView: boolean = null;
+
+  su: number = 0;
+
+  // @Input() username:string;
   users :any = [];
   userProfile: any = [];
-  email : string = "None";
-  // selectedUser:any;
-  first_name: string = "None";
-  last_name: string = "None";
-  university: string = "None";
-  hometown: string = "None";
   num: number;
   picture: string;
-
   yes: number = 0;
-  //req: any;
+
   constructor(public _router: Router, private http: HttpClient, public _http: Http) { }
 
   ngOnInit() {
+    let cUser = JSON.parse(localStorage.getItem('cUser'));
+    if (cUser) {
+      this.username = cUser['username'];
+    } else {
+      this.username = null;
+    }
     this.getUser();
-    console.log(this.username);
+  }
+
+  ngOnDestroy() { }
+
+  logout() {
+    this._authenticationService.logout();
+  }
+
+  showGroups(){
+    this.usersView=null;
+    this.groupsView=true;
+    this.creategroupsView=null;
+  }
+
+  showUsers(){
+    this.usersView=true;
+    this.groupsView=null;
+    this.creategroupsView=null;
+  }
+
+  createGroups(){
+    this.usersView=null;
+    this.groupsView=null;
+    this.creategroupsView=true;
   }
 
   alert(msg?: string)      { window.alert(msg); }
@@ -44,13 +76,8 @@ export class UsersComponent implements OnInit {
     let url :string;
     url = "/api/users/?format=json";
 
-    console.log(url);
-
     this.http.get(url).subscribe(data => {
-      // let obj = User: JSON.parse(data);
-      // console.log(obj.title);
       this.users = data;
-      console.log(this.users);
       this.putUsers();
     })
 
@@ -59,16 +86,16 @@ export class UsersComponent implements OnInit {
   updateProfile(event, first_name, last_name, hometown, university, picture) {
     console.log(this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13))
     if(first_name == '') {
-      first_name = "none";
+      first_name = "None";
     }
     if(last_name == '') {
-      last_name = "none";
+      last_name = "None";
     }
     if(hometown == '') {
-      hometown = "none";
+      hometown = "None";
     }
     if(university == '') {
-      university = "none";
+      university = "None";
     }
 
     switch (this.num) {
@@ -94,10 +121,12 @@ export class UsersComponent implements OnInit {
         this.picture = "myAvatar.png"
 
     }
+
     this.userProfile.profile[this.userProfile.profile.length-1].first_name = first_name;
     this.userProfile.profile[this.userProfile.profile.length-1].last_name = last_name;
     this.userProfile.profile[this.userProfile.profile.length-1].university = university;
     this.userProfile.profile[this.userProfile.profile.length-1].hometown = hometown;
+
     this.http.get("api/updateProfile/"+this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13)+"/"+ first_name+"/"+last_name+"/"+hometown+"/"+university+"/"+this.num).subscribe();
   }
 
@@ -109,37 +138,18 @@ export class UsersComponent implements OnInit {
     }, 100);
   }
 
-  // onSelect(user:any):void{
-  //   console.log("ayyyy");
-  //   this.selectedUser = user;
-  // }
-  // addUser(user:User){
-  //   this.alert(`Join ${user ? user.title : 'this user'}.`);
-  // }
-  // var i:number = 0;
-  // this.displayUsers = [];
-  // for(i ; i <this.users.length; i++){         //Search for title match first
-  //   // if((this.users[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
-  //     this.displayUsers.push(this.users[i]);
-  //     // console.log(this.displayUsers);
-  //   // }
-  //   // else{
-  //   //   notSelected.push(this.users[i]);
-  //   // }
-  // }
+
   putUsers(): void {
-    // this.something = this.users[0].username;
-    //something: string = displayUsers.username;
-    // console.log("gsfsf");
     var i:number = 0;
 
     for(i ; i <this.users.length;i++){         //Search for title match first
       if((this.users[i].username.toLowerCase()).search(this.username.toLowerCase()) != -1){
         this.userProfile = this.users[i];
         if(this.userProfile.email == '') {
-          this.userProfile.email = this.email;
+          this.userProfile.email = "None";
         }
         this.num = this.userProfile.profile[this.userProfile.profile.length-1].picture;
+
         switch (this.num) {
           case 0:
             this.picture = "myAvatar.png";
@@ -162,146 +172,25 @@ export class UsersComponent implements OnInit {
           default:
             this.picture = "myAvatar.png"
 
-        }
-        // else {
-        //   this.email = this.userProfile.email;
-        // }
-        // this.university = this.userProfile.profile[this.userProfile.profile.length-1].university;
+        };
 
-        // if(this.userProfile.profile[this.userProfile.profile.length-1].first_name == '') {
-        //   this.userProfile.profile[this.userProfile.profile.length-1].first_name = this.first_name;
-        // };
-        // // if(this.userProfile.profile[0].last_name != '') {
-        // //   this.last_name = this.userProfile.profile[1].last_name;
-        // // }
-        // if(this.userProfile.profile[this.userProfile.profile.length-1].university == '') {
-        //   this.userProfile.profile[this.userProfile.profile.length-1].university = this.university;
-        // };
-        // if(this.userProfile.profile[this.userProfile.profile.length-1].hometown == '') {
-        //   this.userProfile.profile[this.userProfile.profile.length-1].university = this.hometown;
-        // };
         if(this.userProfile.profile[this.userProfile.profile.length-1].first_name.split(' ').join('') == '') {
-          this.userProfile.profile[this.userProfile.profile.length-1].first_name = this.first_name;
-          // this.first_name = this.userProfile.profile[this.userProfile.profile.length-1].first_name;
+          this.userProfile.profile[this.userProfile.profile.length-1].first_name = "None";
         };
 
         if(this.userProfile.profile[this.userProfile.profile.length-1].last_name.split(' ').join('') == '') {
-          // this.last_name = userProfile.profile[this.userProfile.profile.length-1].last_name;
-          this.userProfile.profile[this.userProfile.profile.length-1].last_name = this.last_name;
+          this.userProfile.profile[this.userProfile.profile.length-1].last_name = "None";
         };
+
         if(this.userProfile.profile[this.userProfile.profile.length-1].university.split(' ').join('') == '') {
-          this.userProfile.profile[this.userProfile.profile.length-1].university = this.university;
-          // this.university = userProfile.profile[this.userProfile.profile.length-1].university;
+          this.userProfile.profile[this.userProfile.profile.length-1].university = "None";
         };
+
         if(this.userProfile.profile[this.userProfile.profile.length-1].hometown.split(' ').join('') == '') {
-          this.userProfile.profile[this.userProfile.profile.length-1].hometown = this.hometown;
-          // this.hometown = userProfile.profile[this.userProfile.profile.length-1].hometown;
+          this.userProfile.profile[this.userProfile.profile.length-1].hometown = "None";
         };
-        // this.something = this.userProfile.url;
-        // console.log(this.something);
+
       }
     }
   }
-
-  update(event, user, first_name, last_name, hometown, university, picture) {
-    event.preventDefault();
-    //user = this.username;
-    //username = this.username;
-    user = this.userProfile.url;
-    user = user.substring(11, user.length-13);
-    console.log(user);
-    console.log(first_name);
-    console.log(last_name);
-    console.log(hometown);
-    console.log(university);
-    console.log(picture);
-    let body = JSON.stringify({ user, first_name, last_name, university, hometown, picture});
-    this._http.post("http://127.0.0.1:8000/api/profiles/", body, { headers: contentHeaders})
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log("Error occured");
-          }
-        );
-    // const req = this._http.post("http://127.0.0.1:8000/api/profiles/", {
-    //   user: this.userProfile,
-    //   first_name: first_name,
-    //   last_name: last_name,
-    //   university: university,
-    //   hometown: hometown,
-    //   picture: picture
-    // }, { headers: contentHeaders})
-    //   .subscribe(
-    //     res => {
-    //       console.log(res);
-    //     },
-    //     err => {
-    //       console.log("Error occured");
-    //     }
-    //   );
-      // .subscribe(
-      //   response => {
-      //     //const response = res.text();
-      //   }
-      // );
-  };
-
-  // deleteUser(){
-  //   this.http.get("api/deleteUser/"+this.group.username).subscribe();
-  //   setTimeout(() => {
-  //     window.location.reload();
-  //   }, 100);
-  // }
-
-  /* SEARCH BAR */
-  // onKey(value:String):void{
-  //   this.displayUsers = [];
-  //   var notSelected: any = [];
-  //   var notSelected2: any = [];
-
-  //   var i:number = 0;
-    // for(i ; i <this.users.length;i++){         //Search for title match first
-    //   if((this.users[i].title.toLowerCase()).search(value.toLowerCase()) != -1){
-    //     this.displayUsers.push(this.users[i]);
-    //     console.log(this.displayUsers);
-    //   }
-    //   else{
-    //     notSelected.push(this.users[i]);
-    //   }
-    // }
-  //   i =0;
-  //   for(i ; i <notSelected.length;i++){       //Search for typeOfUser next
-  //     if((notSelected[i].typeOfUser.toLowerCase()).search(value.toLowerCase()) != -1){
-  //       this.displayUsers.push(notSelected[i]);
-  //       console.log(this.displayUsers);
-  //     }
-  //     else{
-  //       notSelected2.push(notSelected[i]);
-  //     }
-  //   }
-  //   notSelected = [];
-  //   i=0;
-  //   for(i ; i <notSelected2.length;i++){      //Search for creator next
-  //     if((notSelected2[i].creator.toLowerCase()).search(value.toLowerCase()) != -1){
-  //       this.displayUsers.push(notSelected2[i]);
-  //       console.log(this.displayUsers);
-  //     }
-  //     else{
-  //       notSelected.push(notSelected2[i]);
-  //     }
-  //   }
-  //   i=0;
-  //   for(i ; i <notSelected.length;i++){         //Search for description next
-  //     if((notSelected[i].description.toLowerCase()).search(value.toLowerCase()) != -1){
-  //       this.displayUsers.push(notSelected[i]);
-  //       console.log(this.displayUsers);
-  //     }
-  //   }
-
-
-
-  //   console.log(value);
-  // }
 }

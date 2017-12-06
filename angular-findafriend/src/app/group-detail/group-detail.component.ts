@@ -55,6 +55,10 @@ export class GroupDetailComponent implements OnInit {
     // $scope.$parent.selectedGroup.members.push(this.username);
   }
 
+  ngOnChange(){
+    this.inGroup=this.inGroup;
+  }
+
   joinGroup(){
     this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.joinGroup();});
     this.inGroup=true;
