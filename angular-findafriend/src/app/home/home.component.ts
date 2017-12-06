@@ -36,15 +36,8 @@ export class HomeComponent implements OnInit {
   ngOnDestroy() {	}
 
   logout() {
-    console.log("heresdsd");
     this._authenticationService.logout();
-    // this._router.navigate(['logout']);
   }
-
-  // signup(event) {
-  //   this._router.navigate(['signup']);
-  // };
-
 
   showGroups(){
     this.usersView=null;
