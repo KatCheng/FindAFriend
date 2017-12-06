@@ -39,6 +39,8 @@ export class GroupsComponent implements OnInit {
     }
   }
 
+
+
   /* GET GROUPS FROM BACKEND */
   getGroups():void{
 
@@ -57,8 +59,20 @@ export class GroupsComponent implements OnInit {
 
   onSelect(group:any):void{
     // console.log("ayyyy");
-    this.selectedGroup = group;
     // this.selectedGroup.creator = this.selectedGroupCreator.username;
+    // let idx = 0;//this.groups.indexOf(group);
+    this.getGroups();
+    
+
+    let groupA;
+    for (let u of this.groups){
+      if (u.title == group.title){
+        groupA = u;
+      }
+    }
+
+    this.selectedGroup = groupA;
+
     this.checkInGroup();
   }
 
@@ -70,7 +84,7 @@ export class GroupsComponent implements OnInit {
         return;
       }
     }
-    
+    console.log(this.username);
     console.log("nahh");
     this.inGroup=false;
   

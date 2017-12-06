@@ -11,6 +11,11 @@ export class GroupDetailComponent implements OnInit {
 	@Input() group: any;
   @Input() username:string;
 	@Input() inGroup:boolean;
+  // @Output() chGroup = new EventEmitter<string>();
+  // setmembers(val:string){
+  //   this.chGroup.emit(val);
+  // }
+
   showMembers=null;
   updateSee=null;
 
@@ -30,26 +35,30 @@ export class GroupDetailComponent implements OnInit {
   }
 
 
-  seeMembers(){
+  seeMembers(element){
   	if (this.showMembers == null){
   		this.showMembers = true;
-      document.getElementById("memButton").innerHTML = " Members (Hide)";
+      element.textContent = "Other Members (Hide)";
+      // document.getElementById("memButton").innerHTML = " Members (Hide)";
   	}
   	else{
   		this.showMembers = null;
-  		document.getElementById("memButton").innerHTML = " Members (Show)";
+      element.textContent = "Other Members (Show)";
+  		// document.getElementById("memButton").innerHTML = " Members (Show)";
   	}
   }
 
   leaveGroup(){
-    this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
+    this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.leaveGroup();});
     this.inGroup=false;
-
+    // parent.getGroups();
+    // $scope.$parent.selectedGroup.members.push(this.username);
   }
 
   joinGroup(){
-    this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe();
+    this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.joinGroup();});
     this.inGroup=true;
+    // setmembers(this.username);
   }
 
   deleteGroup(){
