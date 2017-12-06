@@ -168,8 +168,6 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         print(validated_data)
-        #currentTime = '2015-10-01T00:00'
-        # time would be in format like "2011-05-03 17:45:35.177000"
         currentTime = str(datetime.now())
         currentTime = currentTime[:16]
         currentTime = currentTime.replace(' ', 'T')
