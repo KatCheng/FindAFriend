@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 	nonFieldError: [any];
 	error: string;
 
-	su: number = 0;
+	// su: number = 0;
 
   constructor(
   	public _router: Router,
