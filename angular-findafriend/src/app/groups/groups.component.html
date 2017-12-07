@@ -11,7 +11,14 @@
 		[class.selected] = "group === selectedGroup"
 		(click)=onSelect(group)>
 		<div class="group-content" >
-			<h3 class="group-title">{{group.title}}</h3>
+<!-- 		<div *ngIf="group.typeOfGroup == 'Sport'" class="group-content-Sport" >
+		<div *ngIf="group.typeOfGroup == 'Academic'" class="group-content-Academic" >
+		<div *ngIf="group.typeOfGroup == 'Business'" class="group-content-Business" >
+		<div *ngIf="group.typeOfGroup == 'Other'" class="group-content-Other" > -->
+			<h3 class="group-title-sport" *ngIf="group.typeOfGroup == 'Sport'">{{group.title}}</h3>
+			<h3 class="group-title-academic" *ngIf="group.typeOfGroup == 'Academic'">{{group.title}}</h3>
+			<h3 class="group-title-business" *ngIf="group.typeOfGroup == 'Business'">{{group.title}}</h3>
+			<h3 class="group-title-other" *ngIf="group.typeOfGroup == 'Other'">{{group.title}}</h3>
 			<div class="group-meta">
 				<div class="metas">Created on {{group.timeCreated | date }}</div>
 				<div class="metas">by {{group.creator}}</div>

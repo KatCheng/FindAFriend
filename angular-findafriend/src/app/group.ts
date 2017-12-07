@@ -4,5 +4,6 @@ export class Group{
 	sizeOfGroup: string;
 	description: string;
 	timeCreated: string;
+	typeOfGroup: string;
 	members:string[];
 }

@@ -14,10 +14,47 @@
 	border-top-right-radius: 15px;
 }
 
+.group-title-sport {
+	height: 30px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	background-color: #ffff66;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.group-title-academic {
+	height: 30px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	background-color: #ff6666;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.group-title-business {
+	height: 30px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	background-color: #6666ff;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.group-title-other {
+	height: 30px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	background-color: #939393;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
 .group-content {
 	background-color: #f6f6f6;
 	border-radius: 15px;
 }
+
 
 .group-meta {
 	height: 30px;
