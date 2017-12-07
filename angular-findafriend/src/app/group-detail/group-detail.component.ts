@@ -50,14 +50,14 @@ export class GroupDetailComponent implements OnInit {
   }
 
   leaveGroup(){
-    this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.leaveGroup();});
-    this.inGroup=false;
-    let i=0;
+    this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");    let i=0;
     for(i ; i < this.group.members.length;i++){ 
       if (this.group.members[i].username == this.username || this.group.members[i] == this.username){
          this.group.members.splice(i,1);
       }
-    }
+    };}, error => {this.leaveGroup();});
+    this.inGroup=false;
+
     console.log("--------------");
     console.log(this.group.members);
     // this.checkInGroup();
@@ -71,11 +71,11 @@ export class GroupDetailComponent implements OnInit {
   }
 
   joinGroup(){
-    this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.joinGroup();});
+    this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");this.group.members.push(this.username);}, error => {this.joinGroup();});
     this.inGroup=true;
     // for (let u of this.group.members){
     //   if (u.username == this.username){
-    this.group.members.push(this.username);
+    
     console.log("--------------");
     console.log(this.group.members);
 
