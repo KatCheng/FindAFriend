@@ -7,7 +7,6 @@ import { LoadingModule } from 'ngx-loading';
 
 import { AppComponent } from './app.component';
 import { GroupsComponent } from './groups/groups.component';
-import { UsersComponent } from './users/users.component';
 import {HttpClientModule} from '@angular/common/http';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupMessageComponent } from './group-message/group-message.component';
@@ -32,7 +31,6 @@ import { CreateGroupComponent } from './create-group/create-group.component';
     HomeComponent,
     GroupMessageComponent,
     SignupComponent,
-    UsersComponent,
     CreateGroupComponent
   ],
   imports: [

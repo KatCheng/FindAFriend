@@ -13,8 +13,7 @@
 
 
 <div class = "container"  *ngIf="usersView">
-	<div class = "container1">
-		<div *ngIf="yes == 0">
+	<div *ngIf="yes == 0" class = "container1">
 		  <h1 class = "title">{{ userProfile.username }}</h1>
 			<img class="profile-pic" src="assets/img/{{ picture }}" alt="{{ username }}" width="200">
 
@@ -28,13 +27,11 @@
 					<p>Hometown: {{ userProfile.profile[this.userProfile.profile.length-1].hometown }}</p>
 			<!--		<p>{{ num }}</p> -->
 			</div>
-				<p (click)="yes = 1" style="color:GRAY">update</p>
-				<p (click)="deleteUser()" routerLink="/login">Delete User</p>
-		</div>
+				<a href="#" (click)="yes = 1" style="color:GRAY">update</a>
+				<p class="btn" (click)="deleteUser()">Delete User</p>
 	</div>
 
-	<div class = "container2">
-		<div *ngIf="yes == 1">
+	<div *ngIf="yes == 1" class = "container2">
 		<h1 class = "title">Update Profile</h1>
 			<form>
 				<!-- Username -->
@@ -139,9 +136,9 @@
 		  				<img src="assets/img/myAvatar(5).png" style="width:100px;height:100px">
 					</label>
 				</div>
-				<button type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture)">Submit</button>
+				<br>
+				<button class="btn" type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture)">Submit</button>
 				<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
 			</form>
-		</div>
 	</div>
 </div>
