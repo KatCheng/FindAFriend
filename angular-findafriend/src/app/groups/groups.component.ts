@@ -17,6 +17,7 @@ export class GroupsComponent implements OnInit {
   selectedGroup:any;
   selectedGroupCreator:any;
   inGroup:boolean = false;
+  searchTerm = null;
 
   constructor(private http: HttpClient) { }
 
@@ -55,6 +56,13 @@ export class GroupsComponent implements OnInit {
       this.groups = data;
       console.log(this.groups);
     })
+    console.log("ok we here");
+    if (this.searchTerm != null){
+      this.onKey(this.searchTerm);
+    }
+    if(this.searchTerm == null){
+      this.displayGroups = this.groups;
+    }
   }
 
   onSelect(group:any):void{
@@ -97,10 +105,11 @@ export class GroupsComponent implements OnInit {
 
   /* SEARCH BAR */
   onKey(value:String):void{
+    this.searchTerm = value;
     this.displayGroups = [];
     var notSelected: any = [];
     var notSelected2: any = [];
-
+    console.log("re-checked");
 
     var i:number = 0;
 

@@ -15,7 +15,6 @@ export class GroupDetailComponent implements OnInit {
   // setmembers(val:string){
   //   this.chGroup.emit(val);
   // }
-
   showMembers=null;
   updateSee=null;
 
@@ -57,6 +56,7 @@ export class GroupDetailComponent implements OnInit {
 
   ngOnChange(){
     this.inGroup=this.inGroup;
+    
   }
 
   joinGroup(){
@@ -67,16 +67,18 @@ export class GroupDetailComponent implements OnInit {
 
   deleteGroup(){
     this.http.get("api/deleteGroup/"+this.group.title).subscribe();
-    setTimeout(() => {
-    	window.location.reload();
-    }, 100);
+    // setTimeout(() => {
+    // 	window.location.reload();
+    // }, 10);
   }
 
   updateGroup(event, typeOfGroup, description) {
     this.http.get("api/updateGroup/"+this.group.title +"/"+ description+"/"+typeOfGroup).subscribe();
-    setTimeout(() => {
-    	window.location.reload();
-    }, 100);
+    // setTimeout(() => {
+    // 	window.location.reload();
+    // }, 100);
+    this.group.description=description;
+    this.group.typeOfGroup = typeOfGroup;
   }
 
 }
