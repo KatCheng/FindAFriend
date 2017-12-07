@@ -56,13 +56,8 @@ export class GroupsComponent implements OnInit {
       this.groups = data;
       console.log(this.groups);
     })
-    console.log("ok we here");
-    if (this.searchTerm != null){
-      this.onKey(this.searchTerm);
-    }
-    if(this.searchTerm == null){
-      this.displayGroups = this.groups;
-    }
+
+
   }
 
   onSelect(group:any):void{
@@ -82,6 +77,16 @@ export class GroupsComponent implements OnInit {
     this.selectedGroup = groupA;
 
     this.checkInGroup();
+  }
+
+  removefromList(g){
+    console.log("----------ok-----------");
+    var i:number = 0;
+    for(i ; i < this.displayGroups.length;i++){
+      if (this.displayGroups[i].title == g.title){
+         this.displayGroups.splice(i,1);
+      }
+    } 
   }
 
   checkInGroup(){

@@ -10,7 +10,7 @@
 	<div class="group" *ngFor="let group of displayGroups"
 		[class.selected] = "group === selectedGroup"
 		(click)=onSelect(group)>
-		<div class="group-content">
+		<div class="group-content" >
 			<h3 class="group-title">{{group.title}}</h3>
 			<div class="group-meta">
 				<div class="metas">Created on {{group.timeCreated | date }}</div>
@@ -22,7 +22,7 @@
 
 
 <div id="right" ngif="selectedGroup">
-	<app-group-detail  [inGroup]="inGroup" [group]="selectedGroup" [username]="username"></app-group-detail>
+	<app-group-detail  [inGroup]="inGroup" [group]="selectedGroup" [username]="username" (groupDeleted)="removefromList($event)"></app-group-detail>
 </div>
 
 

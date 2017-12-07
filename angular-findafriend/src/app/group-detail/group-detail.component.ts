@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -11,10 +11,12 @@ export class GroupDetailComponent implements OnInit {
 	@Input() group: any;
   @Input() username:string;
 	@Input() inGroup:boolean;
+  @Output() groupDeleted = new EventEmitter<any>();
   // @Output() chGroup = new EventEmitter<string>();
   // setmembers(val:string){
   //   this.chGroup.emit(val);
   // }
+  ingroup;
   showMembers=null;
   updateSee=null;
 
@@ -50,6 +52,15 @@ export class GroupDetailComponent implements OnInit {
   leaveGroup(){
     this.http.get("api/leaveGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.leaveGroup();});
     this.inGroup=false;
+    let i=0;
+    for(i ; i < this.group.members.length;i++){ 
+      if (this.group.members[i].username == this.username || this.group.members[i] == this.username){
+         this.group.members.splice(i,1);
+      }
+    }
+    console.log("--------------");
+    console.log(this.group.members);
+    // this.checkInGroup();
     // parent.getGroups();
     // $scope.$parent.selectedGroup.members.push(this.username);
   }
@@ -62,6 +73,15 @@ export class GroupDetailComponent implements OnInit {
   joinGroup(){
     this.http.get("api/joinGroup/"+this.group.title +"/"+ this.username+"/").subscribe(result => {console.log("good");}, error => {this.joinGroup();});
     this.inGroup=true;
+    // for (let u of this.group.members){
+    //   if (u.username == this.username){
+    this.group.members.push(this.username);
+    console.log("--------------");
+    console.log(this.group.members);
+
+      // }
+      // this.checkInGroup();
+    // }
     // setmembers(this.username);
   }
 
@@ -70,6 +90,8 @@ export class GroupDetailComponent implements OnInit {
     // setTimeout(() => {
     // 	window.location.reload();
     // }, 10);
+    this.groupDeleted.emit(this.group);
+    this.group = null;
   }
 
   updateGroup(event, typeOfGroup, description) {
@@ -80,6 +102,20 @@ export class GroupDetailComponent implements OnInit {
     this.group.description=description;
     this.group.typeOfGroup = typeOfGroup;
   }
+
+  checkInGroup():boolean{
+    for (let u of this.group.members){
+      if (u.username == this.username || u ==this.username){
+        console.log("gucci");
+        return true;
+      }
+    }
+
+
+
+    return false;  
+  }
+
 
 }
 
