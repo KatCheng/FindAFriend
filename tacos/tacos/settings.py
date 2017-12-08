@@ -37,26 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-# 'django.contrib.sites'
     'findafriend',
     'channels',
     'rest_framework',
     'tacos.newapi',
     'corsheaders',
-    # 'rest_framework.authtoken',
 ]
 
-# REST_FRAMEWORK = {
-# 	'DEFAULT_PERMISSION_CLASSES':[
-# 		'rest_framework.permissions.IsAdminUser',
-# 	],
-# 	#'PAGE_SIZE':10,
-    
-#      'DEFAULT_RENDERER_CLASSES': (
-#         'rest_framework.renderers.JSONRenderer',
-#         'rest_framework.renderers.BrowsableAPIRenderer',
-#     ),
-# }
 
 REST_FRAMEWORK = {
     'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata',
@@ -64,22 +51,16 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-    # 'DEFAULT_PARSER_CLASSES': (
-    #     'rest_framework.parsers.JSONParser',
-    # )
+   
     "DEFAULT_AUTHENTICATION_CLASSES": (
-         # 'rest_framework.authentication.SessionAuthentication',
          'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
          'rest_framework.authentication.TokenAuthentication',
          'rest_framework.authentication.SessionAuthentication',
-        #'rest_framework.authentication.BasicAuthentication'
 
     ), 
     "DEFAULT_PERMISSION_CLASSES": (
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.IsAdminUser',
-        
-        #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     )
 }
 	
@@ -121,23 +102,6 @@ WSGI_APPLICATION = 'tacos.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'tacosdb',
-    #     'USER': 'djangotest',
-    #     'PASSWORD': 'tacos',
-    #     'HOST':'localhost',
-    #     'PORT':'',
-    #     'OPTIONS':{
-            
-    #         'charset': 'utf8mb4',
-    #     },
-    #     'TEST': {
-    #         'CHARSET': 'utf8mb4',
-    #         'COLLATION': 'utf8mb4_unicode_ci',
-    #     }
-
-    # }
 
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -198,14 +162,6 @@ CHANNEL_LAYERS = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ALLOW_HEADERS = (
-#     'x-requested-with',
-#     'content-type',
-#     'accept',
-#     'origin',
-#     'authorization',
-#     'x-csrftoken'
-# )
 
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8000',

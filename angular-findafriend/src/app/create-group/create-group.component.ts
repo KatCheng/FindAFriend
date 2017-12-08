@@ -46,7 +46,6 @@ export class CreateGroupComponent implements OnInit {
 				} else {
 					this.titleError = null;
 				}
-
 				if (createGroupError.description) {
 					this.descriptionError = createGroupError.description;
 				} else {
@@ -72,7 +71,7 @@ export class CreateGroupComponent implements OnInit {
 	}
 
 	ngOnInit() {
-	  //this._authenticationService.login(username,password);
+
 	}
 
 }
