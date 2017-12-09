@@ -21,27 +21,6 @@ export class GroupDetailComponent implements OnInit {
   ngOnInit(){
 
   }
-  // name;
-  // ngOnChanges(changes) {
-  //     // this.childFunction()
-  //     console.log(changes);
-  //     if (changes['group'].currentValue!=undefined)
-  //     if (changes['group'].currentValue.title != undefined){
-  //        let url :string;
-  //         url = "/api/pages/?format=json";
-
-  //         this.http.get(url).subscribe(data => {
-  //           var i:number = 0;
-  //           this.name = data;
-  //           for(i ; i < this.name.length;i++){ 
-  //             if (data[i].title == this.group.title){
-  //               this.group = data[i];
-  //             }
-
-  //           }
-  //         })
-  //     }
-  //   }
 
 
   updateClicked(){
