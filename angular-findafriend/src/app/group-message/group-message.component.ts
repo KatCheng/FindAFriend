@@ -17,7 +17,7 @@ export class GroupMessageComponent {
 	showSelected: boolean;
 	private message;
 
-	
+	// Using ChatService to retrieve chat message form server	
 	constructor(private chatService: ChatService) {
 		this.showSelected = false;
 		
@@ -27,25 +27,28 @@ export class GroupMessageComponent {
 				recipient: msg.recipient,
 				messageContent: msg.message,
 			});
-			console.log("Websocket giving response: "+ msg.message);
+			// Websocket is giving response with the message of msg
 		});
 
 	}
 
+	// Scroll goes down when typing new chats
 	updateScroll(){
 		var e = document.getElementById("historyBox");
 		e.scrollTop = e.scrollHeight;
 	}
 
+	// Detect change of the different group selection
 	ngOnChanges(){
 		this.showSelected = false;
 		this.messages = [];
-		console.log("selected another group");
 	}
 	
+	// openChat button is clicked.
+	// Chat is opened and shows the chat history
 	showChat(){
+	// First message = requesting for the connection is sent
     	this.showSelected = true;
-		console.log("group name: " + this.group.title);
 		this.messages = [];
 		this.message = {
 			sender: this.username,
@@ -53,8 +56,6 @@ export class GroupMessageComponent {
 			message: "connecting",
 			isRequest: "True"
 		}
-
-		console.log('new request from client to websocket: ', this.message);
 		this.chatService.messages.next(this.message);
 	}
 
@@ -73,7 +74,7 @@ export class GroupMessageComponent {
 				isRequest: "False"
 			}
 		}
-		console.log('new message from client to websocket: ', this.message);
+		// Client is sending new message to websocket
 		this.chatService.messages.next(this.message);
 		this.message.message = '';
 		document.forms["chatContent"]["textbox"].value = "";
