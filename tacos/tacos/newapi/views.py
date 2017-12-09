@@ -26,7 +26,7 @@ from django.core.exceptions import PermissionDenied
 from findafriend.models import Page, UserProfile, Chat
 
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt 
+#from django.views.decorators.csrf import csrf_exempt 
 from rest_framework.response import Response
 from tacos.newapi.permissions import IsOwnerOrReadOnly
 

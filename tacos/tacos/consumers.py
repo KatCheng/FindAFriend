@@ -25,7 +25,6 @@ def ws_msg(msg):
     if(data['isRequest'] == 'True'):
         if(Chat.objects.filter(recipient__in=Page.objects.filter(title=data['recipient'])))is not None:
             # query histroy
-            print(data['isRequest'])
             for c in Chat.objects.filter(recipient__in=Page.objects.filter(title=data['recipient'])).order_by('timestamp'):
                 chatJSON = {}
                 chatJSON["sender"] = c.sender.username
