@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from rest_framework import viewsets
 from tacos.newapi.serializers import UserSerializer, UserCreateSerializer, UserLoginSerializer, ProfileSerializer, PageCreateSerializer
-from tacos.newapi.serializers import PageSerializer, ChatSerializer, ChatRoomSerializer
+from tacos.newapi.serializers import PageSerializer, ChatSerializer
 from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework import generics
@@ -23,7 +23,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User 
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
-from findafriend.models import Page, UserProfile, Chat, ChatRoom
+from findafriend.models import Page, UserProfile, Chat
 from findafriend.forms import NewPageForm, UserDeleteForm, ChatForm
 
 from django.http import HttpResponse, JsonResponse
@@ -78,17 +78,6 @@ class DeleteGroupSet(viewsets.ModelViewSet):
 		print("----------------------removed group-----------------------------------------")
 		return queryset
 
-# class DeleteUserSet(viewsets.ModelViewSet):
-# 	serializer_class = UserSerializer
-# 	queryset = User.objects.all()
-# 	lookup_field = 'username'
-# 	permission_classes = [AllowAny]
-
-# 	def get_queryset(self):
-# 		queryset = User.objects.all().filter(username= self.kwargs['username'])
-# 		queryset[0].delete()
-# 		print("----------------------removed user-----------------------------------------")
-		return queryset
 
 class UpdateGroupSet(viewsets.ModelViewSet):
 	serializer_class = PageSerializer
@@ -134,15 +123,6 @@ class UserLoginAPIView(APIView):
 			return Response(new_data, status=HTTP_200_OK)
 		else:
 			return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-
-	# @app.after_request
-	# def allow_cross_domain(response: flask.Response):
-	#    	"""Hook to set up response headers."""
-	#     response.headers['Access-Control-Allow-Origin'] = '*'
-	#     response.headers['Access-Control-Allow-Headers'] = 'content-type'
-	#     return response
-
-
 
 class PageViewSet(viewsets.ModelViewSet):
 
@@ -195,13 +175,11 @@ class UpdateProfile(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		queryset = UserProfile.objects.all().filter(user= self.kwargs['user'])
-		#print(queryset[0].username)
 		queryset.update(first_name=self.kwargs['first_name'])
 		queryset.update(last_name=self.kwargs['last_name'])	
 		queryset.update(hometown=self.kwargs['hometown'])
 		queryset.update(university=self.kwargs['university'])	
 		queryset.update(picture=self.kwargs['picture'])
-		#print("--------"+queryset[0].first_name+"---------updated group-----------"+queryset[0].typeOfGroup+"------------------")
 		return queryset
 
 class DeleteUser(viewsets.ModelViewSet):
@@ -217,29 +195,13 @@ class DeleteUser(viewsets.ModelViewSet):
 		return queryset
 
 
-# class ProfileUpdateAPIView(UpdateAPIView):
-# 	queryset = UserProfile.objects.all()
-# 	serializer_class = ProfileUpdateSerializer
-# 	#lookup_field = 'user'
-
-	# def get_object(self):
-	# 	return UserProfile.objects.get(user=self.request.user)
-		
-
-
-
 class ChatViewSet(viewsets.ModelViewSet):
 
 	queryset = Chat.objects.all().order_by('-timestamp')
 	serializer_class = ChatSerializer
 	lookup_field = 'recipient'
 
-
-class ChatRoomViewSet(viewsets.ModelViewSet):
-
-	queryset = ChatRoom.objects.all()
-	serializer_class = ChatRoomSerializer
-
+'''
 
 class PageRetrieve(generics.RetrieveAPIView):
 	queryset = Page.objects.all()
@@ -268,7 +230,7 @@ class PageSearch(generics.ListAPIView):
 				Q(content_icontains=query)
 				).distinct()
 		return queryset_list
-
+'''
 
 
 

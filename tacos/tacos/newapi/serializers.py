@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from findafriend.models import Page, UserProfile, Chat, ChatRoom 
+from findafriend.models import Page, UserProfile, Chat 
 from rest_framework.serializers import ( CharField, EmailField, HyperlinkedIdentityField,
     SerializerMethodField, ValidationError )
 from django.contrib.auth.validators import UnicodeUsernameValidator
@@ -15,20 +15,11 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-	#user = serializers.CharField(source='user.username')
-	#user = serializers.CharField(unique=False)
-	# username = serializers.CharField(source='user.username')
-	# first_name = serializers.CharField(source='user.first_name')
-	# last_name = serializers.CharField(source='user.last_name')
 	class Meta:
 		model = UserProfile
 		#fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
 		fields = ('user', 'first_name', 'last_name', 'university', 'hometown', 'picture')
 
-	# def update(self, instance, data):
-	# 	instance.user = data.get('user', instance.user)
-	# 	instance.save()
-	# 	return instance
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	profile = ProfileSerializer(many=True)
@@ -38,25 +29,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 		# fields = ('url', 'username', 'email', 'groups')
 		fields = ('url', 'username', 'email', 'groups', 'profile')
 
-	# def update(self, instance, validated_data):
-	# 	if validated_data.get('profile'):
-	# 		profile_data = validated_data.get('profile')
-	# 		profile_serializer = ProfileSerializer(data=profile_data)
-
-	# 		if profile_serializer.is_valid():
-	# 			profile = profile_serializer.update(instance=instance.profile, validated_data=profile_data)
-	# 			validated_data['profile'] = profile
-		
-	# 	return super(UserSerializer, self).update(instance, validated_data)
-
-
-
-		#def update()
-		# extra_kwargs = {
-  #           'username': {
-  #               'validators': [UnicodeUsernameValidator()],
-  #           }
-  #       }
 
 
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
@@ -145,10 +117,6 @@ class UserLoginSerializer(serializers.HyperlinkedModelSerializer):
 	            return data
 	    raise ValidationError("Invalid Credentials")
 
-# class PageSerializer(serializers.HyperlinkedModelSerializer):
-# 	class Meta:
-# 		model = Page
-# 		fields = ('title', 'creator', 'sizeOfGroup', 'description', 'timeCreated', 'members', 'typeOfGroup)
 
 class PageSerializer(serializers.HyperlinkedModelSerializer):
     members = UserSerializer(read_only=True, many=True)
@@ -183,11 +151,6 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
         return validated_data
 
 
-# class ChatSerializer(serializers.HyperlinkedModelSerializer):
-# 	class Meta:
-# 		model = Chat
-# 		fields = ('senderName', 'recipientName', 'messageContent', 'timestamp')
-
 class PageTitleSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Page
@@ -204,10 +167,4 @@ class ChatSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Chat
 		fields = ('sender', 'recipient', 'messageContent', 'timestamp')
-
-
-class ChatRoomSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = ChatRoom
-		fields = ('chatters')
 
