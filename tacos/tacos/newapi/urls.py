@@ -2,16 +2,12 @@ from django.conf.urls import url
 from django.conf.urls import include
 from django.contrib import admin
 from django.contrib.auth import views
-#from findafriend.views import home, signup, deleteUser, chatDirect
 from rest_framework import routers
 from .views import ProfileViewSet, ProfileAPIView, UserCreateAPIView, UserLoginAPIView, PageCreateAPIView
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import ProfileUpdateView
 
 urlpatterns = [
-#	url(r'^api/pageSearch/$', PageSearch.as_view(), name='list'),
-#	url(r'^api/pageDetail/$', PageDetail.as_view(), name='detail'),
-#	url(r'^api/retrieve/(?P<title>[\w|\W]+)/$', PageRetrieve.as_view(), name='retrieve'),
 	url(r'^api/profile/update/$', ProfileUpdateView.as_view(), name='update'),
 	url(r'^api/profiles/$', ProfileAPIView.as_view(), name='profiles'),
 	url(r'^api/login/$', UserLoginAPIView.as_view(), name='login'),
