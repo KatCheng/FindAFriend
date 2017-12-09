@@ -14,12 +14,6 @@ export class LoginComponent implements OnInit {
 	req: any;
 	title: string = "Login";
 	endpoint: string = "http://127.0.0.1:8000/api/login/";
-	usernameError: [any];
-	passwordError: [any];
-	nonFieldError: [any];
-	error: string;
-
-	// su: number = 0;
 
   constructor(
   	public _router: Router,
@@ -28,7 +22,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   	// This will reset the login status
-  	//console.log("fsfgfsgbs");
   	this._authenticationService.logout();
   };
 
@@ -37,12 +30,9 @@ export class LoginComponent implements OnInit {
 		.subscribe(result => {
 			if (result === true) {
 				// login successful
-				// this._authenticationService.sendMessage();
-				//console.log("fsfgfsgbs")
 				this._router.navigate(['']);
 			} else {
 				// login failed
-				this.error = 'Username or password is incorrect';
 			}
 		});
 
@@ -54,7 +44,6 @@ export class LoginComponent implements OnInit {
 	};
 
 	ngOnDestroy(){
-		// this.req.unsubscribe();
 	}
 
 }

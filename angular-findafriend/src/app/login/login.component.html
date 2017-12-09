@@ -21,20 +21,23 @@
 			</div>
 			</div>
       <br>
-      <div class="login-elements">
-			<label for="password">Password</label>
-			<br>
-			<input type="password" #password>
-			<div style="margin-top: 10px;" *ngIf="passwordError">
-				<span *ngFor="let error of passwordError">
-					{{ error }}
-				</span>
-			</div>
-			<div style="margin-top: 10px;" *ngIf="nonFieldError">
-				<span *ngFor="let error of nonFieldError">
-					{{ error }}
-				</span>
-			</div>
+      		<div class="login-elements">
+				<label for="password">Password</label>
+				<br>
+				<input type="password" #password>
+				<div style="margin-top: 10px;" *ngIf="passwordError">
+					<span *ngFor="let error of passwordError">
+						{{ error }}
+					</span>
+				</div>
+				<div *ngIf="er == 1">
+					<p>{{error}}</p>
+				</div>
+				<div style="margin-top: 10px;" *ngIf="nonFieldError">
+					<span *ngFor="let error of nonFieldError">
+						{{ error }}
+					</span>
+				</div>
 			</div>
 			<br>
 			<button class="btn">Submit</button>

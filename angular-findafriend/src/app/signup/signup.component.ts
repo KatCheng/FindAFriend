@@ -37,6 +37,7 @@ export class SignupComponent implements OnInit {
 			},
 			error => {
 				let registerError = error.json();
+				console.log(registerError);
 
 				if (registerError.username) {
 					this.usernameError = registerError.username;

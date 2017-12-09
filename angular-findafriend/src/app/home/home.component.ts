@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   groupsView:boolean = null;
   creategroupsView: boolean = null;
 
-  // @Input() username:string;
   users :any = [];
   userProfile: any = [];
   num: number;
@@ -130,10 +129,6 @@ export class HomeComponent implements OnInit {
 
   deleteUser(){
     this.http.get("api/deleteUser/"+this.username).subscribe();
-    setTimeout(() => {
-      window.location.reload();
-      this._router.navigate(['login']);
-    }, 100);
   }
 
 
