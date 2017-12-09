@@ -21,10 +21,10 @@
 					<p>Last name: {{ userProfile.profile[this.userProfile.profile.length-1].last_name }}</p>
 					<p>University: {{ userProfile.profile[this.userProfile.profile.length-1].university }}</p>
 					<p>Hometown: {{ userProfile.profile[this.userProfile.profile.length-1].hometown }}</p>
-				<a href="#" (click)="yes = 1" style="color:GRAY">update</a>
-				<p class="btn" (click)="deleteUser()" routerLink="/login">Delete User</p>
+			</div>
+			<a href="#" (click)="yes = 1" style="color:GRAY">update</a>
+			<p class="btn" (click)="deleteUser()" routerLink="/login">Delete User</p>
 	</div>
-
 	<div *ngIf="yes == 1" class = "container2">
 		<h1 class = "title">Update Profile</h1>
 			<form>
