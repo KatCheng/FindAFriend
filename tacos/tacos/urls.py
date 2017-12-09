@@ -25,13 +25,6 @@ router.register(r'api/deleteUser/(?P<user>.+)', views.DeleteUser)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-#    url(r'^accounts/signup/$', signup, name='signup'),
-#    url(r'^accounts/login/$', views.login, name='login'),
-#    url(r'^accounts/logout/$', views.logout, name='logout'),
-#    url(r'^$', home, name='home'),
-#    url(r'',include('findafriend.urls')),
-#    url(r'^accounts/delete/$', deleteUser, name='delete'),
-#    url(r'^chat/(?P<recipient>[\w-]+)/$', chatDirect, name='chat'),
     url(r'', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'', include('tacos.newapi.urls')),

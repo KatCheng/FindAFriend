@@ -17,7 +17,6 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = UserProfile
-		#fields = ('user', 'first_name', 'last_name', 'university', 'hometown')
 		fields = ('user', 'first_name', 'last_name', 'university', 'hometown', 'picture')
 
 
@@ -26,7 +25,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 	
 	class Meta:
 		model = User
-		# fields = ('url', 'username', 'email', 'groups')
 		fields = ('url', 'username', 'email', 'groups', 'profile')
 
 
@@ -72,11 +70,10 @@ class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
 	            email = email
 	        )
 	    user_obj.set_password(password)
-	    # user_obj.active = False
 	    # send email activation
 	    user_obj.save()
 	    payload = jwt_payload_handler(user_obj)
-	    token = jwt_encode_handler(payload) # token = CharField(allow_blank=True, read_only=True)
+	    token = jwt_encode_handler(payload) 
 	    validated_data['token'] = token
 	    return validated_data
 
@@ -112,7 +109,7 @@ class UserLoginSerializer(serializers.HyperlinkedModelSerializer):
 	            data['username'] = user_obj.username
 	            # data['email'] = user_obj.email
 	            payload = jwt_payload_handler(user_obj)
-	            token = jwt_encode_handler(payload) # token = CharField(allow_blank=True, read_only=True)
+	            token = jwt_encode_handler(payload) 
 	            data['token'] = token
 	            return data
 	    raise ValidationError("Invalid Credentials")
