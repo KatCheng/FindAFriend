@@ -8,7 +8,6 @@
 	</ul>
 </div>
 <app-groups *ngIf="groupsView" [username]="username"> </app-groups>
-<!-- <app-users *ngIf="usersView" [username]="username"> </app-users> -->
 <app-create-group *ngIf="creategroupsView" [username]="username"> </app-create-group>
 
 
@@ -16,98 +15,54 @@
 	<div *ngIf="yes == 0" class = "container1">
 		  <h1 class = "title">{{ userProfile.username }}</h1>
 			<img class="profile-pic" src="assets/img/{{ picture }}" alt="{{ username }}" width="200">
-
-		<!--		<p>Username: {{ userProfile.username }}</p>  -->
 			<div class = "elements">
 					<p>Email: {{ userProfile.email }}</p>
-			<!--		<li>{{ userProfile.url }}</li> -->
 					<p>First name: {{ userProfile.profile[this.userProfile.profile.length-1].first_name }}</p>
 					<p>Last name: {{ userProfile.profile[this.userProfile.profile.length-1].last_name }}</p>
 					<p>University: {{ userProfile.profile[this.userProfile.profile.length-1].university }}</p>
 					<p>Hometown: {{ userProfile.profile[this.userProfile.profile.length-1].hometown }}</p>
-			<!--		<p>{{ num }}</p> -->
 			</div>
-				<a href="#" (click)="yes = 1" style="color:GRAY">update</a>
-				<p class="btn" (click)="deleteUser()">Delete User</p>
+			<a href="#" (click)="yes = 1" style="color:GRAY">update</a>
+			<p class="btn" (click)="deleteUser()" routerLink="/login">Delete User</p>
 	</div>
-
 	<div *ngIf="yes == 1" class = "container2">
 		<h1 class = "title">Update Profile</h1>
 			<form>
-				<!-- Username -->
-		<!-- 		<div class="form-group">
-					<label>Email Address</label>
-					<input type="text" #email>
-					<p style="color: #636c72; margin: auto;"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></p>
-					<div style="margin-top: 10px;" *ngIf="usernameError">
-						<span *ngFor="let error of usernameError">
-							{{ error }}
-						</span>
-					</div>
-				</div> -->
-		<!-- 		<div class="form-group">
-					<label class="form-label" for="password">Password</label>
-					<input type="password" #password class="form-control" id="password" placeholder="Password">
-					<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
-						<span *ngFor="let error of passwordError">
-							{{ error }}
-						</span>
-					</div>
-				</div> -->
-				<!-- Email -->
 				<div class="form-group">
 				<br>
 					<label>First Name</label>
 					<br>
 					<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].first_name }}" #first_name>
-		<!-- 			<div style="margin-top: 10px;" *ngIf="emailError">
-						<span *ngFor="let error of emailError">
-							{{ error }}
-						</span>
-					</div> -->
 				</div>
 				<br>
-				<!-- Confirm email -->
+
 				<div class="form-group">
 					<label>Last Name</label>
 					<br>
 					<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].last_name }}" #last_name>
-		<!-- 			<div style="margin-top: 10px;" *ngIf="email2Error">
-						<span *ngFor="let error of email2Error">
-							{{ error }}
-						</span>
-					</div> -->
 				</div>
 				<br>
-				<!-- Password -->
+
 				<div class="form-group">
 					<label class="form-label">Hometown</label>
 					<br>
 					<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].hometown }}" #hometown>
-		<!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
-						<span *ngFor="let error of passwordError">
-							{{ error }}
-						</span>
-					</div> -->
+
 				</div>
 				<br>
 				<div class="form-group">
 					<label class="form-label">University</label>
 					<br>
 					<input type="text" value="{{ userProfile.profile[this.userProfile.profile.length-1].university }}" #university>
-		<!-- 			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
-						<span *ngFor="let error of passwordError">
-							{{ error }}
-						</span>
-					</div> -->
+
 				</div>
 				<div class="form-group">
-		<!--			<label class="form-label">Picture Number</label> -->
+
 		      <p> Profile Picture</p>
 					<label>
 		  				<input type="radio" name="picture-num" value="0" checked *ngIf="num == 0" cli (click)="num = 0">
 		  				<input type="radio" name="picture-num" value="0" *ngIf="num != 0" cli (click)="num = 0">
-		  				<img src="assets/img/myAvatar.png" style="width:100px;height:100px">
+		  				<img src="assets/img/myAvatar(0).png" style="width:100px;height:100px">
 					</label>
 					<label>
 		  				<input type="radio" name="picture-num" value="0"  checked *ngIf="num == 1" cli (click)="num = 1">
@@ -138,7 +93,7 @@
 				</div>
 				<br>
 				<button class="btn" type="submit" (click)="yes = 0" (click)="updateProfile($event, first_name.value, last_name.value, hometown.value, university.value, picture)">Submit</button>
-				<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
+				
 			</form>
 	</div>
 </div>

@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   groupsView:boolean = null;
   creategroupsView: boolean = null;
 
-  // @Input() username:string;
   users :any = [];
   userProfile: any = [];
   num: number;
@@ -82,7 +81,6 @@ export class HomeComponent implements OnInit {
   }
 
   updateProfile(event, first_name, last_name, hometown, university, picture) {
-    console.log(this.userProfile.url.substring(this.userProfile.url.length-14, this.userProfile.url.length-13))
     if(first_name == '') {
       first_name = "None";
     }
@@ -98,7 +96,7 @@ export class HomeComponent implements OnInit {
 
     switch (this.num) {
       case 0:
-        this.picture = "myAvatar.png";
+        this.picture = "myAvatar(0).png";
         break;
       case 1:
         this.picture = "myAvatar(1).png";
@@ -130,10 +128,6 @@ export class HomeComponent implements OnInit {
 
   deleteUser(){
     this.http.get("api/deleteUser/"+this.username).subscribe();
-    setTimeout(() => {
-      window.location.reload();
-      this._router.navigate(['login']);
-    }, 100);
   }
 
 
@@ -150,7 +144,7 @@ export class HomeComponent implements OnInit {
 
         switch (this.num) {
           case 0:
-            this.picture = "myAvatar.png";
+            this.picture = "myAvatar(0).png";
             break;
           case 1:
             this.picture = "myAvatar(1).png";

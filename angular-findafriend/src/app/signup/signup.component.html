@@ -11,12 +11,12 @@
   <h1 class = "title">Registration</h1>
 
 	<form (submit)="signup($event, username.value, email.value, email2.value, password.value)">
-		<!-- Username -->
+
 		<div class="register">
 		  <br>
 			<label>Username</label>
 			<br>
-			<input type="text" #username>
+			<input type="text" #username placeholder="Username">
 			<p style="color: #636c72; margin: auto;"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></p>
 			<div style="margin-top: 10px;" *ngIf="usernameError">
 				<span *ngFor="let error of usernameError">
@@ -24,37 +24,38 @@
 				</span>
 			</div>
 		</div>
-		<!-- Email -->
+
 		<div class="register">
 		  <br>
 			<label>Email Address</label>
 			<br>
-			<input type="text" #email>
+			<input type="text" #email placeholder="Email">
 			<div style="margin-top: 10px;" *ngIf="emailError">
 				<span *ngFor="let error of emailError">
 					{{ error }}
 				</span>
 			</div>
 		</div>
-		<!-- Confirm email -->
+
+
 		<div class="register">
 		  <br>
 			<label>Confirm Email</label>
 			<br>
-			<input type="text" #email2>
+			<input type="text" #email2 placeholder="Email">
 			<div style="margin-top: 10px;" *ngIf="email2Error">
 				<span *ngFor="let error of email2Error">
 					{{ error }}
 				</span>
 			</div>
 		</div>
-		<!-- Password -->
+
 		<div class="register">
 		  <br>
 			<label class="form-label" for="password">Password</label>
 			<br>
-			<input type="password" #password class="form-control" id="password" placeholder="Password">
-			<div style="margin-top: 10px;" *ngIf="passwordError" class="alert alert-danger" role="alert">
+			<input type="password" #password placeholder="Password">
+			<div style="margin-top: 10px;" *ngIf="passwordError">
 				<span *ngFor="let error of passwordError">
 					{{ error }}
 				</span>
@@ -64,10 +65,6 @@
 		<br>
 		<button type="submit">Submit</button>
 		</div>
-		<!-- <a class="float-right" [routerLink]="['/login']">Click here to login</a> -->
+
 	</form>
 </div>
-<!-- </div> -->
-<!-- <div *ngIf="su == 1">
-	<app-login></app-login>
-</div> -->

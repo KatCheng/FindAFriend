@@ -14,7 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 const appRoutes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard]},
 	{ path: 'login', component: LoginComponent},
-  { path: 'signup', component: SignupComponent},
+  	{ path: 'signup', component: SignupComponent},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
@@ -25,5 +25,3 @@ const appRoutes: Routes = [
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
-
-//export const routing = RouterModule.forRoot(appRoutes);

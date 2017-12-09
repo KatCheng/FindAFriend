@@ -24,12 +24,9 @@ from django.contrib.auth.models import User
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from findafriend.models import Page, UserProfile, Chat
-from findafriend.forms import NewPageForm, UserDeleteForm, ChatForm
 
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt 
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+#from django.views.decorators.csrf import csrf_exempt 
 from rest_framework.response import Response
 from tacos.newapi.permissions import IsOwnerOrReadOnly
 
@@ -48,7 +45,6 @@ class JoinGroupSet(viewsets.ModelViewSet):
 		lookup_field = 'title'
 		userq = User.objects.all().filter(username = self.kwargs['username'])
 		queryset[0].members.add(userq[0])
-		print("-------------------------join------------------------------------------")
 		return queryset
 
 
@@ -63,7 +59,6 @@ class LeaveGroupSet(viewsets.ModelViewSet):
 		lookup_field = 'title'
 		userq = User.objects.all().filter(username = self.kwargs['username'])
 		queryset[0].members.remove(userq[0])
-		print("-------------------------leave------------------------------------------")
 		return queryset
 
 class DeleteGroupSet(viewsets.ModelViewSet):
@@ -75,7 +70,6 @@ class DeleteGroupSet(viewsets.ModelViewSet):
 	def get_queryset(self):
 		queryset = Page.objects.all().filter(title= self.kwargs['group'])
 		queryset[0].delete()
-		print("----------------------removed group-----------------------------------------")
 		return queryset
 
 
@@ -89,7 +83,6 @@ class UpdateGroupSet(viewsets.ModelViewSet):
 		queryset = Page.objects.all().filter(title= self.kwargs['group'])
 		queryset.update(description=self.kwargs['description'])
 		queryset.update(typeOfGroup=self.kwargs['type'])		
-		print("--------"+queryset[0].description+"---------updated group-----------"+queryset[0].typeOfGroup+"------------------")
 		return queryset
 
 
@@ -116,7 +109,6 @@ class UserLoginAPIView(APIView):
 		if serializer.is_valid(raise_exception=True):
 			new_data = serializer.data
 			account = User.objects.get(username=data['username'])
-			#account = authenticate(username=data['username'])
 			account.backend = 'django.contrib.auth.backends.ModelBackend'
 			if account.is_authenticated:
 				print("au")
@@ -191,7 +183,6 @@ class DeleteUser(viewsets.ModelViewSet):
 	def get_queryset(self):
 		queryset = User.objects.all().filter(username= self.kwargs['user'])
 		queryset[0].delete()
-		print("----------------------removed group-----------------------------------------")
 		return queryset
 
 
@@ -200,38 +191,4 @@ class ChatViewSet(viewsets.ModelViewSet):
 	queryset = Chat.objects.all().order_by('-timestamp')
 	serializer_class = ChatSerializer
 	lookup_field = 'recipient'
-
-'''
-
-class PageRetrieve(generics.RetrieveAPIView):
-	queryset = Page.objects.all()
-	serializer_class = PageSerializer
-	lookup_field = 'title'
-
-
-class PageDetail(generics.RetrieveUpdateDestroyAPIView):
-
-	queryset = Page.objects.all()
-	serializer_class = PageSerializer
-
-
-class PageSearch(generics.ListAPIView):
-	queryset = Page.objects.all()
-	serializer_class = PageSerializer
-	lookup_field = 'title'
-
-	def get_queryset(self, *args, **kwargs):
-		#queryset_list = super(PageSearch, self).get_queryset(*args, **kwargs)
-		queryset_list = Page.objects.all()
-		query = self.request.GET.get("q")
-		if query:
-			queryset_list = queryset_list.filter(
-				Q(title_icontains=query)|
-				Q(content_icontains=query)
-				).distinct()
-		return queryset_list
-'''
-
-
-
 

@@ -7,16 +7,12 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 import { contentHeaders } from './headers';
-// export const contentHeaders = new Headers();
-// contentHeaders.append('Accept', 'application/json');
-// contentHeaders.append('Content-Type', 'application/json');
 
 
 @Injectable()
 export class AuthenticationService {
 
-	public endpoint: string = "http://127.0.0.1:8000/api/login/";
-//};
+  public endpoint: string = "http://127.0.0.1:8000/api/login/";
   public token: string;
   public username: string;
   private subject = new Subject<any>();
@@ -61,35 +57,6 @@ export class AuthenticationService {
                 }
             });
     }
-
-    // public token: string;
-
-    // constructor(private http: Http) {
-    //     // set token if saved in local storage
-    //     var cUser = JSON.parse(localStorage.getItem('cUser'));
-    //     this.token = cUser && cUser.token;
-    // }
-
-    // login(username: string, password: string): Observable<boolean> {
-    //     return this.http.post('/api/login/', JSON.stringify({ username: username, password: password }))
-    //         .map((response: Response) => {
-    //             // login successful if there's a jwt token in the response
-    //             let token = response.json() && response.json().token;
-    //             if (token) {
-    //                 // set token property
-    //                 this.token = token;
-
-    //                 // store username and jwt token in local storage to keep user logged in between page refreshes
-    //                 localStorage.setItem('cUser', JSON.stringify({ username: username, token: token }));
-
-    //                 // return true to indicate successful login
-    //                 return true;
-    //             } else {
-    //                 // return false to indicate failed login
-    //                 return false;
-    //             }
-    //         });
-    // }
 
     // for log out
     logout(): void {
