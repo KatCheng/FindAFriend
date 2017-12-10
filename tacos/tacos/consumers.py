@@ -1,5 +1,5 @@
 from channels import Channel, Group
-from channels.sessions import channel_session, enforce_ordering
+from channels.sessions import channel_session
 from channels.auth import channel_session_user, channel_session_user_from_http
 from findafriend.models import Page, Chat
 from django.contrib.auth.models import User
