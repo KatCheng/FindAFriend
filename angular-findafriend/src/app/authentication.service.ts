@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 
 import { contentHeaders } from './headers';
 
-
 @Injectable()
 export class AuthenticationService {
 
@@ -67,23 +66,4 @@ export class AuthenticationService {
         this.token = null;
         localStorage.removeItem('cUser');
     }
-
-    // obtain the login status
-     getLoginStatus(): Observable<any> {
-        let cUser = JSON.parse(localStorage.getItem('cUser'));
-        if (cUser) {
-            if (tokenNotExpired(undefined, cUser['token'])) {
-                this.subject.next({
-                        username: cUser['username'],
-                        token: cUser['token']
-                });
-            } else {
-                this.subject.next();
-            };
-        } else {
-            this.subject.next();
-        };
-        return this.subject.asObservable();
-    }
-
 }
