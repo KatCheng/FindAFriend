@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
   alert(msg?: string)      { window.alert(msg); }
   canSave=true;
 
-  /* GET GROUPS FROM BACKEND */
+  /* GET USERS FROM BACKEND */
   getUser():void{
 
     let url :string;
