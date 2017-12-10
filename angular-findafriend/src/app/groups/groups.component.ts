@@ -68,7 +68,6 @@ export class GroupsComponent implements OnInit {
     this.displayGroups = [];
     var notSelected: any = [];
     var notSelected2: any = [];
-    console.log(this.groups[1].creator);
     var i:number = 0;
 
     for(i ; i < this.groups.length;i++){         //Search for title match first
