@@ -1,5 +1,6 @@
 <div class="detail" *ngIf="group">
 
+	<!-- Headers of group info -->
   <h2>"{{ group.title }}"</h2>
   <h3> By {{group.creator}} </h3>
   <br>
@@ -15,6 +16,7 @@
 
 	<p > Description: {{group.description}}</p>
 
+	<!-- Join and Leave depending on if in group and not creator (creator cannot leave)-->
 	<div *ngIf="checkInGroup()==true  && group.creator!=username">
 		<button (click)="leaveGroup()">Leave Group</button>
 	</div>
@@ -24,7 +26,7 @@
 	</div>
 
 	
-
+	<!-- If creator -->
 	<div *ngIf="group.creator==username">
 		<button *ngIf="updateSee==null" (click)="updateClicked()">Update Group</button>
 		<button *ngIf="updateSee" (click)="updateClicked()">Close Update Group</button>
@@ -32,32 +34,22 @@
 		
 
 		<form *ngIf= "updateSee" (submit)="updateGroup($event, typeOfGroup.value, description.value)">
-			<!-- Type of group -->
-	    <div class="form-group">
+		
+			<!-- Take in options for updating -->
+		    <div class="form-group">
 				<label>Type of Group</label>
-			  <select name="type_of_group" #typeOfGroup>
-	        <option value="Sport">Sport</option>
-	        <option value="Academic">Academic</option>
-	        <option value="Business">Business</option>
-	        <option value="Other">Other</option>
-	      </select>
-	      <div style="margin-top: 10px;" *ngIf="typeOfGroupError">
-					<span *ngFor="let error of typeOfGroupError">
-						{{ error }}
-					</span>
-				</div>
-	    </div>
+				<select name="type_of_group" #typeOfGroup>
+			        <option value="Sport">Sport</option>
+			        <option value="Academic">Academic</option>
+			        <option value="Business">Business</option>
+			        <option value="Other">Other</option>
+		    	</select>
+		    </div>
 
 
-			<!-- Description -->
 			<div class="form-group">
 				<label>Description</label>
 				<input type="text" #description>
-				<div style="margin-top: 10px;" *ngIf="descriptionError">
-					<span *ngFor="let error of descriptionError">
-						{{ error }}
-					</span>
-				</div>
 			</div>
 
 			<button type="submit">Submit</button>
@@ -65,7 +57,7 @@
 
 	</div>
 
-
+	<!-- If in group show this -->
 	<div *ngIf="checkInGroup()==true">
 		<app-group-message [group]="group" [username]="username"></app-group-message>
 	</div>
