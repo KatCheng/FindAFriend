@@ -15,14 +15,14 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class HomeComponent implements OnInit {
 
-  public _router: Router;
+  public _router: Router; 
   public _authenticationService: AuthenticationService;
   username: string;
-  usersView:boolean = true;
+  usersView:boolean = true; 
   groupsView:boolean = null;
   creategroupsView: boolean = null;
 
-  users :any = [];
+  users :any = []; 
   userProfile: any = [];
   num: number;
   picture: string;
@@ -64,10 +64,7 @@ export class HomeComponent implements OnInit {
     this.creategroupsView=true;
   }
 
-  alert(msg?: string)      { window.alert(msg); }
-  canSave=true;
-
-  /* GET GROUPS FROM BACKEND */
+  /* GET USERS FROM BACKEND */
   getUser():void{
 
     let url :string;
