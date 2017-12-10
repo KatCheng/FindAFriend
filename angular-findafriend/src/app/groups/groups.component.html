@@ -1,9 +1,8 @@
-
 <div class="container">
 	<h2>Groups</h2>
 	<div>
 		<div class="search">
-			<input #box (keyup)="onKey(box.value)" type="text" class="searchTerm" placeholder="What group are you into?" id="searchInput">
+			<input #box (keyup)="onKey(box.value)" type="text" class="searchTerm" placeholder="What are you into?" id="searchInput">
  		</div>
 	</div>
 
@@ -11,10 +10,6 @@
 		[class.selected] = "group === selectedGroup"
 		(click)=onSelect(group)>
 		<div class="group-content" >
-<!-- 		<div *ngIf="group.typeOfGroup == 'Sport'" class="group-content-Sport" >
-		<div *ngIf="group.typeOfGroup == 'Academic'" class="group-content-Academic" >
-		<div *ngIf="group.typeOfGroup == 'Business'" class="group-content-Business" >
-		<div *ngIf="group.typeOfGroup == 'Other'" class="group-content-Other" > -->
 			<h3 class="group-title-sport" *ngIf="group.typeOfGroup == 'Sport'">{{group.title}}</h3>
 			<h3 class="group-title-academic" *ngIf="group.typeOfGroup == 'Academic'">{{group.title}}</h3>
 			<h3 class="group-title-business" *ngIf="group.typeOfGroup == 'Business'">{{group.title}}</h3>
@@ -29,24 +24,5 @@
 
 
 <div id="right" ngif="selectedGroup">
-	<app-group-detail  [inGroup]="inGroup" [group]="selectedGroup" [username]="username" (groupDeleted)="removefromList($event)"></app-group-detail>
+	<app-group-detail [group]="selectedGroup" [username]="username" (groupDeleted)="removefromList($event)"></app-group-detail>
 </div>
-
-
-<!--<ul class="groups" *ngFor="let group of groups">
-  <li>
-  	{{group.title}}
-  </li>
-  <li>
-  	{{group.creator}}
-  </li>
-  <li>
-  	{{group.sizeOfGroup}}
-  </li>
-  <li>
-  	{{group.description}}
-  </li>
-  <li>
-  	{{group.timeCreated | date }}
-  </li>
-</ul>-->

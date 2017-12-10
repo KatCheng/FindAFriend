@@ -15,11 +15,11 @@
 
 	<p > Description: {{group.description}}</p>
 
-	<div *ngIf="inGroup==true  && group.creator!=username">
+	<div *ngIf="checkInGroup()==true  && group.creator!=username">
 		<button (click)="leaveGroup()">Leave Group</button>
 	</div>
 	
-	<div *ngIf="inGroup==false && group.creator!=username">
+	<div *ngIf="checkInGroup()==false && group.creator!=username">
 		<button (click)="joinGroup()">Join Group</button>
 	</div>
 

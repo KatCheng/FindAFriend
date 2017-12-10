@@ -22,6 +22,7 @@ export class GroupDetailComponent implements OnInit {
 
   }
 
+
   updateClicked(){
     if (this.updateSee==null){
       this.updateSee=true;
