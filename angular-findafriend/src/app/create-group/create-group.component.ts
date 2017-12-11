@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../headers';
 import { AuthenticationService } from '../authentication.service';
@@ -16,7 +15,7 @@ export class CreateGroupComponent implements OnInit {
 	endpoint: string = "http://127.0.0.1:8000/api/pageCreate/";
 
 
-	constructor(public _router: Router, public _http: Http) { }
+	constructor(public _http: Http) { }
 
 	createGroup(event, title, typeOfGroup, description) {
 
