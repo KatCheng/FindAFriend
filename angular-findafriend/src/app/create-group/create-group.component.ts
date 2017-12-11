@@ -26,6 +26,10 @@ export class CreateGroupComponent implements OnInit {
     event.preventDefault();
     let creator = this.username;
 
+    if(description.length<1){
+        description = "None";
+    }
+
     let body = JSON.stringify({ title, creator, description, typeOfGroup });
 
     console.log("test");
@@ -35,9 +39,9 @@ export class CreateGroupComponent implements OnInit {
 
     this.req = this._http.post(this.endpoint, body, { headers: contentHeaders})
 		.subscribe(
-			response => {
-				this._router.navigate(['/']);
-			},
+			//response => {
+				//this._router.navigate(['/']);
+			//},
 			error => {
 				let createGroupError = error.json();
 
