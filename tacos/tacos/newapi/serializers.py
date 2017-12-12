@@ -124,7 +124,8 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
-    creator = serializers.CharField(source='creator.username')
+    # In our json, creator is username instead of foreign key
+    creator = serializers.CharField()
     
     class Meta:
             model = Page
@@ -132,19 +133,21 @@ class PageCreateSerializer(serializers.HyperlinkedModelSerializer):
 
 
     def create(self, validated_data):
-        print(validated_data)
         currentTime = str(datetime.now())
+        # For example: "2011-05-03 17:45:35.177000"
         currentTime = currentTime[:16]
+        # "2011-05-03 17:45:35" Django requires the space to be "T"
         currentTime = currentTime.replace(' ', 'T')
         page_obj = Page(
                 title = validated_data['title'],
-                creator = User.objects.get( username = validated_data['creator']['username'] ),
+                creator = User.objects.get( username = validated_data['creator'] ),
                 description = validated_data['description'],
                 timeCreated = currentTime,
                 typeOfGroup = validated_data['typeOfGroup']
             )
         page_obj.save()
-        page_obj.members.add(User.objects.get( username = validated_data['creator']['username'] ))
+        # Find the user in our database, and add the user to the "members" of the newly created object
+        page_obj.members.add(User.objects.get( username = validated_data['creator'] ))
         return validated_data
 
 

@@ -6,12 +6,6 @@ from django.contrib.auth.models import User # profile
 from django.db.models.signals import post_save # profile
 import json
 
-SIZEOPTIONS =(
-	('Under 5', 'Under 5'),
-	('Under 20', 'Under 20'),
-	('Under 50', 'Under 50'),
-	('More than 50', 'More than 50'),
-	)
 
 GROUPOPTIONS = (
 	('Sport', 'Sport'),
@@ -29,7 +23,7 @@ PROFILEPIC = (
 	(5, 'img-5.jpg'),
 	)
 class Page(models.Model):
-	title = models.CharField(max_length=200, unique=True)
+	title = models.CharField(max_length=200, unique=False)
 	creator = models.ForeignKey('auth.User')
 	description = models.TextField()
 	typeOfGroup = models.CharField(max_length=12, choices=GROUPOPTIONS, null=True)
