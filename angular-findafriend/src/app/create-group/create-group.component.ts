@@ -29,16 +29,9 @@ export class CreateGroupComponent implements OnInit {
     let body = JSON.stringify({ title, creator, description, typeOfGroup });
 
     this.req = this._http.post(this.endpoint, body, { headers: contentHeaders})
-		.subscribe();
-		this.blankOut();
-	};
+		.subscribe(result => {alert("Success! Group Created");}, error => {alert("Sorry! Group Title is Unavailable");});
 
-	blankOut(){
-		var inputs = document.getElementsByTagName('input');
-		for (var i = 0; i<inputs.length; i++) {
-            inputs[i].value = '';
-   		}
-	}
+	};
 
 	ngOnInit() {
 
