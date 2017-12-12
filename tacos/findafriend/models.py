@@ -23,7 +23,7 @@ PROFILEPIC = (
 	(5, 'img-5.jpg'),
 	)
 class Page(models.Model):
-	title = models.CharField(max_length=200, unique=False)
+	title = models.CharField(max_length=200, unique=True)
 	creator = models.ForeignKey('auth.User')
 	description = models.TextField()
 	typeOfGroup = models.CharField(max_length=12, choices=GROUPOPTIONS, null=True)
