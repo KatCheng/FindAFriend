@@ -26,6 +26,7 @@ export class CreateGroupComponent implements OnInit {
         description = "None";
     }
 
+    //make a JSON with name and value pairs
     let body = JSON.stringify({ title, creator, description, typeOfGroup });
 
     this.req = this._http.post(this.endpoint, body, { headers: contentHeaders})
